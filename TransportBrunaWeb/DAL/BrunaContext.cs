@@ -9,7 +9,7 @@ namespace TransportBrunaWeb.DAL
 {
     public class BrunaContext : DbContext
     {
-        public BrunaContext() : base("BrunaContext")
+        public BrunaContext() : base("aspnet-TransportBrunaWeb-20180526110627")
         {
         }
 
@@ -20,11 +20,14 @@ namespace TransportBrunaWeb.DAL
         public DbSet<PrivateCustomer> PrivateCustomer { get; set; }
         public DbSet<TransportationStatusTypes> TransportationStatusTypes { get; set; }
         
-        /*protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Company>().ToTable("Company")
-            //modelBuilder.Entity<PrivateCustomer>().ToTable("PrivateCustomer")
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-        }*/
+            modelBuilder.Entity<CargoTypes>().ToTable("CargoTypes");
+            modelBuilder.Entity<Company>().ToTable("Company");
+            modelBuilder.Entity<ContainerTypes>().ToTable("ContainerTypes");
+            modelBuilder.Entity<CostTypes>().ToTable("CostTypes");
+            modelBuilder.Entity<PrivateCustomer>().ToTable("PrivateCustomer");
+            modelBuilder.Entity<TransportationStatusTypes>().ToTable("TransportationStatusTypes");
+        }
     }
 }

@@ -22,7 +22,7 @@ namespace TransportBrunaWeb.Models
 
         [Display(Name = "Phone")]
         [Required(ErrorMessage = "The phone number must be specified!")]
-        public int Phone { get; set; }
+        public string Phone { get; set; }
 
         [Display(Name = "Email")]
         [Required(ErrorMessage = "The email address must be specified!")]
