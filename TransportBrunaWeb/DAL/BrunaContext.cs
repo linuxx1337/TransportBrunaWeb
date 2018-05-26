@@ -5,7 +5,7 @@ using System.Web;
 using TransportBrunaWeb.Models;
 using System.Data.Entity;
 
-namespace TransportBrunaWeb.Data
+namespace TransportBrunaWeb.DAL
 {
     public class BrunaContext : DbContext
     {
@@ -19,12 +19,12 @@ namespace TransportBrunaWeb.Data
         public DbSet<CostTypes> CostTypes { get; set; }
         public DbSet<PrivateCustomer> PrivateCustomer { get; set; }
         public DbSet<TransportationStatusTypes> TransportationStatusTypes { get; set; }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        
+        /*protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            /*modelBuilder.Entity<Company>().ToTable("Company")
-            modelBuilder.Entity<PrivateCustomer>().ToTable("PrivateCustomer")*/
+            //modelBuilder.Entity<Company>().ToTable("Company")
+            //modelBuilder.Entity<PrivateCustomer>().ToTable("PrivateCustomer")
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-        }
+        }*/
     }
 }
