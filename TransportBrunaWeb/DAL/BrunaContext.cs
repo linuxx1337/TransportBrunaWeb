@@ -19,7 +19,18 @@ namespace TransportBrunaWeb.DAL
         public DbSet<CostTypes> CostTypes { get; set; }
         public DbSet<PrivateCustomer> PrivateCustomer { get; set; }
         public DbSet<TransportationStatusTypes> TransportationStatusTypes { get; set; }
-        
+        /*
+        public DbSet<Costs> Costs { get; set; }
+        public DbSet<Containers> Containers { get; set; }
+        public DbSet<Vehicles> Vehicles { get; set; }
+        public DbSet<VehicleCosts> VehicleCosts { get; set; }
+        public DbSet<Customers> Customers { get; set; }
+        public DbSet<TransportationLog> TransportationLog { get; set; }
+        public DbSet<DrivingCosts> DrivingCosts { get; set; }
+        public DbSet<TransportationStatus> TransportationStatus { get; set; }
+        public DbSet<HouseholdTransportation> HouseholdTransportation { get; set; }
+        */
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CargoTypes>().ToTable("CargoTypes");

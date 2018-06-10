@@ -206,12 +206,21 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CargoTypes.cs" />
     <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\Containers.cs" />
     <Compile Include="Models\ContainerTypes.cs" />
+    <Compile Include="Models\Costs.cs" />
     <Compile Include="Models\CostTypes.cs" />
+    <Compile Include="Models\Customers.cs" />
+    <Compile Include="Models\DrivingCosts.cs" />
+    <Compile Include="Models\HouseholdTransportation.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PrivateCustomer.cs" />
+    <Compile Include="Models\TransportationLog.cs" />
+    <Compile Include="Models\TransportationStatus.cs" />
     <Compile Include="Models\TransportationStatusTypes.cs" />
+    <Compile Include="Models\VehicleCosts.cs" />
+    <Compile Include="Models\Vehicles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
