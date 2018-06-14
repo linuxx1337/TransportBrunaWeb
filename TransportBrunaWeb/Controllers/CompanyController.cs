@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -14,6 +15,9 @@ namespace TransportBrunaWeb.Controllers
     public class CompanyController : Controller
     {
         private BrunaContext db = new BrunaContext();
+
+        // dodaj spodnjo za izpis userja - glej dropbox usernames.txt
+        //private ApplicationDbContext dbApp = new ApplicationDbContext();
 
         // GET: Company
         public ActionResult Index()
@@ -56,8 +60,8 @@ namespace TransportBrunaWeb.Controllers
                 company.DateCreated = DateTime.Now;
                 company.DateModified = company.DateCreated;
 
-                //company.CreatedBy = Guid.Parse(User.Identity.GetUserId());
-                //company.ModifiedBy = company.UserCreatedID;
+                company.CreatedBy = Guid.Parse(User.Identity.GetUserId());
+                company.ModifiedBy = company.CreatedBy;
 
                 db.Company.Add(company);
                 db.SaveChanges();
@@ -87,15 +91,15 @@ namespace TransportBrunaWeb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "FullName,Address,Phone,Email,Vat,Note,Description")] Company company)
+        public ActionResult Edit([Bind(Include = "CompanyID,FullName,Address,Phone,Email,Vat,Note,Description")] Company company)
         {
             if (ModelState.IsValid)
             {
                 company.DateCreated = DateTime.Now;
                 company.DateModified = company.DateCreated;
 
-                //company.CreatedBy = Guid.Parse(User.Identity.GetUserId());
-                //company.ModifiedBy = company.UserCreatedID;
+                company.CreatedBy = Guid.Parse(User.Identity.GetUserId()); //tole je za user id
+                company.ModifiedBy = company.CreatedBy; // obvezno = company.CreatedBy
 
                 db.Entry(company).State = EntityState.Modified;
                 db.SaveChanges();
