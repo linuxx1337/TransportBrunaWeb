@@ -197,6 +197,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\ContainersController.cs" />
+    <Compile Include="Controllers\ContainerTypesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DAL\BrunaContext.cs" />
@@ -288,6 +290,16 @@
     <Content Include="Views\Company\Details.cshtml" />
     <Content Include="Views\Company\Edit.cshtml" />
     <Content Include="Views\Company\Index.cshtml" />
+    <Content Include="Views\Containers\Create.cshtml" />
+    <Content Include="Views\Containers\Delete.cshtml" />
+    <Content Include="Views\Containers\Details.cshtml" />
+    <Content Include="Views\Containers\Edit.cshtml" />
+    <Content Include="Views\Containers\Index.cshtml" />
+    <Content Include="Views\ContainerTypes\Create.cshtml" />
+    <Content Include="Views\ContainerTypes\Delete.cshtml" />
+    <Content Include="Views\ContainerTypes\Details.cshtml" />
+    <Content Include="Views\ContainerTypes\Edit.cshtml" />
+    <Content Include="Views\ContainerTypes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -13,20 +13,22 @@ namespace TransportBrunaWeb.Models
         [Key]
         public Guid ContainerID { get; set; }
 
+        //[ForeignKey("Container Type")]
         [Display(Name = "Container Type")]
         [Required(ErrorMessage = "The Container type must be specified!")]
         public Guid ContainerTypeID { get; set; }
         public virtual ContainerTypes ContainerTypes { get; set; }
 
+        //[ForeignKey("Company")]
         [Display(Name = "Company")]
         [Required(ErrorMessage = "The Company must be specified!")]
         public Guid CompanyID { get; set; }
         public virtual Company Company { get; set; }
 
-        [Display(Name = "Cost")]
+        /*[Display(Name = "Cost")]
         [Required(ErrorMessage = "Cost must be specified!")]
         public Guid CostID { get; set; }
-        public virtual Costs Costs { get; set; }
+        public virtual Costs Costs { get; set; }*/
 
         //*****
 
