@@ -39,6 +39,17 @@ namespace TransportBrunaWeb.DAL
             modelBuilder.Entity<CostTypes>().ToTable("CostTypes");
             modelBuilder.Entity<PrivateCustomer>().ToTable("PrivateCustomer");
             modelBuilder.Entity<TransportationStatusTypes>().ToTable("TransportationStatusTypes");
+            /*
+            modelBuilder.Entity<Costs>().ToTable("Costs");
+            modelBuilder.Entity<Containers>().ToTable("Containers");
+            modelBuilder.Entity<Vehicles>().ToTable("Vehicles");
+            modelBuilder.Entity<VehicleCosts>().ToTable("VehicleCosts");
+            modelBuilder.Entity<Customers>().ToTable("Customers");
+            modelBuilder.Entity<TransportationLog>().ToTable("TransportationLog");
+            modelBuilder.Entity<DrivingCosts>().ToTable("DrivingCosts");
+            modelBuilder.Entity<TransportationStatus>().ToTable("TransportationStatus");
+            modelBuilder.Entity<HouseholdTransportation>().ToTable("HouseholdTransportation");
+            */
         }
     }
 }

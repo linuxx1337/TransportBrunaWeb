@@ -21,6 +21,7 @@ namespace TransportBrunaWeb.Models
         public string Address { get; set; }
 
         [Display(Name = "Phone")]
+        [RegularExpression(@"^([\+]|0)[(\s]{0,1}[2-9][0-9]{0,2}[\s-)]{0,2}[0-9][0-9][0-9\s-]*[0-9]$")]
         [Required(ErrorMessage = "The phone number must be specified!")]
         public string Phone { get; set; }
 
@@ -41,20 +42,31 @@ namespace TransportBrunaWeb.Models
         public string Description { get; set; }
 
         // ******************************
-
+        /*
         [Display(Name = "Date Created")]
-        [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
-        public DateTime DateCreated { get; set; }
+       [DataType(DataType.DateTime)]
+       [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+       public DateTime DateCreated { get; set; }
 
-        [Display(Name = "Date Modified")]
-        [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
-        public DateTime DateModified { get; set; }
+       [Display(Name = "Date Modified")]
+       [DataType(DataType.DateTime)]
+       [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+       public DateTime DateModified { get; set; }
+       */
 
-        public Guid CreatedBy { get; set; }
+      [Display(Name = "Date Created")]
+      [DataType(DataType.DateTime)]
+      [DisplayFormat(DataFormatString = "{0:d. M. yyyy}", ApplyFormatInEditMode = true)]
+      public DateTime? DateCreated { get; set; }
 
-        public Guid ModifiedBy { get; set; }
+      [Display(Name = "Date Modified")]
+      [DataType(DataType.DateTime)]
+      [DisplayFormat(DataFormatString = "{0:d. M. yyyy}", ApplyFormatInEditMode = true)]
+      public DateTime? DateModified { get; set; }
+
+      public Guid CreatedBy { get; set; }
+
+      public Guid ModifiedBy { get; set; }
     }
 
     public class CompanyViewModel

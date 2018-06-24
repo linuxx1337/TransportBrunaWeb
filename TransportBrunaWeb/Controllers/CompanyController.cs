@@ -60,7 +60,7 @@ namespace TransportBrunaWeb.Controllers
                 company.DateCreated = DateTime.Now;
                 company.DateModified = company.DateCreated;
 
-                company.CreatedBy = Guid.Parse(User.Identity.GetUserId());
+                company.CreatedBy = Guid.Parse(User.Identity.GetUserId()); // tole je za userID
                 company.ModifiedBy = company.CreatedBy;
 
                 db.Company.Add(company);
@@ -95,11 +95,9 @@ namespace TransportBrunaWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                company.DateCreated = DateTime.Now;
-                company.DateModified = company.DateCreated;
+                company.DateModified = DateTime.Now;
 
-                company.CreatedBy = Guid.Parse(User.Identity.GetUserId()); //tole je za user id
-                company.ModifiedBy = company.CreatedBy; // obvezno = company.CreatedBy
+                company.ModifiedBy = Guid.Parse(User.Identity.GetUserId());
 
                 db.Entry(company).State = EntityState.Modified;
                 db.SaveChanges();

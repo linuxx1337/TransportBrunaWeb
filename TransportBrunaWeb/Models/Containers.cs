@@ -53,13 +53,13 @@ namespace TransportBrunaWeb.Models
 
         [Display(Name = "Date Created")]
         [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
-        public DateTime DateCreated { get; set; }
+        [DisplayFormat(DataFormatString = "{0:d. M. yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime? DateCreated { get; set; }
 
         [Display(Name = "Date Modified")]
         [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
-        public DateTime DateModified { get; set; }
+        [DisplayFormat(DataFormatString = "{0:d. M. yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime? DateModified { get; set; }
 
         public Guid CreatedBy { get; set; }
 
