@@ -196,11 +196,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CargoTypesController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\ContainersController.cs" />
     <Compile Include="Controllers\ContainerTypesController.cs" />
+    <Compile Include="Controllers\CostTypesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PrivateCustomersController.cs" />
+    <Compile Include="Controllers\TransportationStatusTypesController.cs" />
     <Compile Include="DAL\BrunaContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -300,6 +304,26 @@
     <Content Include="Views\ContainerTypes\Details.cshtml" />
     <Content Include="Views\ContainerTypes\Edit.cshtml" />
     <Content Include="Views\ContainerTypes\Index.cshtml" />
+    <Content Include="Views\CostTypes\Create.cshtml" />
+    <Content Include="Views\CostTypes\Delete.cshtml" />
+    <Content Include="Views\CostTypes\Details.cshtml" />
+    <Content Include="Views\CostTypes\Edit.cshtml" />
+    <Content Include="Views\CostTypes\Index.cshtml" />
+    <Content Include="Views\TransportationStatusTypes\Create.cshtml" />
+    <Content Include="Views\TransportationStatusTypes\Delete.cshtml" />
+    <Content Include="Views\TransportationStatusTypes\Details.cshtml" />
+    <Content Include="Views\TransportationStatusTypes\Edit.cshtml" />
+    <Content Include="Views\TransportationStatusTypes\Index.cshtml" />
+    <Content Include="Views\CargoTypes\Create.cshtml" />
+    <Content Include="Views\CargoTypes\Delete.cshtml" />
+    <Content Include="Views\CargoTypes\Details.cshtml" />
+    <Content Include="Views\CargoTypes\Edit.cshtml" />
+    <Content Include="Views\CargoTypes\Index.cshtml" />
+    <Content Include="Views\PrivateCustomers\Create.cshtml" />
+    <Content Include="Views\PrivateCustomers\Delete.cshtml" />
+    <Content Include="Views\PrivateCustomers\Details.cshtml" />
+    <Content Include="Views\PrivateCustomers\Edit.cshtml" />
+    <Content Include="Views\PrivateCustomers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
