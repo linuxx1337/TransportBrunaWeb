@@ -30,6 +30,7 @@ namespace TransportBrunaWeb.Models
         public string Email { get; set; }
 
         [Display(Name = "VAT")]
+        [RegularExpression(@"^[0-9]{8}$", ErrorMessage = "Please enter SI VAT number!")]
         [Required(ErrorMessage = "The VAT number must be specified!")]
         public int Vat { get; set; }
 
@@ -40,7 +41,7 @@ namespace TransportBrunaWeb.Models
         [Display(Name = "Description")]
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
-
+       
         // ******************************
         /*
         [Display(Name = "Date Created")]
@@ -54,7 +55,7 @@ namespace TransportBrunaWeb.Models
        public DateTime DateModified { get; set; }
        */
 
-      [Display(Name = "Date Created")]
+        [Display(Name = "Date Created")]
       [DataType(DataType.DateTime)]
       [DisplayFormat(DataFormatString = "{0:d. M. yyyy}", ApplyFormatInEditMode = true)]
       public DateTime? DateCreated { get; set; }

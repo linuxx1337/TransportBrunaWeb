@@ -21,8 +21,9 @@ namespace TransportBrunaWeb.Models
         public string Address { get; set; }
 
         [Display(Name = "Phone")]
+        [RegularExpression(@"^([\+]|0)[(\s]{0,1}[2-9][0-9]{0,2}[\s-)]{0,2}[0-9][0-9][0-9\s-]*[0-9]$", ErrorMessage = "Please enter right number, example: 040 123-456, 07 12-12456, +(386) 334-452")]
         [Required(ErrorMessage = "The phone number must be specified!")]
-        public int Phone { get; set; }
+        public string Phone { get; set; }
 
         [Display(Name = "Email")]
         public string Email { get; set; }
@@ -66,7 +67,7 @@ namespace TransportBrunaWeb.Models
         public string Address { get; set; }
 
         [Display(Name = "Phone")]
-        public int Phone { get; set; }
+        public string Phone { get; set; }
 
         [Display(Name = "Email")]
         public string Email { get; set; }

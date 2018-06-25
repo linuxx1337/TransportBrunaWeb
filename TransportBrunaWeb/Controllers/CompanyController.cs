@@ -63,6 +63,8 @@ namespace TransportBrunaWeb.Controllers
                 company.CreatedBy = Guid.Parse(User.Identity.GetUserId()); // tole je za userID
                 company.ModifiedBy = company.CreatedBy;
 
+                //company.UserName = User.Identity.GetUserName()
+
                 db.Company.Add(company);
                 db.SaveChanges();
                 return RedirectToAction("Index");
