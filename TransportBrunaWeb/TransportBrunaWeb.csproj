@@ -201,6 +201,7 @@
     <Compile Include="Controllers\ContainersController.cs" />
     <Compile Include="Controllers\ContainerTypesController.cs" />
     <Compile Include="Controllers\CostTypesController.cs" />
+    <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PrivateCustomersController.cs" />
@@ -209,6 +210,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806251651237_InitialCreate.cs" />
+    <Compile Include="Migrations\201806251651237_InitialCreate.Designer.cs">
+      <DependentUpon>201806251651237_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806251657312_CustomersDBset.cs" />
+    <Compile Include="Migrations\201806251657312_CustomersDBset.Designer.cs">
+      <DependentUpon>201806251657312_CustomersDBset.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CargoTypes.cs" />
     <Compile Include="Models\Company.cs" />
@@ -324,6 +334,11 @@
     <Content Include="Views\PrivateCustomers\Details.cshtml" />
     <Content Include="Views\PrivateCustomers\Edit.cshtml" />
     <Content Include="Views\PrivateCustomers\Index.cshtml" />
+    <Content Include="Views\Customers\Create.cshtml" />
+    <Content Include="Views\Customers\Delete.cshtml" />
+    <Content Include="Views\Customers\Details.cshtml" />
+    <Content Include="Views\Customers\Edit.cshtml" />
+    <Content Include="Views\Customers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -340,6 +355,14 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201806251651237_InitialCreate.resx">
+      <DependentUpon>201806251651237_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806251657312_CustomersDBset.resx">
+      <DependentUpon>201806251657312_CustomersDBset.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

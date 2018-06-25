@@ -21,12 +21,12 @@ namespace TransportBrunaWeb.DAL
         public DbSet<TransportationStatusTypes> TransportationStatusTypes { get; set; }
 
         public DbSet<Containers> Containers { get; set; }
+        public DbSet<Customers> Customers { get; set; }
 
         /*
         public DbSet<Costs> Costs { get; set; }
         public DbSet<Vehicles> Vehicles { get; set; }
         public DbSet<VehicleCosts> VehicleCosts { get; set; }
-        public DbSet<Customers> Customers { get; set; }
         public DbSet<TransportationLog> TransportationLog { get; set; }
         public DbSet<DrivingCosts> DrivingCosts { get; set; }
         public DbSet<TransportationStatus> TransportationStatus { get; set; }
@@ -43,13 +43,13 @@ namespace TransportBrunaWeb.DAL
             modelBuilder.Entity<TransportationStatusTypes>().ToTable("TransportationStatusTypes");
 
             modelBuilder.Entity<Containers>().ToTable("Containers");
+            modelBuilder.Entity<Customers>().ToTable("Customers");
 
 
             /*
             modelBuilder.Entity<Costs>().ToTable("Costs");
             modelBuilder.Entity<Vehicles>().ToTable("Vehicles");
             modelBuilder.Entity<VehicleCosts>().ToTable("VehicleCosts");
-            modelBuilder.Entity<Customers>().ToTable("Customers");
             modelBuilder.Entity<TransportationLog>().ToTable("TransportationLog");
             modelBuilder.Entity<DrivingCosts>().ToTable("DrivingCosts");
             modelBuilder.Entity<TransportationStatus>().ToTable("TransportationStatus");
