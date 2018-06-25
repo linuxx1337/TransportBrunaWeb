@@ -95,7 +95,30 @@ namespace TransportBrunaWeb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ContainerID,ContainerTypeID,CompanyID,Name,Label,Volume,Note,Description")] Containers containers)
+        public ActionResult Edit([Bind(Include = "ContainerID,ContainerTypeID,CompanyID,Name,Label,Volume,Note,Description")] ContainersViewModel ContainersViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                Containers model = db.Containers.Find(ContainersViewModel.ContainerID);
+
+                model.Name = ContainersViewModel.Name;
+                model.Label = ContainersViewModel.Label;
+                model.Volume = ContainersViewModel.Volume;
+                model.Note = ContainersViewModel.Note;
+                model.Description = ContainersViewModel.Description;
+
+                model.DateModified = DateTime.Now;
+                model.ModifiedBy = Guid.Parse(User.Identity.GetUserId());
+
+                db.Entry(model).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.CompanyID = new SelectList(db.Company, "CompanyID", "FullName", ContainersViewModel.CompanyID);
+            ViewBag.ContainerTypeID = new SelectList(db.ContainerTypes, "ContainerTypeID", "Name", ContainersViewModel.ContainerTypeID);
+            return View(ContainersViewModel);
+        }
+        /*public ActionResult Edit([Bind(Include = "ContainerID,ContainerTypeID,CompanyID,Name,Label,Volume,Note,Description")] Containers containers)
         {
             if (ModelState.IsValid)
             {
@@ -111,7 +134,7 @@ namespace TransportBrunaWeb.Controllers
             ViewBag.CompanyID = new SelectList(db.Company, "CompanyID", "FullName", containers.CompanyID);
             ViewBag.ContainerTypeID = new SelectList(db.ContainerTypes, "ContainerTypeID", "Name", containers.ContainerTypeID);
             return View(containers);
-        }
+        }*/
 
         // GET: Containers/Delete/5
         public ActionResult Delete(Guid? id)

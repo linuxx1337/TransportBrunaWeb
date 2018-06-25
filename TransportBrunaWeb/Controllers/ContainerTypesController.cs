@@ -88,19 +88,24 @@ namespace TransportBrunaWeb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ContainerTypeID,Name,Description")] ContainerTypes containerTypes)
+        public ActionResult Edit([Bind(Include = "ContainerTypeID,Name,Description")] ContainerTypesViewModel ContainerTypesViewModel)
         {
             if (ModelState.IsValid)
             {
-                containerTypes.DateModified = DateTime.Now;
+                ContainerTypes model = db.ContainerTypes.Find(ContainerTypesViewModel.ContainerTypeID);
 
-                containerTypes.ModifiedBy = Guid.Parse(User.Identity.GetUserId());
+                model.Name = ContainerTypesViewModel.Name;
+                model.Description = ContainerTypesViewModel.Description;
 
-                db.Entry(containerTypes).State = EntityState.Modified;
+                model.DateModified = DateTime.Now;
+                model.ModifiedBy = Guid.Parse(User.Identity.GetUserId());
+               
+
+                db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(containerTypes);
+            return View(ContainerTypesViewModel);
         }
 
         // GET: ContainerTypes/Delete/5

@@ -37,7 +37,7 @@ namespace TransportBrunaWeb.Models
         public Guid ModifiedBy { get; set; }
     }
 
-    public class ContainerViewModel
+    public class ContainerTypesViewModel
     {
         public Guid ContainerTypeID { get; set; }
 

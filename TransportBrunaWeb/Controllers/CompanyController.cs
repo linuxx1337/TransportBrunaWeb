@@ -89,7 +89,7 @@ namespace TransportBrunaWeb.Controllers
         // POST: Company/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        /*[HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "CompanyID,FullName,Address,Phone,Email,Vat,Note,Description")] Company company)
         {
@@ -104,6 +104,32 @@ namespace TransportBrunaWeb.Controllers
                 return RedirectToAction("Index");
             }
             return View(company);
+        }*/
+        // Uporaba ViewModel
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "CompanyID,FullName,Address,Phone,Email,Vat,Note,Description")] CompanyViewModel CompanyViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                Company model = db.Company.Find(CompanyViewModel.CompanyID);
+
+                model.FullName = CompanyViewModel.FullName;
+                model.Address = CompanyViewModel.Address;
+                model.Phone = CompanyViewModel.Phone;
+                model.Email = CompanyViewModel.Email;
+                model.Vat = CompanyViewModel.Vat;
+                model.Note = CompanyViewModel.Note;
+                model.Description = CompanyViewModel.Description;
+
+                model.DateModified = DateTime.Now;
+                model.ModifiedBy = Guid.Parse(User.Identity.GetUserId());
+
+                db.Entry(model).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(CompanyViewModel);
         }
 
         // GET: Company/Delete/5
