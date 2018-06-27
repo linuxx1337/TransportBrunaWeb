@@ -200,12 +200,14 @@
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\ContainersController.cs" />
     <Compile Include="Controllers\ContainerTypesController.cs" />
+    <Compile Include="Controllers\CostsController.cs" />
     <Compile Include="Controllers\CostTypesController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PrivateCustomersController.cs" />
     <Compile Include="Controllers\TransportationStatusTypesController.cs" />
+    <Compile Include="Controllers\VehiclesController.cs" />
     <Compile Include="DAL\BrunaContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -217,6 +219,30 @@
     <Compile Include="Migrations\201806251657312_CustomersDBset.cs" />
     <Compile Include="Migrations\201806251657312_CustomersDBset.Designer.cs">
       <DependentUpon>201806251657312_CustomersDBset.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806271217089_CostsDBset.cs" />
+    <Compile Include="Migrations\201806271217089_CostsDBset.Designer.cs">
+      <DependentUpon>201806271217089_CostsDBset.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806271247212_DatePicker.cs" />
+    <Compile Include="Migrations\201806271247212_DatePicker.Designer.cs">
+      <DependentUpon>201806271247212_DatePicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806271309481_VehiclesDBset.cs" />
+    <Compile Include="Migrations\201806271309481_VehiclesDBset.Designer.cs">
+      <DependentUpon>201806271309481_VehiclesDBset.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806271328257_DatePicker2.cs" />
+    <Compile Include="Migrations\201806271328257_DatePicker2.Designer.cs">
+      <DependentUpon>201806271328257_DatePicker2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806271355083_Test1.cs" />
+    <Compile Include="Migrations\201806271355083_Test1.Designer.cs">
+      <DependentUpon>201806271355083_Test1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806271359212_Test2.cs" />
+    <Compile Include="Migrations\201806271359212_Test2.Designer.cs">
+      <DependentUpon>201806271359212_Test2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -339,6 +365,16 @@
     <Content Include="Views\Customers\Details.cshtml" />
     <Content Include="Views\Customers\Edit.cshtml" />
     <Content Include="Views\Customers\Index.cshtml" />
+    <Content Include="Views\Costs\Create.cshtml" />
+    <Content Include="Views\Costs\Delete.cshtml" />
+    <Content Include="Views\Costs\Details.cshtml" />
+    <Content Include="Views\Costs\Edit.cshtml" />
+    <Content Include="Views\Costs\Index.cshtml" />
+    <Content Include="Views\Vehicles\Create.cshtml" />
+    <Content Include="Views\Vehicles\Delete.cshtml" />
+    <Content Include="Views\Vehicles\Details.cshtml" />
+    <Content Include="Views\Vehicles\Edit.cshtml" />
+    <Content Include="Views\Vehicles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -362,6 +398,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806251657312_CustomersDBset.resx">
       <DependentUpon>201806251657312_CustomersDBset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806271217089_CostsDBset.resx">
+      <DependentUpon>201806271217089_CostsDBset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806271247212_DatePicker.resx">
+      <DependentUpon>201806271247212_DatePicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806271309481_VehiclesDBset.resx">
+      <DependentUpon>201806271309481_VehiclesDBset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806271328257_DatePicker2.resx">
+      <DependentUpon>201806271328257_DatePicker2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806271355083_Test1.resx">
+      <DependentUpon>201806271355083_Test1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806271359212_Test2.resx">
+      <DependentUpon>201806271359212_Test2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

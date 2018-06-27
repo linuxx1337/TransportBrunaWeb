@@ -25,6 +25,7 @@ namespace TransportBrunaWeb.Models
 
         [Display(Name = "Date")]
         [Required(ErrorMessage = "The date must be specified!")]
+        [DataType(DataType.Date)] // tole rabiš za date picker
         public DateTime Date { get; set; }
 
         [Display(Name = "Note")]
