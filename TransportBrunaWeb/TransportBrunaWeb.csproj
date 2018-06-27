@@ -206,7 +206,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PrivateCustomersController.cs" />
+    <Compile Include="Controllers\TransportationLogController.cs" />
     <Compile Include="Controllers\TransportationStatusTypesController.cs" />
+    <Compile Include="Controllers\VehicleCostsController.cs" />
     <Compile Include="Controllers\VehiclesController.cs" />
     <Compile Include="DAL\BrunaContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -243,6 +245,14 @@
     <Compile Include="Migrations\201806271359212_Test2.cs" />
     <Compile Include="Migrations\201806271359212_Test2.Designer.cs">
       <DependentUpon>201806271359212_Test2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806271426079_VehicleCostsDBset.cs" />
+    <Compile Include="Migrations\201806271426079_VehicleCostsDBset.Designer.cs">
+      <DependentUpon>201806271426079_VehicleCostsDBset.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806271456152_TransportationLogDBset.cs" />
+    <Compile Include="Migrations\201806271456152_TransportationLogDBset.Designer.cs">
+      <DependentUpon>201806271456152_TransportationLogDBset.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -375,6 +385,16 @@
     <Content Include="Views\Vehicles\Details.cshtml" />
     <Content Include="Views\Vehicles\Edit.cshtml" />
     <Content Include="Views\Vehicles\Index.cshtml" />
+    <Content Include="Views\VehicleCosts\Create.cshtml" />
+    <Content Include="Views\VehicleCosts\Delete.cshtml" />
+    <Content Include="Views\VehicleCosts\Details.cshtml" />
+    <Content Include="Views\VehicleCosts\Edit.cshtml" />
+    <Content Include="Views\VehicleCosts\Index.cshtml" />
+    <Content Include="Views\TransportationLog\Create.cshtml" />
+    <Content Include="Views\TransportationLog\Delete.cshtml" />
+    <Content Include="Views\TransportationLog\Details.cshtml" />
+    <Content Include="Views\TransportationLog\Edit.cshtml" />
+    <Content Include="Views\TransportationLog\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -416,6 +436,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806271359212_Test2.resx">
       <DependentUpon>201806271359212_Test2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806271426079_VehicleCostsDBset.resx">
+      <DependentUpon>201806271426079_VehicleCostsDBset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806271456152_TransportationLogDBset.resx">
+      <DependentUpon>201806271456152_TransportationLogDBset.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

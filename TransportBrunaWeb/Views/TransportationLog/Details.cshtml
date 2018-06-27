@@ -1,0 +1,122 @@
+﻿@model TransportBrunaWeb.Models.TransportationLog
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TransportationLog</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CargoTypes.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CargoTypes.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Containers.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Containers.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Costs.Note)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Costs.Note)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customers.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customers.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vehicles.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vehicles.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Note)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Note)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateModified)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateModified)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedBy)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TransportationLogID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
