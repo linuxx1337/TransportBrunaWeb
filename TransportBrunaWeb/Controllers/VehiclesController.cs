@@ -99,7 +99,7 @@ namespace TransportBrunaWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                Vehicles model = db.Vehicles.Find(VehiclesViewModel.CostID);
+                Vehicles model = db.Vehicles.Find(VehiclesViewModel.VehicleID);
 
                 model.Name = VehiclesViewModel.Name;
                 model.RegPlate = VehiclesViewModel.RegPlate;
