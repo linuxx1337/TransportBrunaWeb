@@ -26,12 +26,10 @@ namespace TransportBrunaWeb.DAL
         public DbSet<Vehicles> Vehicles { get; set; }
         public DbSet<VehicleCosts> VehicleCosts { get; set; }
         public DbSet<TransportationLog> TransportationLog { get; set; }
-
-        /*
         public DbSet<DrivingCosts> DrivingCosts { get; set; }
         public DbSet<TransportationStatus> TransportationStatus { get; set; }
         public DbSet<HouseholdTransportation> HouseholdTransportation { get; set; }
-        */
+        
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -48,13 +46,9 @@ namespace TransportBrunaWeb.DAL
             modelBuilder.Entity<Vehicles>().ToTable("Vehicles");
             modelBuilder.Entity<VehicleCosts>().ToTable("VehicleCosts");
             modelBuilder.Entity<TransportationLog>().ToTable("TransportationLog");
-
-
-            /*
             modelBuilder.Entity<DrivingCosts>().ToTable("DrivingCosts");
             modelBuilder.Entity<TransportationStatus>().ToTable("TransportationStatus");
             modelBuilder.Entity<HouseholdTransportation>().ToTable("HouseholdTransportation");
-            */
         }
 
     }

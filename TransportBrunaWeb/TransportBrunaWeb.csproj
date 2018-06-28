@@ -203,10 +203,13 @@
     <Compile Include="Controllers\CostsController.cs" />
     <Compile Include="Controllers\CostTypesController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
+    <Compile Include="Controllers\DrivingCostsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HouseholdTransportationController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PrivateCustomersController.cs" />
     <Compile Include="Controllers\TransportationLogController.cs" />
+    <Compile Include="Controllers\TransportationStatusController.cs" />
     <Compile Include="Controllers\TransportationStatusTypesController.cs" />
     <Compile Include="Controllers\VehicleCostsController.cs" />
     <Compile Include="Controllers\VehiclesController.cs" />
@@ -253,6 +256,18 @@
     <Compile Include="Migrations\201806271456152_TransportationLogDBset.cs" />
     <Compile Include="Migrations\201806271456152_TransportationLogDBset.Designer.cs">
       <DependentUpon>201806271456152_TransportationLogDBset.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806281250115_DrivingCostsDBset.cs" />
+    <Compile Include="Migrations\201806281250115_DrivingCostsDBset.Designer.cs">
+      <DependentUpon>201806281250115_DrivingCostsDBset.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806281259517_TransportationStatusDBset.cs" />
+    <Compile Include="Migrations\201806281259517_TransportationStatusDBset.Designer.cs">
+      <DependentUpon>201806281259517_TransportationStatusDBset.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806281320173_HouseholdTransportationDBset.cs" />
+    <Compile Include="Migrations\201806281320173_HouseholdTransportationDBset.Designer.cs">
+      <DependentUpon>201806281320173_HouseholdTransportationDBset.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -395,6 +410,21 @@
     <Content Include="Views\TransportationLog\Details.cshtml" />
     <Content Include="Views\TransportationLog\Edit.cshtml" />
     <Content Include="Views\TransportationLog\Index.cshtml" />
+    <Content Include="Views\DrivingCosts\Create.cshtml" />
+    <Content Include="Views\DrivingCosts\Delete.cshtml" />
+    <Content Include="Views\DrivingCosts\Details.cshtml" />
+    <Content Include="Views\DrivingCosts\Edit.cshtml" />
+    <Content Include="Views\DrivingCosts\Index.cshtml" />
+    <Content Include="Views\TransportationStatus\Create.cshtml" />
+    <Content Include="Views\TransportationStatus\Delete.cshtml" />
+    <Content Include="Views\TransportationStatus\Details.cshtml" />
+    <Content Include="Views\TransportationStatus\Edit.cshtml" />
+    <Content Include="Views\TransportationStatus\Index.cshtml" />
+    <Content Include="Views\HouseholdTransportation\Create.cshtml" />
+    <Content Include="Views\HouseholdTransportation\Delete.cshtml" />
+    <Content Include="Views\HouseholdTransportation\Details.cshtml" />
+    <Content Include="Views\HouseholdTransportation\Edit.cshtml" />
+    <Content Include="Views\HouseholdTransportation\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -442,6 +472,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806271456152_TransportationLogDBset.resx">
       <DependentUpon>201806271456152_TransportationLogDBset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806281250115_DrivingCostsDBset.resx">
+      <DependentUpon>201806281250115_DrivingCostsDBset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806281259517_TransportationStatusDBset.resx">
+      <DependentUpon>201806281259517_TransportationStatusDBset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806281320173_HouseholdTransportationDBset.resx">
+      <DependentUpon>201806281320173_HouseholdTransportationDBset.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
