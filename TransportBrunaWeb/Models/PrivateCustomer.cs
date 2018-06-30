@@ -29,7 +29,7 @@ namespace TransportBrunaWeb.Models
         public string Email { get; set; }
 
         [Display(Name = "VAT")]
-        public int Vat { get; set; }
+        public int? Vat { get; set; }
 
         [Display(Name = "Note")]
         [DataType(DataType.MultilineText)]

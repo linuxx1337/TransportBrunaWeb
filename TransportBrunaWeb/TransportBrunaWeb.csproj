@@ -269,6 +269,18 @@
     <Compile Include="Migrations\201806281320173_HouseholdTransportationDBset.Designer.cs">
       <DependentUpon>201806281320173_HouseholdTransportationDBset.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806301443125_PrivateCustomersVat.cs" />
+    <Compile Include="Migrations\201806301443125_PrivateCustomersVat.Designer.cs">
+      <DependentUpon>201806301443125_PrivateCustomersVat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806301500343_CostsDateFix.cs" />
+    <Compile Include="Migrations\201806301500343_CostsDateFix.Designer.cs">
+      <DependentUpon>201806301500343_CostsDateFix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806301542380_CostsDateFix2.cs" />
+    <Compile Include="Migrations\201806301542380_CostsDateFix2.Designer.cs">
+      <DependentUpon>201806301542380_CostsDateFix2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CargoTypes.cs" />
@@ -481,6 +493,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806281320173_HouseholdTransportationDBset.resx">
       <DependentUpon>201806281320173_HouseholdTransportationDBset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806301443125_PrivateCustomersVat.resx">
+      <DependentUpon>201806301443125_PrivateCustomersVat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806301500343_CostsDateFix.resx">
+      <DependentUpon>201806301500343_CostsDateFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806301542380_CostsDateFix2.resx">
+      <DependentUpon>201806301542380_CostsDateFix2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

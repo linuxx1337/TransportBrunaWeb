@@ -25,6 +25,7 @@ namespace TransportBrunaWeb.Models
 
         [Display(Name = "Date")]
         [Required(ErrorMessage = "The date must be specified!")]
+        [DisplayFormat(DataFormatString = "{0:d. M. yyyy}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)] // tole rabiš za date picker
         public DateTime Date { get; set; }
 
@@ -63,15 +64,21 @@ namespace TransportBrunaWeb.Models
         public virtual CostTypes CostTypes { get; set; }
 
         [Display(Name = "Amount")]
+        [Required(ErrorMessage = "The amount must be specified!")]
         public double Amount { get; set; }
 
         [Display(Name = "Date")]
+        [Required(ErrorMessage = "The date must be specified!")]
+        [DisplayFormat(DataFormatString = "{0:d. M. yyyy}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)] // tole rabiš za date picker
         public DateTime Date { get; set; }
 
         [Display(Name = "Note")]
+        [DataType(DataType.MultilineText)]
         public string Note { get; set; }
 
         [Display(Name = "Description")]
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
     }
 }

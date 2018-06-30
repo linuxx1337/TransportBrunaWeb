@@ -79,12 +79,22 @@ namespace TransportBrunaWeb.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Costs costs = db.Costs.Find(id);
+            
+            // TOLE DODAŠ za error date2
+            CostsViewModel view = new CostsViewModel();
+            view.Amount = costs.Amount;
+            view.Date = costs.Date;
+            view.CostID = costs.CostID;
+            view.CostTypeID = costs.CostTypeID;
+            view.Note = costs.Note;
+            view.Description = costs.Description;
+
             if (costs == null)
             {
                 return HttpNotFound();
             }
             ViewBag.CostTypeID = new SelectList(db.CostTypes, "CostTypeID", "Name", costs.CostTypeID);
-            return View(costs);
+            return View(view); // tukaj dodaš VIEW!!
         }
 
         // POST: Costs/Edit/5
