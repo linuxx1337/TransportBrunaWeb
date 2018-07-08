@@ -39,6 +39,7 @@ namespace TransportBrunaWeb.Models
 
         [Display(Name = "Date")]
         [Required(ErrorMessage = "The date must be specified!")]
+        [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
         [Display(Name = "Note")]
@@ -78,22 +79,40 @@ namespace TransportBrunaWeb.Models
         public Guid TransportationLogID { get; set; }
         public virtual TransportationLog TransportationLog { get; set; }
 
+        [Display(Name = "First Name")]
+        [Required(ErrorMessage = "The first name must be specified!")]
         public string FirstName { get; set; }
 
+        [Display(Name = "Last Name")]
+        [Required(ErrorMessage = "The last name must be specified!")]
         public string LastName { get; set; }
 
+        [Display(Name = "Address")]
+        [Required(ErrorMessage = "The address must be specified!")]
         public string Address { get; set; }
 
+        [Display(Name = "Post Code")]
+        [Required(ErrorMessage = "The post code must be specified!")]
         public string PostCode { get; set; }
 
+        [Display(Name = "City")]
+        [Required(ErrorMessage = "The city must be specified!")]
         public string City { get; set; }
 
+        [Display(Name = "Date")]
+        [Required(ErrorMessage = "The date must be specified!")]
+        [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
+        [Display(Name = "Note")]
+        [DataType(DataType.MultilineText)]
         public string Note { get; set; }
 
+        [Display(Name = "Attachment")]
         public string Attachment { get; set; }
 
+        [Display(Name = "Description")]
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
     }
 }

@@ -41,6 +41,7 @@ namespace TransportBrunaWeb.Models
 
         [Display(Name = "Date")]
         [Required(ErrorMessage = "The date must be specified!")]
+        [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
         [Display(Name = "Location")]
@@ -101,12 +102,23 @@ namespace TransportBrunaWeb.Models
         public Guid CostID { get; set; }
         public virtual Costs Costs { get; set; }
 
+        // ******
+
+        [Display(Name = "Date")]
+        [Required(ErrorMessage = "The date must be specified!")]
+        [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
+        [Display(Name = "Location")]
+        [Required(ErrorMessage = "The location must be specified!")]
         public string Location { get; set; }
 
+        [Display(Name = "Note")]
+        [DataType(DataType.MultilineText)]
         public string Note { get; set; }
 
+        [Display(Name = "Description")]
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
     }
 }

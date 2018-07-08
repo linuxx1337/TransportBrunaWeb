@@ -57,6 +57,8 @@ namespace TransportBrunaWeb.Models
         public Guid TransportationLogID { get; set; }
         public virtual TransportationLog TransportationLog { get; set; }
 
+        [Display(Name = "Description")]
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
     }
 }

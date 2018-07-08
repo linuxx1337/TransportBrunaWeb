@@ -42,9 +42,11 @@ namespace TransportBrunaWeb.Models
         public Guid TransportationTypeStatusID { get; set; }
 
         [Display(Name = "Name")]
+        [Required(ErrorMessage = "The name must be specified!")]
         public string Name { get; set; }
 
         [Display(Name = "Description")]
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
     }
 }

@@ -58,6 +58,8 @@ namespace TransportBrunaWeb.Models
         public Guid CostID { get; set; }
         public virtual Costs Costs { get; set; }
 
+        [Display(Name = "Description")]
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
     }
 }

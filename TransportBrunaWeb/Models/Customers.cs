@@ -13,13 +13,13 @@ namespace TransportBrunaWeb.Models
         public Guid CustomerID { get; set; }
 
         [Display(Name = "Company")]
-        [Required(ErrorMessage = "The Company must be specified!")]
-        public Guid CompanyID { get; set; }
+        //[Required(ErrorMessage = "The Company must be specified!")]
+        public Guid? CompanyID { get; set; }
         public virtual Company Company { get; set; }
 
         [Display(Name = "Private Customer")]
-        [Required(ErrorMessage = "The Private Customer must be specified!")]
-        public Guid PrivateCustomerID { get; set; }
+        //[Required(ErrorMessage = "The Private Customer must be specified!")]
+        public Guid? PrivateCustomerID { get; set; }
         public virtual PrivateCustomer PrivateCustomer { get; set; }
 
         [Display(Name = "Description")]
@@ -48,15 +48,17 @@ namespace TransportBrunaWeb.Models
         public Guid CustomerID { get; set; }
 
         [Display(Name = "Company")]
-        [Required(ErrorMessage = "The Company must be specified!")]
-        public Guid CompanyID { get; set; }
+        //[Required(ErrorMessage = "The Company must be specified!")]
+        public Guid? CompanyID { get; set; }
         public virtual Company Company { get; set; }
 
         [Display(Name = "Private Customer")]
-        [Required(ErrorMessage = "The Private Customer must be specified!")]
-        public Guid PrivateCustomerID { get; set; }
+        //[Required(ErrorMessage = "The Private Customer must be specified!")]
+        public Guid? PrivateCustomerID { get; set; }
         public virtual PrivateCustomer PrivateCustomer { get; set; }
 
+        [Display(Name = "Description")]
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
     }
 }

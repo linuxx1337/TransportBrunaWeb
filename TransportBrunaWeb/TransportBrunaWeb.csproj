@@ -281,6 +281,26 @@
     <Compile Include="Migrations\201806301542380_CostsDateFix2.Designer.cs">
       <DependentUpon>201806301542380_CostsDateFix2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807081516024_ContainersVolumeFix.cs" />
+    <Compile Include="Migrations\201807081516024_ContainersVolumeFix.Designer.cs">
+      <DependentUpon>201807081516024_ContainersVolumeFix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807081523233_CustomersNullableForeignKey.cs" />
+    <Compile Include="Migrations\201807081523233_CustomersNullableForeignKey.Designer.cs">
+      <DependentUpon>201807081523233_CustomersNullableForeignKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807081553158_CustomersNullableForeignKey1.cs" />
+    <Compile Include="Migrations\201807081553158_CustomersNullableForeignKey1.Designer.cs">
+      <DependentUpon>201807081553158_CustomersNullableForeignKey1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807081556548_CustomersNullableForeignKeyFinal.cs" />
+    <Compile Include="Migrations\201807081556548_CustomersNullableForeignKeyFinal.Designer.cs">
+      <DependentUpon>201807081556548_CustomersNullableForeignKeyFinal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807081614310_VehiclesCostIDdeleted.cs" />
+    <Compile Include="Migrations\201807081614310_VehiclesCostIDdeleted.Designer.cs">
+      <DependentUpon>201807081614310_VehiclesCostIDdeleted.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CargoTypes.cs" />
@@ -502,6 +522,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806301542380_CostsDateFix2.resx">
       <DependentUpon>201806301542380_CostsDateFix2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807081516024_ContainersVolumeFix.resx">
+      <DependentUpon>201807081516024_ContainersVolumeFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807081523233_CustomersNullableForeignKey.resx">
+      <DependentUpon>201807081523233_CustomersNullableForeignKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807081553158_CustomersNullableForeignKey1.resx">
+      <DependentUpon>201807081553158_CustomersNullableForeignKey1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807081556548_CustomersNullableForeignKeyFinal.resx">
+      <DependentUpon>201807081556548_CustomersNullableForeignKeyFinal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807081614310_VehiclesCostIDdeleted.resx">
+      <DependentUpon>201807081614310_VehiclesCostIDdeleted.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

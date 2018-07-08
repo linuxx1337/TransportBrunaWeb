@@ -19,7 +19,8 @@ namespace TransportBrunaWeb.Controllers
         // GET: Vehicles
         public ActionResult Index()
         {
-            var vehicles = db.Vehicles.Include(v => v.Company).Include(v => v.Costs);
+            //var vehicles = db.Vehicles.Include(v => v.Company).Include(v => v.Costs);
+            var vehicles = db.Vehicles.Include(v => v.Company);
             return View(vehicles.ToList());
         }
 
@@ -42,7 +43,7 @@ namespace TransportBrunaWeb.Controllers
         public ActionResult Create()
         {
             ViewBag.CompanyID = new SelectList(db.Company, "CompanyID", "FullName");
-            ViewBag.CostID = new SelectList(db.Costs, "CostID", "Note");
+            //ViewBag.CostID = new SelectList(db.Costs, "CostID", "Note");
             return View();
         }
 
@@ -51,7 +52,7 @@ namespace TransportBrunaWeb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CompanyID,CostID,Name,RegPlate,Brand,Vin,Gvw,MassCargo,Type,DateReg,DateMot,Note,Description")] Vehicles vehicles)
+        public ActionResult Create([Bind(Include = "CompanyID,Name,RegPlate,Brand,Vin,Gvw,MassCargo,Type,DateReg,DateMot,Note,Description")] Vehicles vehicles)
         {
             if (ModelState.IsValid)
             {
@@ -69,7 +70,7 @@ namespace TransportBrunaWeb.Controllers
             }
 
             ViewBag.CompanyID = new SelectList(db.Company, "CompanyID", "FullName", vehicles.CompanyID);
-            ViewBag.CostID = new SelectList(db.Costs, "CostID", "Note", vehicles.CostID);
+            //ViewBag.CostID = new SelectList(db.Costs, "CostID", "Note", vehicles.CostID);
             return View(vehicles);
         }
 
@@ -86,7 +87,7 @@ namespace TransportBrunaWeb.Controllers
                 return HttpNotFound();
             }
             ViewBag.CompanyID = new SelectList(db.Company, "CompanyID", "FullName", vehicles.CompanyID);
-            ViewBag.CostID = new SelectList(db.Costs, "CostID", "Note", vehicles.CostID);
+            //ViewBag.CostID = new SelectList(db.Costs, "CostID", "Note", vehicles.CostID);
             return View(vehicles);
         }
 
@@ -95,7 +96,7 @@ namespace TransportBrunaWeb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "VehicleID,CompanyID,CostID,Name,RegPlate,Brand,Vin,Gvw,MassCargo,Type,DateReg,DateMot,Note,Description")] VehiclesViewModel VehiclesViewModel)
+        public ActionResult Edit([Bind(Include = "VehicleID,CompanyID,Name,RegPlate,Brand,Vin,Gvw,MassCargo,Type,DateReg,DateMot,Note,Description")] VehiclesViewModel VehiclesViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -121,7 +122,7 @@ namespace TransportBrunaWeb.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.CompanyID = new SelectList(db.Company, "CompanyID", "FullName", VehiclesViewModel.CompanyID);
-            ViewBag.CostID = new SelectList(db.Costs, "CostID", "Note", VehiclesViewModel.CostID);
+            //ViewBag.CostID = new SelectList(db.Costs, "CostID", "Note", VehiclesViewModel.CostID);
             return View(VehiclesViewModel);
         }
 
