@@ -87,6 +87,19 @@ namespace TransportBrunaWeb.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             TransportationLog transportationLog = db.TransportationLog.Find(id);
+
+            TransportationLogViewModel view = new TransportationLogViewModel();
+            view.TransportationLogID = transportationLog.TransportationLogID;
+            view.ContainerID = transportationLog.ContainerID;
+            view.VehicleID = transportationLog.VehicleID;
+            view.CargoID = transportationLog.CargoID;
+            view.CustomerID = transportationLog.CustomerID;
+            view.CostID = transportationLog.CostID;
+            view.Date = transportationLog.Date;
+            view.Location = transportationLog.Location;
+            view.Note = transportationLog.Note;
+            view.Description = transportationLog.Description;
+
             if (transportationLog == null)
             {
                 return HttpNotFound();
@@ -96,7 +109,7 @@ namespace TransportBrunaWeb.Controllers
             ViewBag.CostID = new SelectList(db.Costs, "CostID", "Note", transportationLog.CostID);
             ViewBag.CustomerID = new SelectList(db.Customers, "CustomerID", "Description", transportationLog.CustomerID);
             ViewBag.VehicleID = new SelectList(db.Vehicles, "VehicleID", "Name", transportationLog.VehicleID);
-            return View(transportationLog);
+            return View(view);
         }
 
         // POST: TransportationLog/Edit/5

@@ -82,13 +82,29 @@ namespace TransportBrunaWeb.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Vehicles vehicles = db.Vehicles.Find(id);
+
+            VehiclesViewModel view = new VehiclesViewModel();
+            view.VehicleID = vehicles.VehicleID;
+            view.CompanyID = vehicles.CompanyID;
+            view.Name = vehicles.Name;
+            view.RegPlate = vehicles.RegPlate;
+            view.Brand = vehicles.Brand;
+            view.Vin = vehicles.Vin;
+            view.Gvw = vehicles.Gvw;
+            view.MassCargo = vehicles.MassCargo;
+            view.Type = vehicles.Type;
+            view.DateReg = vehicles.DateReg;
+            view.DateMot = vehicles.DateMot;
+            view.Note = vehicles.Note;
+            view.Description = vehicles.Description;
+
             if (vehicles == null)
             {
                 return HttpNotFound();
             }
             ViewBag.CompanyID = new SelectList(db.Company, "CompanyID", "FullName", vehicles.CompanyID);
             //ViewBag.CostID = new SelectList(db.Costs, "CostID", "Note", vehicles.CostID);
-            return View(vehicles);
+            return View(view);
         }
 
         // POST: Vehicles/Edit/5

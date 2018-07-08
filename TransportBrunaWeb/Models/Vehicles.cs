@@ -53,11 +53,13 @@ namespace TransportBrunaWeb.Models
 
         [Display(Name = "Date Reg")]
         [Required(ErrorMessage = "The date reg must be specified!")]
+        [DisplayFormat(DataFormatString = "{0:d. M. yyyy}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public DateTime DateReg { get; set; }
 
         [Display(Name = "Date MOT")]
         [Required(ErrorMessage = "The date MOT must be specified!")]
+        [DisplayFormat(DataFormatString = "{0:d. M. yyyy}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public DateTime DateMot { get; set; }
 
@@ -130,11 +132,13 @@ namespace TransportBrunaWeb.Models
 
         [Display(Name = "Date Reg")]
         [Required(ErrorMessage = "The date reg must be specified!")]
+        [DisplayFormat(DataFormatString = "{0:d. M. yyyy}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public DateTime DateReg { get; set; }
 
         [Display(Name = "Date MOT")]
         [Required(ErrorMessage = "The date MOT must be specified!")]
+        [DisplayFormat(DataFormatString = "{0:d. M. yyyy}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public DateTime DateMot { get; set; }
 

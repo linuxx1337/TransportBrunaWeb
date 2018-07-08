@@ -79,12 +79,26 @@ namespace TransportBrunaWeb.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             HouseholdTransportation householdTransportation = db.HouseholdTransportation.Find(id);
+
+            HouseholdTransportationViewModel view = new HouseholdTransportationViewModel();
+            view.HouseholdTransportationID = householdTransportation.HouseholdTransportationID;
+            view.TransportationLogID = householdTransportation.TransportationLogID;
+            view.FirstName = householdTransportation.FirstName;
+            view.LastName = householdTransportation.LastName;
+            view.Address = householdTransportation.Address;
+            view.PostCode = householdTransportation.PostCode;
+            view.City = householdTransportation.City;
+            view.Date = householdTransportation.Date;
+            view.Note = householdTransportation.Note;
+            view.Attachment = householdTransportation.Attachment;
+            view.Description = householdTransportation.Description;
+
             if (householdTransportation == null)
             {
                 return HttpNotFound();
             }
             ViewBag.TransportationLogID = new SelectList(db.TransportationLog, "TransportationLogID", "Location", householdTransportation.TransportationLogID);
-            return View(householdTransportation);
+            return View(view);
         }
 
         // POST: HouseholdTransportation/Edit/5

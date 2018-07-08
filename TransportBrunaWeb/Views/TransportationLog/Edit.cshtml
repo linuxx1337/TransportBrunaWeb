@@ -1,4 +1,4 @@
-﻿@model TransportBrunaWeb.Models.TransportationLog
+﻿@model TransportBrunaWeb.Models.TransportationLogViewModel
 
 @{
     ViewBag.Title = "Edit";
@@ -60,8 +60,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                <input class="form-control text-box single-line" data-val="true" data-val-date="Polje mora vsebovati datum."
+                       + data-val-required="Vnesite datum objave!" id="Date" name="Date" type="date" value="@Model.Date.ToString("yyyy-MM-dd")" />
             </div>
         </div>
 

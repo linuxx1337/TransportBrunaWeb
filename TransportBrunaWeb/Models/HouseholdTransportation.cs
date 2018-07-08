@@ -39,6 +39,7 @@ namespace TransportBrunaWeb.Models
 
         [Display(Name = "Date")]
         [Required(ErrorMessage = "The date must be specified!")]
+        [DisplayFormat(DataFormatString = "{0:d. M. yyyy}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
@@ -101,6 +102,7 @@ namespace TransportBrunaWeb.Models
 
         [Display(Name = "Date")]
         [Required(ErrorMessage = "The date must be specified!")]
+        [DisplayFormat(DataFormatString = "{0:d. M. yyyy}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
