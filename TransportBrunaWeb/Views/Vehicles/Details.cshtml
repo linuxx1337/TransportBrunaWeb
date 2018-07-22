@@ -142,5 +142,6 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.VehicleID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index") |
+    @Html.ActionLink("Add Cost", "Create", "Costs", new { VehicleID = Model.VehicleID }, null)
 </p>

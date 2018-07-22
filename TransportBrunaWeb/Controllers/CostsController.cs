@@ -50,7 +50,7 @@ namespace TransportBrunaWeb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CostTypeID,Amount,Date,Note,Description")] Costs costs)
+        public ActionResult Create([Bind(Include = "CostTypeID,Amount,Date,Note,Description")] Costs costs, string VehicleID)
         {
             if (ModelState.IsValid)
             {
@@ -64,6 +64,25 @@ namespace TransportBrunaWeb.Controllers
 
                 db.Costs.Add(costs);
                 db.SaveChanges();
+                
+                // Da shranis v tabelo VehicleCosts
+                Guid latestCostID = costs.CostID;
+                VehicleCosts vehicleCosts = new VehicleCosts();
+                vehicleCosts.VehicleCostID = Guid.NewGuid();
+
+                vehicleCosts.DateCreated = costs.DateCreated;
+                vehicleCosts.DateModified = costs.DateModified;
+
+                vehicleCosts.CreatedBy = costs.CreatedBy;
+                vehicleCosts.ModifiedBy = costs.ModifiedBy;
+
+                //vehicleCosts.VehicleID = Guid.Parse("8de46ecb-714f-423e-9a7b-119c9f593f86");
+                vehicleCosts.VehicleID = Guid.Parse(VehicleID);
+                vehicleCosts.CostID = latestCostID;
+
+                db.VehicleCosts.Add(vehicleCosts);
+                db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
 
@@ -79,7 +98,7 @@ namespace TransportBrunaWeb.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Costs costs = db.Costs.Find(id);
-            
+
             // TOLE DODAŠ za error date2
             CostsViewModel view = new CostsViewModel();
             view.Amount = costs.Amount;

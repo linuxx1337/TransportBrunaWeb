@@ -36,6 +36,7 @@ namespace TransportBrunaWeb.Controllers
             {
                 return HttpNotFound();
             }
+
             return View(vehicles);
         }
 
