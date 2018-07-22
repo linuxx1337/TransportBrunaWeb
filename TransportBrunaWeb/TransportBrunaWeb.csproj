@@ -301,6 +301,14 @@
     <Compile Include="Migrations\201807081614310_VehiclesCostIDdeleted.Designer.cs">
       <DependentUpon>201807081614310_VehiclesCostIDdeleted.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807221844516_TransporationLogNullableForeignKeyforCustomers.cs" />
+    <Compile Include="Migrations\201807221844516_TransporationLogNullableForeignKeyforCustomers.Designer.cs">
+      <DependentUpon>201807221844516_TransporationLogNullableForeignKeyforCustomers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807221848151_TransporationLogNullableForeignKeyforCustomers1.cs" />
+    <Compile Include="Migrations\201807221848151_TransporationLogNullableForeignKeyforCustomers1.Designer.cs">
+      <DependentUpon>201807221848151_TransporationLogNullableForeignKeyforCustomers1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CargoTypes.cs" />
@@ -538,6 +546,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807081614310_VehiclesCostIDdeleted.resx">
       <DependentUpon>201807081614310_VehiclesCostIDdeleted.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807221844516_TransporationLogNullableForeignKeyforCustomers.resx">
+      <DependentUpon>201807221844516_TransporationLogNullableForeignKeyforCustomers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807221848151_TransporationLogNullableForeignKeyforCustomers1.resx">
+      <DependentUpon>201807221848151_TransporationLogNullableForeignKeyforCustomers1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

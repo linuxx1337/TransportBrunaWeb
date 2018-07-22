@@ -33,8 +33,8 @@ namespace TransportBrunaWeb.Models
         public virtual Customers Customers { get; set; }
 
         [Display(Name = "Cost")]
-        [Required(ErrorMessage = "The Cost must be specified!")]
-        public Guid CostID { get; set; }
+        //[Required(ErrorMessage = "The Cost must be specified!")]
+        public Guid? CostID { get; set; }
         public virtual Costs Costs { get; set; }
 
         // ******
@@ -99,8 +99,8 @@ namespace TransportBrunaWeb.Models
         public virtual Customers Customers { get; set; }
 
         [Display(Name = "Cost")]
-        [Required(ErrorMessage = "The Cost must be specified!")]
-        public Guid CostID { get; set; }
+        //[Required(ErrorMessage = "The Cost must be specified!")]
+        public Guid? CostID { get; set; }
         public virtual Costs Costs { get; set; }
 
         // ******

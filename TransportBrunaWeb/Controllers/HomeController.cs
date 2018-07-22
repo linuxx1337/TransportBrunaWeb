@@ -26,5 +26,12 @@ namespace TransportBrunaWeb.Controllers
 
             return View();
         }
+
+        public ActionResult Administration()
+        {
+            //ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
     }
 }

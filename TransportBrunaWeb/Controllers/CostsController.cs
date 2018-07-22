@@ -50,7 +50,7 @@ namespace TransportBrunaWeb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CostTypeID,Amount,Date,Note,Description")] Costs costs, string VehicleID)
+        public ActionResult Create([Bind(Include = "CostTypeID,Amount,Date,Note,Description")] Costs costs, string VehicleID, string TransportationLogID)
         {
             if (ModelState.IsValid)
             {
@@ -64,25 +64,47 @@ namespace TransportBrunaWeb.Controllers
 
                 db.Costs.Add(costs);
                 db.SaveChanges();
-                
+
                 // Da shranis v tabelo VehicleCosts
-                Guid latestCostID = costs.CostID;
-                VehicleCosts vehicleCosts = new VehicleCosts();
-                vehicleCosts.VehicleCostID = Guid.NewGuid();
+                if (VehicleID != null)
+                {
+                    Guid latestCostID = costs.CostID;
+                    VehicleCosts vehicleCosts = new VehicleCosts();
+                    vehicleCosts.VehicleCostID = Guid.NewGuid();
 
-                vehicleCosts.DateCreated = costs.DateCreated;
-                vehicleCosts.DateModified = costs.DateModified;
+                    vehicleCosts.DateCreated = costs.DateCreated;
+                    vehicleCosts.DateModified = costs.DateModified;
 
-                vehicleCosts.CreatedBy = costs.CreatedBy;
-                vehicleCosts.ModifiedBy = costs.ModifiedBy;
+                    vehicleCosts.CreatedBy = costs.CreatedBy;
+                    vehicleCosts.ModifiedBy = costs.ModifiedBy;
 
-                //vehicleCosts.VehicleID = Guid.Parse("8de46ecb-714f-423e-9a7b-119c9f593f86");
-                vehicleCosts.VehicleID = Guid.Parse(VehicleID);
-                vehicleCosts.CostID = latestCostID;
+                    vehicleCosts.VehicleID = Guid.Parse(VehicleID);
+                    vehicleCosts.CostID = latestCostID;
 
-                db.VehicleCosts.Add(vehicleCosts);
-                db.SaveChanges();
+                    db.VehicleCosts.Add(vehicleCosts);
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "Vehicles");
+                }
+                // Da shranis v tabelo TransporationLog
+                if (TransportationLogID != null)
+                {
+                    Guid latestCostID = costs.CostID;
+                    DrivingCosts drivingCosts = new DrivingCosts();
+                    drivingCosts.DrivingCostID = Guid.NewGuid();
 
+                    drivingCosts.DateCreated = costs.DateCreated;
+                    drivingCosts.DateModified = costs.DateModified;
+
+                    drivingCosts.CreatedBy = costs.CreatedBy;
+                    drivingCosts.ModifiedBy = costs.ModifiedBy;
+
+                    drivingCosts.TransportationLogID = Guid.Parse(TransportationLogID);
+                    drivingCosts.CostID = latestCostID;
+
+                    db.DrivingCosts.Add(drivingCosts);
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "TransportationLog");
+                }
                 return RedirectToAction("Index");
             }
 

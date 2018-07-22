@@ -118,5 +118,7 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.TransportationLogID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index") |
+    @Html.ActionLink("Add Cost", "Create", "Costs", new { TransportationLogID = Model.TransportationLogID }, null)
+
 </p>
