@@ -39,8 +39,9 @@ namespace TransportBrunaWeb.Controllers
         }
 
         // GET: HouseholdTransportation/Create
-        public ActionResult Create()
+        public ActionResult Create(string LogID)
         {
+            TempData["TempModel"] = LogID;
             ViewBag.TransportationLogID = new SelectList(db.TransportationLog, "TransportationLogID", "Location");
             return View();
         }
@@ -50,11 +51,12 @@ namespace TransportBrunaWeb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TransportationLogID,FirstName,LastName,Address,PostCode,City,Date,Note,Attachment,Description")] HouseholdTransportation householdTransportation)
+        public ActionResult Create([Bind(Include = "TransportationLogID,FirstName,LastName,Address,PostCode,City,Date,Note,Attachment,Description")] HouseholdTransportation householdTransportation, string LogID)
         {
             if (ModelState.IsValid)
             {
                 householdTransportation.HouseholdTransportationID = Guid.NewGuid();
+                householdTransportation.TransportationLogID = Guid.Parse(LogID);
 
                 householdTransportation.DateCreated = DateTime.Now;
                 householdTransportation.DateModified = householdTransportation.DateCreated;
@@ -67,7 +69,7 @@ namespace TransportBrunaWeb.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.TransportationLogID = new SelectList(db.TransportationLog, "TransportationLogID", "Location", householdTransportation.TransportationLogID);
+           // ViewBag.TransportationLogID = new SelectList(db.TransportationLog, "TransportationLogID", "Location", householdTransportation.TransportationLogID);
             return View(householdTransportation);
         }
 

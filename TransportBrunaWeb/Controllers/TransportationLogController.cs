@@ -54,7 +54,7 @@ namespace TransportBrunaWeb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ContainerID,VehicleID,CargoID,CustomerID,CostID,Date,Location,Note,Description")] TransportationLog transportationLog)
+        public ActionResult Create([Bind(Include = "ContainerID,VehicleID,CargoID,CustomerID,CostID,Date,Location,Note,Description")] TransportationLog transportationLog, bool checkHousehold=false)
         {
             if (ModelState.IsValid)
             {
@@ -68,6 +68,12 @@ namespace TransportBrunaWeb.Controllers
 
                 db.TransportationLog.Add(transportationLog);
                 db.SaveChanges();
+                // CHECKBOX za HOUSEHOLD!
+                if(checkHousehold == true)
+                {
+                    return RedirectToAction("Create", "HouseholdTransportation");
+                }
+
                 return RedirectToAction("Index");
             }
 
