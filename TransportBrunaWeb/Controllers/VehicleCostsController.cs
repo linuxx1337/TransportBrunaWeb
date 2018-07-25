@@ -19,7 +19,7 @@ namespace TransportBrunaWeb.Controllers
         // GET: VehicleCosts
         public ActionResult Index()
         {
-            var vehicleCosts = db.VehicleCosts.Include(v => v.Costs).Include(v => v.Vehicles);
+            var vehicleCosts = db.VehicleCosts.Include(v => v.Costs).Include(v => v.Vehicles); // tole rabiš za izpis tabele
             return View(vehicleCosts.ToList());
         }
 

@@ -139,6 +139,46 @@
         </dd>
 
     </dl>
+
+
+    <!-- Tole je dodano da izpiše tabelo stroškov za določen ID vozila -->
+    <table class="table">
+        <tr>
+            <th>
+                Strošek
+            </th>
+            <th>
+                Tip stroška
+            </th>
+            <th>
+                Ime vozila
+            </th>
+            <th>
+                Opis stroška
+            </th>
+
+        </tr>
+
+        @foreach (var item in (IEnumerable<TransportBrunaWeb.Models.VehicleCosts>)ViewBag.VCosts)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Costs.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Costs.CostTypes.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vehicles.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+            </tr>
+        }
+    </table>
+
+
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.VehicleID }) |

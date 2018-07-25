@@ -71,8 +71,10 @@ namespace TransportBrunaWeb.Controllers
                 // CHECKBOX za HOUSEHOLD!
                 if(checkHousehold == true)
                 {
-                    return RedirectToAction("Create", "HouseholdTransportation");
+                    return RedirectToAction("Create", "HouseholdTransportation", new { LogID = transportationLog.TransportationLogID });
                 }
+                // tukaj dodaj za transporation status zapis
+
 
                 return RedirectToAction("Index");
             }

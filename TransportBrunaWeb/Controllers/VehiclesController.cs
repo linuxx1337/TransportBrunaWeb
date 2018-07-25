@@ -31,13 +31,18 @@ namespace TransportBrunaWeb.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Vehicles vehicles = db.Vehicles.Find(id);
-            if (vehicles == null)
+            Vehicles vehicle = db.Vehicles.Find(id);
+
+            // tole je dodano za izpis tabele stroskov v view od vehicle details
+            var vehicleCosts = db.VehicleCosts.Include(v => v.Costs).Include(v => v.Vehicles).Where(x => x.VehicleID==vehicle.VehicleID);
+            ViewBag.VCosts = vehicleCosts;
+            //////////
+            if (vehicle == null)
             {
                 return HttpNotFound();
             }
 
-            return View(vehicles);
+            return View(vehicle);
         }
 
         // GET: Vehicles/Create
