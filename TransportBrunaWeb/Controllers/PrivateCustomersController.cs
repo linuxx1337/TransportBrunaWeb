@@ -62,6 +62,21 @@ namespace TransportBrunaWeb.Controllers
 
                 db.PrivateCustomer.Add(privateCustomer);
                 db.SaveChanges();
+
+                Customers customers = new Customers();
+                customers.CustomerID = Guid.NewGuid();
+
+                customers.DateCreated = privateCustomer.DateCreated;
+                customers.DateModified = privateCustomer.DateModified;
+
+                customers.CreatedBy = privateCustomer.CreatedBy;
+                customers.ModifiedBy = privateCustomer.ModifiedBy;
+
+                customers.PrivateCustomerID = privateCustomer.PrivateCustomerID;
+
+                db.Customers.Add(customers);
+                db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
 

@@ -53,53 +53,56 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CargoTypes.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Containers.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Costs.Note)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customers.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Vehicles.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Location)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Note)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateCreated)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateModified)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ModifiedBy)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TransportationLogID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TransportationLogID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TransportationLogID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CargoTypes.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Containers.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Costs.Note)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customers.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vehicles.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Note)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateModified)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModifiedBy)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.TransportationLogID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.TransportationLogID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.TransportationLogID }) |
+                @Html.ActionLink("CloseLog", "CloseLog", new { idLog = item.TransportationLogID })
+            </td>
+        </tr>
+
+    }
 
 </table>
