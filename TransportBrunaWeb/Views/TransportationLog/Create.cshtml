@@ -1,5 +1,7 @@
 ﻿@model TransportBrunaWeb.Models.TransportationLog
 
+
+
 @{
     ViewBag.Title = "Create";
 }
@@ -7,10 +9,10 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
 <div class="form-horizontal">
     <h4>TransportationLog</h4>
     <hr />
@@ -24,7 +26,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.VehicleID, "VehicleID",  htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.VehicleID, "VehicleID", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.DropDownList("VehicleID", null, "Select Vehicle", htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.VehicleID, "", new { @class = "text-danger" })
@@ -42,10 +44,32 @@
     <div class="form-group">
         @Html.LabelFor(model => model.CustomerID, "CustomerID", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownList("CustomerID", null,"Select Customer", htmlAttributes: new { @class = "form-control" })
+            @Html.DropDownList("CustomerID", null, "Select Customer", htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.CustomerID, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <script type="text/javascript">
+        function ShowHideDiv(Costs) {
+            var dvCosts = document.getElementById("dvCosts");
+            dvCosts.style.display = Costs.checked ? "block" : "none";
+        }
+    </script>
+    <div class="form-group">
+        @Html.Label("Cost", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <label for="Costs">
+                <input type="checkbox" id="Costs" onclick="ShowHideDiv(this)" />
+                Dodaj strošek
+            </label>
+            <div id="dvCosts" style="display: none">
+                <div class="col-md-10">
+                    <input type="text" id="txtPassportNumber" />
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!--
     <div class="form-group">
         Html.LabelFor(model => model.CostID, "CostID", htmlAttributes: new { class = "control-label col-md-2" })
@@ -97,12 +121,13 @@
         </div>
     </div>
 </div>
-    }
+}
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
 
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    
+}

@@ -203,7 +203,14 @@ namespace TransportBrunaWeb.Controllers
             //var transportationStatus = db.TransportationStatus.Include(t => t.TransportationLog).Include(t => t.TransportationStatusTypes).Where(x => x.TransportationLogID == Guid.Parse(idLog));
 
             //TransportationStatus transportationStatus = db.TransportationStatus.Where(t => t.TransportationLogID == Guid.Parse("62416e0c - 2332 - 4836 - bac7 - 3889aaa32491"));
-            /*var x = db.TransportationStatus.Where(t => t.TransportationLogID == Guid.Parse(idLog));
+            //var x = db.TransportationStatus.Where(t => t.TransportationLogID == Guid.Parse(idLog));
+
+            //TransportationStatus transportationStatus = new TransportationStatus();
+
+            Guid tempID = Guid.Parse(idLog);
+            TransportationStatus transportationStatus = db.TransportationStatus.Where(x => x.TransportationLogID == tempID).Single();
+            
+            // DODAJ ZA IZPIS ERRORJA!
 
             Guid idOpen = Guid.Parse("c1f2cc4a-c96d-491f-9b7e-697f2d63645c");
 
@@ -228,7 +235,8 @@ namespace TransportBrunaWeb.Controllers
 
                 return RedirectToAction("Index");
             }
-            */
+            
+            /*
             if (idLog != null)
             {
                 
@@ -252,7 +260,7 @@ namespace TransportBrunaWeb.Controllers
                 db.SaveChanges();
 
                 return RedirectToAction("Index");
-            }
+            }*/
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
