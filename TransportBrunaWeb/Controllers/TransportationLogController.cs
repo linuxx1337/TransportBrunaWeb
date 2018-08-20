@@ -44,7 +44,7 @@ namespace TransportBrunaWeb.Controllers
             ViewBag.CargoID = new SelectList(db.CargoTypes, "CargoID", "Name");
             ViewBag.ContainerID = new SelectList(db.Containers, "ContainerID", "Name");
             ViewBag.CostID = new SelectList(db.Costs, "CostID", "Note");
-            ViewBag.CustomerID = new SelectList(db.Customers, "CustomerID", "Description");
+            ViewBag.CustomerID = new SelectList(db.Customers, "CustomerID", "CustomerID");
             ViewBag.VehicleID = new SelectList(db.Vehicles, "VehicleID", "Name");
             return View();
         }
@@ -54,7 +54,7 @@ namespace TransportBrunaWeb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ContainerID,VehicleID,CargoID,CustomerID,CostID,Date,Location,Note,Description")] TransportationLog transportationLog, bool checkHousehold=false)
+        public ActionResult Create([Bind(Include = "ContainerID,VehicleID,CargoID,CustomerID,CostID,Date,Location,Note,Description")] TransportationLog transportationLog, bool checkHousehold=false, bool checkCosts = false)
         {
             if (ModelState.IsValid)
             {
@@ -73,6 +73,30 @@ namespace TransportBrunaWeb.Controllers
                 {
                     return RedirectToAction("Create", "HouseholdTransportation", new { LogID = transportationLog.TransportationLogID });
                 }
+
+                // CHECKBOX za COSTS!
+                /*if (checkCosts == true)
+                {
+                    Costs costs = new Costs();
+                    costs.CostID = Guid.NewGuid();
+
+                    costs.DateCreated = transportationLog.DateCreated;
+                    costs.DateModified = transportationLog.DateModified;
+
+                    costs.CreatedBy = transportationLog.CreatedBy;
+                    costs.ModifiedBy = transportationLog.ModifiedBy;
+
+                    costs.Amount = amount;
+                    costs.Date = transportationLog.Date;
+                    costs.Note = note;
+                    costs.CostTypeID 
+
+
+
+                    db.Costs.Add(costs);
+                    db.SaveChanges();
+                }*/
+
                 // tukaj dodaj za transporation status zapis
                 //Guid latestTransporationLogID = transportationLog.TransportationLogID;
                 TransportationStatus transportationStatus = new TransportationStatus();

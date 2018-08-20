@@ -59,17 +59,18 @@
         @Html.Label("Cost", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             <label for="Costs">
-                <input type="checkbox" id="Costs" onclick="ShowHideDiv(this)" />
+                <input type="checkbox" id="costs" name="checkCosts" value="true" onclick="ShowHideDiv(this)" />
                 Dodaj strošek
             </label>
             <div id="dvCosts" style="display: none">
-                <div class="col-md-10">
-                    <input type="text" id="txtPassportNumber" />
-                </div>
+                @Html.DropDownList("CustomerID", null, "Select Customer", htmlAttributes: new { @class = "form-control" })
+                <input type="number" step="any" id="amount" name="amount" class="form-control" />
+                <input type="date" id="date" name="date" class="form-control" />
+                <input type="text" id="note" name="note" class="form-control" />
+
             </div>
         </div>
     </div>
-
     <!--
     <div class="form-group">
         Html.LabelFor(model => model.CostID, "CostID", htmlAttributes: new { class = "control-label col-md-2" })
