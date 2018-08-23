@@ -232,7 +232,7 @@ namespace TransportBrunaWeb.Controllers
             //TransportationStatus transportationStatus = new TransportationStatus();
 
             Guid tempID = Guid.Parse(idLog);
-            TransportationStatus transportationStatus = db.TransportationStatus.Where(x => x.TransportationLogID == tempID).Single();
+            TransportationStatus transportationStatus = db.TransportationStatus.Where(x => x.TransportationLogID == tempID).SingleOrDefault();
             
             // DODAJ ZA IZPIS ERRORJA!
 
