@@ -44,7 +44,16 @@ namespace TransportBrunaWeb.Controllers
             ViewBag.CargoID = new SelectList(db.CargoTypes, "CargoID", "Name");
             ViewBag.ContainerID = new SelectList(db.Containers, "ContainerID", "Name");
             ViewBag.CostID = new SelectList(db.Costs, "CostID", "Note");
-            ViewBag.CustomerID = new SelectList(db.Customers, "CustomerID", "CustomerID");
+
+            var test = (from customer in db.Customers
+                       select new
+                       {
+                           CustomerID = customer.CustomerID,
+                           Name = customer.CompanyID != null ? customer.Company.FullName:customer.PrivateCustomer.FullName
+                       }).OrderBy(x=>x.Name);
+
+
+            ViewBag.CustomerID = new SelectList(test, "CustomerID", "Name");
             ViewBag.VehicleID = new SelectList(db.Vehicles, "VehicleID", "Name");
             return View();
         }
@@ -65,6 +74,8 @@ namespace TransportBrunaWeb.Controllers
 
                 transportationLog.CreatedBy = Guid.Parse(User.Identity.GetUserId());
                 transportationLog.ModifiedBy = transportationLog.CreatedBy;
+
+                transportationLog.Active = true;
 
                 db.TransportationLog.Add(transportationLog);
                 db.SaveChanges();
@@ -232,7 +243,7 @@ namespace TransportBrunaWeb.Controllers
             //TransportationStatus transportationStatus = new TransportationStatus();
 
             Guid tempID = Guid.Parse(idLog);
-            TransportationStatus transportationStatus = db.TransportationStatus.Where(x => x.TransportationLogID == tempID).SingleOrDefault();
+            TransportationStatus transportationStatus = db.TransportationStatus.Where(x => x.TransportationLogID == tempID).Single();
             
             // DODAJ ZA IZPIS ERRORJA!
 
@@ -257,6 +268,14 @@ namespace TransportBrunaWeb.Controllers
                 db.TransportationStatus.Add(transportationStatus1);
                 db.SaveChanges();
 
+                // transportation log = neaktiven
+               /* TransportationLog transportationLog = new TransportationLog();
+                transportationLog.TransportationLogID = tempID;
+                transportationLog.Active = false;
+
+                db.TransportationLog.Add(transportationLog);
+                db.SaveChanges();
+                */
                 return RedirectToAction("Index");
             }
             

@@ -37,6 +37,9 @@ namespace TransportBrunaWeb.Models
         public Guid? CostID { get; set; }
         public virtual Costs Costs { get; set; }
 
+        [Required]
+        public bool Active { get; set; }
+
         // ******
 
         [Display(Name = "Date")]

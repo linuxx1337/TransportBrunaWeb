@@ -309,6 +309,10 @@
     <Compile Include="Migrations\201807221848151_TransporationLogNullableForeignKeyforCustomers1.Designer.cs">
       <DependentUpon>201807221848151_TransporationLogNullableForeignKeyforCustomers1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808250856215_ActiveTransLog.cs" />
+    <Compile Include="Migrations\201808250856215_ActiveTransLog.Designer.cs">
+      <DependentUpon>201808250856215_ActiveTransLog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CargoTypes.cs" />
@@ -552,6 +556,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807221848151_TransporationLogNullableForeignKeyforCustomers1.resx">
       <DependentUpon>201807221848151_TransporationLogNullableForeignKeyforCustomers1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808250856215_ActiveTransLog.resx">
+      <DependentUpon>201808250856215_ActiveTransLog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
