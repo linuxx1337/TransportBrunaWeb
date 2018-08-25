@@ -228,7 +228,7 @@ namespace TransportBrunaWeb.Controllers
             return RedirectToAction("Index");
         }
 
-        // zapri voznjo
+        // Funkcija "zapri voznjo"
         public ActionResult CloseLog(string idLog)
         {
             //TransportationStatus transportationStatus = db.TransportationStatus.Where(t => t.TransportationLogID == Guid.Parse(idLog));
@@ -245,8 +245,6 @@ namespace TransportBrunaWeb.Controllers
             Guid tempID = Guid.Parse(idLog);
             TransportationStatus transportationStatus = db.TransportationStatus.Where(x => x.TransportationLogID == tempID).Single();
             
-            // DODAJ ZA IZPIS ERRORJA!
-
             Guid idOpen = Guid.Parse("c1f2cc4a-c96d-491f-9b7e-697f2d63645c");
 
             if (transportationStatus.TransportationTypeStatusID == idOpen)
@@ -269,41 +267,16 @@ namespace TransportBrunaWeb.Controllers
                 db.SaveChanges();
 
                 // transportation log = neaktiven
-               /* TransportationLog transportationLog = new TransportationLog();
-                transportationLog.TransportationLogID = tempID;
-                transportationLog.Active = false;
+                TransportationLog model = db.TransportationLog.Find(tempID);
 
-                db.TransportationLog.Add(transportationLog);
+                model.Active = false;
+
+                db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();
-                */
+                
                 return RedirectToAction("Index");
             }
             
-            /*
-            if (idLog != null)
-            {
-                
-                // tukaj dodaj za transporation status zapis
-                //Guid latestTransporationLogID = idLog;
-                TransportationStatus transportationStatus = new TransportationStatus();
-                transportationStatus.TransportationStatusID = Guid.NewGuid();
-
-                transportationStatus.DateCreated = DateTime.Now;
-                transportationStatus.DateModified = transportationStatus.DateCreated;
-
-                transportationStatus.CreatedBy = Guid.Parse(User.Identity.GetUserId());
-                transportationStatus.ModifiedBy = transportationStatus.CreatedBy;
-
-                transportationStatus.Date = DateTime.Now;
-
-                transportationStatus.TransportationTypeStatusID = Guid.Parse("fd69e724-361e-486e-ae03-05273c135c90");
-                transportationStatus.TransportationLogID = Guid.Parse(idLog);
-
-                db.TransportationStatus.Add(transportationStatus);
-                db.SaveChanges();
-
-                return RedirectToAction("Index");
-            }*/
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 

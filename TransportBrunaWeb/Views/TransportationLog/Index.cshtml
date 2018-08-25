@@ -98,10 +98,10 @@
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.TransportationLogID }) |
                 @Html.ActionLink("Details", "Details", new { id = item.TransportationLogID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.TransportationLogID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.TransportationLogID })
                 @if (item.Active)
                 {
-                    
+                    <span> |</span>
                     @Html.ActionLink("CloseLog", "CloseLog", new { idLog = item.TransportationLogID })
                 }
 

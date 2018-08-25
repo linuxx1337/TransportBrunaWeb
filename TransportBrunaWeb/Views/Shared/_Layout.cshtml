@@ -9,7 +9,7 @@
 
 </head>
 <body>
-        <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar navbar-inverse navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -29,12 +29,17 @@
                         @if (Context.User.Identity.IsAuthenticated && User.IsInRole("Superadmin"))
                         {
 
-                            <li>@Html.ActionLink("Vožnje", "TransportationLog", "TransportationLog", null, new { @class = "navbar-link"})</li>
+                            <li>@Html.ActionLink("Vožnje", "TransportationLog", "TransportationLog", null, new { @class = "navbar-link" })</li>
                             <li>@Html.ActionLink("Vozni park", "Administration", "Home", null, new { @class = "navbar-link" })</li>
                             <li>@Html.ActionLink("Stranke", "Administration", "Home", null, new { @class = "navbar-link" })</li>
-                            <li>@Html.ActionLink("Stroški", "Administration", "Home", null, new { @class = "navbar-link" })</li>
-
                             <li>@Html.ActionLink("Administracija", "Administration", "Home", null, new { @class = "navbar-link" })</li>
+                        }
+                        @if (Context.User.Identity.IsAuthenticated && User.IsInRole("Superuser"))
+                        {
+
+                            <li>@Html.ActionLink("Vožnje", "TransportationLog", "TransportationLog", null, new { @class = "navbar-link" })</li>
+                            <li>@Html.ActionLink("Vozni park", "Administration", "Home", null, new { @class = "navbar-link" })</li>
+                            <li>@Html.ActionLink("Stranke", "Administration", "Home", null, new { @class = "navbar-link" })</li>
                         }
                     </ul>
                     @Html.Partial("_LoginPartial")
