@@ -1,4 +1,6 @@
-﻿@{
+﻿@using TransportBrunaWeb.Models
+@model LoginViewModel
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -27,5 +29,75 @@
         <h2>Web Hosting</h2>
         <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
         <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    </div>
+</div>
+
+<hr />
+<div class="container-fluid">
+    <div class="row ">
+        <!-- footer-about -->
+        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
+            <div class="footer-widget ">
+                <div class="footer-title">Navigacija</div>
+                <ul class="list-unstyled">
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("O nas", "About", "Home", null, new { @class = "navbar-link" })</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("Storitve", "Services", "Home", null, new { @class = "navbar-link" })</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("Galerija", "Gallery", "Home", null, new { @class = "navbar-link" })</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;@Html.ActionLink("Kontakt", "Contact", "Home", null, new { @class = "navbar-link" })</li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.footer-about -->
+        <!-- footer-links 
+        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
+            <div class="footer-widget ">
+                <div class="footer-title">Quick Links</div>
+                <ul class="list-unstyled">
+                    <li><a href="#">News</a></li>
+                    <li><a href="#">Contact us</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+        /.footer-links -->
+        <!-- footer-blank -->
+        <div class="col-xl-6 col-lg-6 col-md-4 col-sm-6 col-6 ">
+            @if (Context.User.Identity.IsAuthenticated==false)
+            {
+            <div class="footer-title">Prijava</div>
+            <section id="loginForm">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "E-naslov" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <input type="submit" value="Prijava" class="btn btn-default pull-right" />
+
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Geslo" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                }
+            </section>
+            }
+        </div>
+        <!-- /.footer-blank -->
+        <!-- footer-company -->
+        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-6 col-6 ">
+            <p>
+                Transport Bruna d.o.o.<br />
+                <span class="glyphicon glyphicon-map-marker">&nbsp;</span>Gorenja brezovica 24<br />
+                &nbsp;	&nbsp;	&nbsp;	&nbsp;	8310 Šentjernej<br />
+                <span class="glyphicon glyphicon-earphone">&nbsp;</span>+386 (0)40 904 904<br />
+                <span class="glyphicon glyphicon-envelope">&nbsp;</span>info@transportbruna.si<br />
+            </p>
+        </div>
+        <!-- /.footer-company -->
     </div>
 </div>

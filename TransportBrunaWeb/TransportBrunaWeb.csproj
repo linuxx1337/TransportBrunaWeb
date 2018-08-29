@@ -470,6 +470,7 @@
     <Content Include="Views\HouseholdTransportation\Edit.cshtml" />
     <Content Include="Views\HouseholdTransportation\Index.cshtml" />
     <Content Include="Views\Home\Administration.cshtml" />
+    <Content Include="Views\Home\Services.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

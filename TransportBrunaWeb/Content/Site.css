@@ -23,10 +23,12 @@ textarea {
     max-width: 280px;
 }
 
-
+/*
 /* Custom CSS */
+/*color blue #2196f3;*/
 
 /* NAVBAR ------------------*/
+/*
 .navbar-default {
     background-color: #08202e;
     background-image: none;
@@ -58,6 +60,7 @@ textarea {
     }
 
 /*----------------------------------------*/
+/*
 body {
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -256,3 +259,4 @@ hr {
     color: #888d90;
     line-height: 1;
 }
+*/

@@ -7,7 +7,7 @@ namespace TransportBrunaWeb.Models
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "E-naslov")]
         public string Email { get; set; }
     }
 
@@ -43,48 +43,48 @@ namespace TransportBrunaWeb.Models
     public class ForgotViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "E-naslov")]
         public string Email { get; set; }
     }
 
     public class LoginViewModel
     {
-        [Required]
-        [Display(Name = "Email")]
+        [Required(ErrorMessage = "Vnesite E-poštni naslov.")]
+        [Display(Name = "E-naslov")]
         [EmailAddress]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Vnesite geslo.")]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Geslo")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Ostanite prijavljeni")]
         public bool RememberMe { get; set; }
     }
 
     public class RegisterViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Vnesite E-poštni naslov.")]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "E-naslov")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Vnesite uporabniško ime.")]
         [Remote("IsUserNameUnique", "Account", ErrorMessage = "Uporabniško ime je zasedeno.")]
-        [Display(Name = "User Name")]
+        [Display(Name = "Uporabniško ime")]
         public string UserName { get; set; }
 
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Required(ErrorMessage = "Vnesite geslo.")]
+        [StringLength(100, ErrorMessage = "{0} mora imeti vsaj {2} znakov.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Geslo")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Ponovitev gesla")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Gesli se ne ujemata.")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -92,18 +92,18 @@ namespace TransportBrunaWeb.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "E-naslov")]
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "{0} mora imeti vsaj {2} znakov.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Geslo")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Ponovitev gesla")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Gesli se ne ujemata.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }
@@ -113,7 +113,7 @@ namespace TransportBrunaWeb.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "E-naslov")]
         public string Email { get; set; }
     }
 }
