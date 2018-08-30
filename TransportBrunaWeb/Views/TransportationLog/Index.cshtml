@@ -4,58 +4,79 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Seznam voženj</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<ul class="nav nav-pills navbar-left">
+    <li>@Html.ActionLink("Dodaj vožnjo", "Create")</li>
+    <li>@Html.ActionLink("Seznam gospodinjstev", "Index", "HouseholdTransportation")</li>
+    <li>@Html.ActionLink("Seznam stroškov voženj", "Index", "DrivingCosts")</li>
+    @if (Context.User.Identity.IsAuthenticated && User.IsInRole("Superadmin"))
+    {
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                Admin <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li>@Html.ActionLink("Dodaj tip tovora", "Create", "CargoTypes")</li>
+                <li>@Html.ActionLink("Dodaj tip stroška", "Create", "CostTypes")</li>
+                <li>@Html.ActionLink("Dodaj gospodinjstvo", "Create", "HouseholdTransportation")</li>
+                <li class="divider"></li>
+                <li>@Html.ActionLink("Pregled vseh stroškov", "Index", "Costs")</li>
+            </ul>
+        </li>
+    }
+</ul>
 <form class="navbar-form navbar-right">
     <div class="form-group">
-        <input type="text" class="form-control" placeholder="Search">
+        @Html.TextBox("SearchString", null, new { @class = "form-control", @placeholder = "Iskanje" })
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
+    <button type="submit" class="btn btn-default" value="Search"><span class="glyphicon glyphicon-search"></span></button>
 </form>
-<table class="table">
+
+<table class="table table-striped table-hover">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.CargoTypes.Name)
+            @Html.ActionLink("Datum", "Index", new { sortOrder = ViewBag.DateSortParm }, new { @style = "color:#666666;" })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Containers.Name)
+            @Html.ActionLink("Lokacija", "Index", new { sortOrder = ViewBag.LocationSortParm }, new { @style = "color:#666666;" })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Costs.Note)
+            @Html.ActionLink("Stranka", "Index", new { sortOrder = ViewBag.CustomerSortParm }, new { @style = "color:#666666;" })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Customers.Description)
+            @Html.ActionLink("Tip tovora", "Index", new { sortOrder = ViewBag.CargoTypeSortParm }, new { @style = "color:#666666;" })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Vehicles.Name)
+            @Html.ActionLink("Vozilo", "Index", new { sortOrder = ViewBag.VehicleSortParm }, new { @style = "color:#666666;" })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Location)
+            @Html.ActionLink("Keson", "Index", new { sortOrder = ViewBag.ConstainerSortParm }, new { @style = "color:#666666;" })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Note)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.ActionLink("Aktivna?", "Index", new { sortOrder = ViewBag.ActiveSortParm }, new { @style = "color:#666666;" })
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateCreated)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateModified)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ModifiedBy)
-        </th>
+        @if (Context.User.Identity.IsAuthenticated && User.IsInRole("Superadmin"))
+        {
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateModified)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModifiedBy)
+            </th>
+        }
         <th></th>
     </tr>
 
@@ -63,52 +84,64 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.CargoTypes.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Containers.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Costs.Note)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Customers.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Vehicles.Name)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Location)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Customers.CustomerID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CargoTypes.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vehicles.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Containers.Label)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Note)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Description)
+                @Html.DisplayFor(modelItem => item.Active)
             </td>
+            @if (Context.User.Identity.IsAuthenticated && User.IsInRole("Superadmin"))
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateModified)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModifiedBy)
+                </td>
+            }
             <td>
-                @Html.DisplayFor(modelItem => item.DateCreated)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateModified)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedBy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ModifiedBy)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.TransportationLogID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.TransportationLogID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.TransportationLogID })
+                <a href="@Url.Action("Edit", "TransportationLog", new { id=item.TransportationLogID })">
+                    <span title="Uredi" class="glyphicon glyphicon-pencil" />
+                </a>&nbsp;|
+                <a href="@Url.Action("Details", "TransportationLog", new { id=item.TransportationLogID })">
+                    <span title="Podrobnosti" class="glyphicon glyphicon-option-vertical" />
+                </a>&nbsp;|
+                <a href="@Url.Action("Delete", "TransportationLog", new { id=item.TransportationLogID })">
+                    <span title="Izbriši" class="glyphicon glyphicon-trash" />
+                </a>
+
                 @if (item.Active)
                 {
-                    <span> |</span>
-                    @Html.ActionLink("CloseLog", "CloseLog", new { idLog = item.TransportationLogID })
+                    <span>|</span>
+                    <a href="@Url.Action("CloseLog", "TransportationLog", new { id=item.TransportationLogID })">
+                        <span title="Zapri vožnjo" class="glyphicon glyphicon-floppy-remove" />
+                    </a>
                 }
 
             </td>

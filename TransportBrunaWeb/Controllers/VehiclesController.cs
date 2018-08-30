@@ -135,6 +135,7 @@ namespace TransportBrunaWeb.Controllers
                 model.DateMot = VehiclesViewModel.DateMot;
                 model.Note = VehiclesViewModel.Note;
                 model.Description = VehiclesViewModel.Description;
+                model.CompanyID = VehiclesViewModel.CompanyID;
 
                 model.DateModified = DateTime.Now;
                 model.ModifiedBy = Guid.Parse(User.Identity.GetUserId());

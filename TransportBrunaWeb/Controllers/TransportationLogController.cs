@@ -17,9 +17,82 @@ namespace TransportBrunaWeb.Controllers
         private BrunaContext db = new BrunaContext();
 
         // GET: TransportationLog
-        public ActionResult Index()
+        public ActionResult Index(string searchString, string sortOrder)
         {
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.LocationSortParm = sortOrder == "Location" ? "location_desc" : "Location";
+            ViewBag.CustomerSortParm = sortOrder == "Customer" ? "customer_desc" : "Customer";
+            ViewBag.CargoTypeSortParm = sortOrder == "CargoType" ? "cargotype_desc" : "CargoType";
+            ViewBag.VehicleSortParm = sortOrder == "Vehicle" ? "vehicle_desc" : "Vehicle";
+            ViewBag.ConstainerSortParm = sortOrder == "Container" ? "container_desc" : "Container";
+            ViewBag.ActiveSortParm = sortOrder == "Active" ? "active_desc" : "Active";
+
+            //ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "Name";
+
+
             var transportationLog = db.TransportationLog.Include(t => t.CargoTypes).Include(t => t.Containers).Include(t => t.Costs).Include(t => t.Customers).Include(t => t.Vehicles);
+            
+            // SEARCH funkcija
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                transportationLog = transportationLog.Where(m => m.CargoTypes.Name.Contains(searchString)
+                || m.Containers.Label.Contains(searchString)
+                //|| m.Customers.FullName.Contains(searchString)
+                || m.Vehicles.Name.Contains(searchString)
+                || m.Note.Contains(searchString)
+                || m.Location.Contains(searchString));
+            }
+
+            // SORT funkcija
+            switch (sortOrder)
+            {
+                case "Location":
+                    transportationLog = transportationLog.OrderBy(s => s.Location);
+                    break;
+                case "location_desc":
+                    transportationLog = transportationLog.OrderByDescending(s => s.Location);
+                    break;
+                case "Date":
+                    transportationLog = transportationLog.OrderBy(s => s.Date);
+                    break;
+                case "date_desc":
+                    transportationLog = transportationLog.OrderByDescending(s => s.Date);
+                    break;
+                case "Customer":
+                    transportationLog = transportationLog.OrderBy(s => s.CustomerID);
+                    break;
+                case "customer_desc":
+                    transportationLog = transportationLog.OrderByDescending(s => s.CustomerID);
+                    break;
+                case "CargoType":
+                    transportationLog = transportationLog.OrderBy(s => s.CargoTypes.Name);
+                    break;
+                case "cargotype_desc":
+                    transportationLog = transportationLog.OrderByDescending(s => s.CargoTypes.Name);
+                    break;
+                case "Vehicle":
+                    transportationLog = transportationLog.OrderBy(s => s.Vehicles.Name);
+                    break;
+                case "vehicle_desc":
+                    transportationLog = transportationLog.OrderByDescending(s => s.Vehicles.Name);
+                    break;
+                case "Container":
+                    transportationLog = transportationLog.OrderBy(s => s.Containers.Label);
+                    break;
+                case "container_desc":
+                    transportationLog = transportationLog.OrderByDescending(s => s.Containers.Label);
+                    break;
+                case "Active":
+                    transportationLog = transportationLog.OrderByDescending(s => s.Active);
+                    break;
+                case "active_desc":
+                    transportationLog = transportationLog.OrderBy(s => s.Active);
+                    break;
+                default:
+                    transportationLog = transportationLog.OrderByDescending(s => s.Date);
+                    break;
+            }
+
             return View(transportationLog.ToList());
         }
 
@@ -42,7 +115,7 @@ namespace TransportBrunaWeb.Controllers
         public ActionResult Create()
         {
             ViewBag.CargoID = new SelectList(db.CargoTypes, "CargoID", "Name");
-            ViewBag.ContainerID = new SelectList(db.Containers, "ContainerID", "Name");
+            ViewBag.ContainerID = new SelectList(db.Containers, "ContainerID", "Label");
             ViewBag.CostID = new SelectList(db.Costs, "CostID", "Note");
 
             var test = (from customer in db.Customers
@@ -164,7 +237,7 @@ namespace TransportBrunaWeb.Controllers
                 return HttpNotFound();
             }
             ViewBag.CargoID = new SelectList(db.CargoTypes, "CargoID", "Name", transportationLog.CargoID);
-            ViewBag.ContainerID = new SelectList(db.Containers, "ContainerID", "Name", transportationLog.ContainerID);
+            ViewBag.ContainerID = new SelectList(db.Containers, "ContainerID", "Label", transportationLog.ContainerID);
             ViewBag.CostID = new SelectList(db.Costs, "CostID", "Note", transportationLog.CostID);
             ViewBag.CustomerID = new SelectList(db.Customers, "CustomerID", "Description", transportationLog.CustomerID);
             ViewBag.VehicleID = new SelectList(db.Vehicles, "VehicleID", "Name", transportationLog.VehicleID);
@@ -187,6 +260,12 @@ namespace TransportBrunaWeb.Controllers
                 model.Note = TransportationLogViewModel.Note;
                 model.Description = TransportationLogViewModel.Description;
 
+                model.CargoID=TransportationLogViewModel.CargoID;
+                model.ContainerID = TransportationLogViewModel.ContainerID;
+                model.CustomerID = TransportationLogViewModel.CustomerID;
+                model.VehicleID = TransportationLogViewModel.VehicleID;
+                model.CostID = TransportationLogViewModel.CostID;
+
                 model.DateModified = DateTime.Now;
                 model.ModifiedBy = Guid.Parse(User.Identity.GetUserId());
 
@@ -195,7 +274,7 @@ namespace TransportBrunaWeb.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.CargoID = new SelectList(db.CargoTypes, "CargoID", "Name", TransportationLogViewModel.CargoID);
-            ViewBag.ContainerID = new SelectList(db.Containers, "ContainerID", "Name", TransportationLogViewModel.ContainerID);
+            ViewBag.ContainerID = new SelectList(db.Containers, "ContainerID", "Label", TransportationLogViewModel.ContainerID);
             ViewBag.CostID = new SelectList(db.Costs, "CostID", "Note", TransportationLogViewModel.CostID);
             ViewBag.CustomerID = new SelectList(db.Customers, "CustomerID", "Description", TransportationLogViewModel.CustomerID);
             ViewBag.VehicleID = new SelectList(db.Vehicles, "VehicleID", "Name", TransportationLogViewModel.VehicleID);

@@ -27,6 +27,13 @@ textarea {
 /* Custom CSS */
 /*color blue #2196f3;*/
 
+/*SEARCH FORM*/
+.nav-pills {
+    padding: 10px;
+    padding-left: 2px;
+}
+
+
 /* NAVBAR ------------------*/
 /*
 .navbar-default {

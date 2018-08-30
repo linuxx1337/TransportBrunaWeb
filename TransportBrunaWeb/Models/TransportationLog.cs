@@ -12,23 +12,23 @@ namespace TransportBrunaWeb.Models
         [Key]
         public Guid TransportationLogID { get; set; }
 
-        [Display(Name = "Container")]
-        [Required(ErrorMessage = "The Container must be specified!")]
+        [Display(Name = "Keson")]
+        [Required(ErrorMessage = "Keson mora biti izbrano!")]
         public Guid ContainerID { get; set; }
         public virtual Containers Containers { get; set; }
 
-        [Display(Name = "Vehicle")]
-        [Required(ErrorMessage = "The Vehicle must be specified!")]
+        [Display(Name = "Vozilo")]
+        [Required(ErrorMessage = "Vozilo mora biti izbrano!")]
         public Guid VehicleID { get; set; }
         public virtual Vehicles Vehicles { get; set; }
 
-        [Display(Name = "Cargo Type")]
-        [Required(ErrorMessage = "The Cargo Type must be specified!")]
+        [Display(Name = "Tip tovora")]
+        [Required(ErrorMessage = "Tip tovora mora biti izbran!")]
         public Guid CargoID { get; set; }
         public virtual CargoTypes CargoTypes { get; set; }
 
-        [Display(Name = "Customer")]
-        [Required(ErrorMessage = "The Customer must be specified!")]
+        [Display(Name = "Stranka")]
+        [Required(ErrorMessage = "Stranka mora biti izbrana!")]
         public Guid CustomerID { get; set; }
         public virtual Customers Customers { get; set; }
 
@@ -42,17 +42,17 @@ namespace TransportBrunaWeb.Models
 
         // ******
 
-        [Display(Name = "Date")]
-        [Required(ErrorMessage = "The date must be specified!")]
+        [Display(Name = "Datum")]
+        [Required(ErrorMessage = "Datum mora biti določen!")]
         [DisplayFormat(DataFormatString = "{0:d. M. yyyy}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
-        [Display(Name = "Location")]
-        [Required(ErrorMessage = "The location must be specified!")]
+        [Display(Name = "Lokacija")]
+        [Required(ErrorMessage = "Lokacija mora biti določena!")]
         public string Location { get; set; }
 
-        [Display(Name = "Note")]
+        [Display(Name = "Opomba")]
         [DataType(DataType.MultilineText)]
         public string Note { get; set; }
 
@@ -81,23 +81,23 @@ namespace TransportBrunaWeb.Models
     {
         public Guid TransportationLogID { get; set; }
 
-        [Display(Name = "Container")]
-        [Required(ErrorMessage = "The Container must be specified!")]
+        [Display(Name = "Keson")]
+        [Required(ErrorMessage = "Keson mora biti izbran!")]
         public Guid ContainerID { get; set; }
         public virtual Containers Containers { get; set; }
 
-        [Display(Name = "Vehicle")]
-        [Required(ErrorMessage = "The Vehicle must be specified!")]
+        [Display(Name = "Vozilo")]
+        [Required(ErrorMessage = "Vozilo mora biti izbrano!")]
         public Guid VehicleID { get; set; }
         public virtual Vehicles Vehicles { get; set; }
 
-        [Display(Name = "Cargo Type")]
-        [Required(ErrorMessage = "The Cargo Type must be specified!")]
+        [Display(Name = "Tip tovora")]
+        [Required(ErrorMessage = "Tip tovora mora biti izbran!")]
         public Guid CargoID { get; set; }
         public virtual CargoTypes CargoTypes { get; set; }
 
-        [Display(Name = "Customer")]
-        [Required(ErrorMessage = "The Customer must be specified!")]
+        [Display(Name = "Stranka")]
+        [Required(ErrorMessage = "Stranka mora biti izbrana!")]
         public Guid CustomerID { get; set; }
         public virtual Customers Customers { get; set; }
 
@@ -108,17 +108,17 @@ namespace TransportBrunaWeb.Models
 
         // ******
 
-        [Display(Name = "Date")]
-        [Required(ErrorMessage = "The date must be specified!")]
+        [Display(Name = "Datum")]
+        [Required(ErrorMessage = "Datum mora biti določen!")]
         [DisplayFormat(DataFormatString = "{0:d. M. yyyy}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
-        [Display(Name = "Location")]
-        [Required(ErrorMessage = "The location must be specified!")]
+        [Display(Name = "Lokacija")]
+        [Required(ErrorMessage = "Lokacija mora biti določena!")]
         public string Location { get; set; }
 
-        [Display(Name = "Note")]
+        [Display(Name = "Opomba")]
         [DataType(DataType.MultilineText)]
         public string Note { get; set; }
 
