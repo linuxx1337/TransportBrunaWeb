@@ -9,6 +9,8 @@ using System.Web;
 using System.Web.Mvc;
 using TransportBrunaWeb.DAL;
 using TransportBrunaWeb.Models;
+using PagedList;
+
 
 namespace TransportBrunaWeb.Controllers
 {
@@ -17,8 +19,10 @@ namespace TransportBrunaWeb.Controllers
         private BrunaContext db = new BrunaContext();
 
         // GET: TransportationLog
-        public ActionResult Index(string searchString, string sortOrder)
+        public ActionResult Index(string searchString, string sortOrder, string currentFilter, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
+
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             ViewBag.LocationSortParm = sortOrder == "Location" ? "location_desc" : "Location";
             ViewBag.CustomerSortParm = sortOrder == "Customer" ? "customer_desc" : "Customer";
@@ -27,8 +31,16 @@ namespace TransportBrunaWeb.Controllers
             ViewBag.ConstainerSortParm = sortOrder == "Container" ? "container_desc" : "Container";
             ViewBag.ActiveSortParm = sortOrder == "Active" ? "active_desc" : "Active";
 
-            //ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "Name";
-
+            //paging
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
 
             var transportationLog = db.TransportationLog.Include(t => t.CargoTypes).Include(t => t.Containers).Include(t => t.Costs).Include(t => t.Customers).Include(t => t.Vehicles);
             
@@ -93,7 +105,11 @@ namespace TransportBrunaWeb.Controllers
                     break;
             }
 
-            return View(transportationLog.ToList());
+            //paging
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(transportationLog.ToPagedList(pageNumber, pageSize));
+            //return View(transportationLog.ToList());
         }
 
         // GET: TransportationLog/Details/5
