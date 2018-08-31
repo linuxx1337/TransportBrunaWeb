@@ -81,13 +81,24 @@ namespace TransportBrunaWeb.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Containers containers = db.Containers.Find(id);
+
+            ContainersViewModel view = new ContainersViewModel();
+            view.ContainerID = containers.ContainerID;
+            view.CompanyID = containers.CompanyID;
+            view.ContainerTypeID = containers.ContainerTypeID;
+            view.Name = containers.Name;
+            view.Label = containers.Label;
+            view.Volume = containers.Volume;
+            view.Note = containers.Note;
+            view.Description = containers.Description;
+
             if (containers == null)
             {
                 return HttpNotFound();
             }
             ViewBag.CompanyID = new SelectList(db.Company, "CompanyID", "FullName", containers.CompanyID);
             ViewBag.ContainerTypeID = new SelectList(db.ContainerTypes, "ContainerTypeID", "Name", containers.ContainerTypeID);
-            return View(containers);
+            return View(view);
         }
 
         // POST: Containers/Edit/5
@@ -101,6 +112,8 @@ namespace TransportBrunaWeb.Controllers
             {
                 Containers model = db.Containers.Find(ContainersViewModel.ContainerID);
 
+                model.CompanyID = ContainersViewModel.CompanyID;
+                model.ContainerTypeID = ContainersViewModel.ContainerTypeID;
                 model.Name = ContainersViewModel.Name;
                 model.Label = ContainersViewModel.Label;
                 model.Volume = ContainersViewModel.Volume;

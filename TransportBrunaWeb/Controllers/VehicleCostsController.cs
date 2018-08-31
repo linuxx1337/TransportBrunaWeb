@@ -81,13 +81,20 @@ namespace TransportBrunaWeb.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             VehicleCosts vehicleCosts = db.VehicleCosts.Find(id);
+
+            VehicleCostsViewModel view = new VehicleCostsViewModel();
+            view.VehicleCostID = vehicleCosts.VehicleCostID;
+            view.VehicleID = vehicleCosts.VehicleID;
+            view.CostID = vehicleCosts.CostID;
+            view.Description = vehicleCosts.Description;
+
             if (vehicleCosts == null)
             {
                 return HttpNotFound();
             }
             ViewBag.CostID = new SelectList(db.Costs, "CostID", "Note", vehicleCosts.CostID);
             ViewBag.VehicleID = new SelectList(db.Vehicles, "VehicleID", "Name", vehicleCosts.VehicleID);
-            return View(vehicleCosts);
+            return View(view);
         }
 
         // POST: VehicleCosts/Edit/5
@@ -102,6 +109,8 @@ namespace TransportBrunaWeb.Controllers
                 VehicleCosts model = db.VehicleCosts.Find(VehicleCostsViewModel.VehicleCostID);
 
                 model.Description = VehicleCostsViewModel.Description;
+                model.CostID = VehicleCostsViewModel.CostID;
+                model.VehicleID = VehicleCostsViewModel.VehicleID;
 
                 model.DateModified = DateTime.Now;
                 model.ModifiedBy = Guid.Parse(User.Identity.GetUserId());

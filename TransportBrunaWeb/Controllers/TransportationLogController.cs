@@ -10,7 +10,7 @@ using System.Web.Mvc;
 using TransportBrunaWeb.DAL;
 using TransportBrunaWeb.Models;
 using PagedList;
-
+using System.Configuration;
 
 namespace TransportBrunaWeb.Controllers
 {
@@ -49,7 +49,8 @@ namespace TransportBrunaWeb.Controllers
             {
                 transportationLog = transportationLog.Where(m => m.CargoTypes.Name.Contains(searchString)
                 || m.Containers.Label.Contains(searchString)
-                //|| m.Customers.FullName.Contains(searchString)
+                || m.Customers.Company.FullName.Contains(searchString)
+                || m.Customers.PrivateCustomer.FullName.Contains(searchString)
                 || m.Vehicles.Name.Contains(searchString)
                 || m.Note.Contains(searchString)
                 || m.Location.Contains(searchString));
@@ -71,10 +72,10 @@ namespace TransportBrunaWeb.Controllers
                     transportationLog = transportationLog.OrderByDescending(s => s.Date);
                     break;
                 case "Customer":
-                    transportationLog = transportationLog.OrderBy(s => s.CustomerID);
+                    transportationLog = transportationLog.OrderBy(s => s.Customers.Company.FullName);
                     break;
                 case "customer_desc":
-                    transportationLog = transportationLog.OrderByDescending(s => s.CustomerID);
+                    transportationLog = transportationLog.OrderByDescending(s => s.Customers.Company.FullName);
                     break;
                 case "CargoType":
                     transportationLog = transportationLog.OrderBy(s => s.CargoTypes.Name);
@@ -106,7 +107,7 @@ namespace TransportBrunaWeb.Controllers
             }
 
             //paging
-            int pageSize = 3;
+            int pageSize = int.Parse(ConfigurationManager.AppSettings["pagesize"]);
             int pageNumber = (page ?? 1);
             return View(transportationLog.ToPagedList(pageNumber, pageSize));
             //return View(transportationLog.ToList());

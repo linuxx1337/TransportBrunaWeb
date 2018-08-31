@@ -153,6 +153,7 @@ namespace TransportBrunaWeb.Controllers
                 model.Date = CostsViewModel.Date;
                 model.Note = CostsViewModel.Note;
                 model.Description = CostsViewModel.Description;
+                model.CostTypeID = CostsViewModel.CostTypeID;
 
                 model.DateModified = DateTime.Now;
                 model.ModifiedBy = Guid.Parse(User.Identity.GetUserId());

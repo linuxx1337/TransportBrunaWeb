@@ -123,6 +123,7 @@ namespace TransportBrunaWeb.Controllers
                 model.Note = HouseholdTransportationViewModel.Note;
                 model.Attachment = HouseholdTransportationViewModel.Attachment;
                 model.Description = HouseholdTransportationViewModel.Description;
+                model.TransportationLogID = HouseholdTransportationViewModel.TransportationLogID;
 
                 model.DateModified = DateTime.Now;
                 model.ModifiedBy = Guid.Parse(User.Identity.GetUserId());

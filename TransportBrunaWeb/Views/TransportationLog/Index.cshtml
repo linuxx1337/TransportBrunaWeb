@@ -95,7 +95,11 @@
                 @Html.DisplayFor(modelItem => item.Location)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Customers.CustomerID)
+                @{ 
+                    string name = item.Customers.CompanyID != null ? item.Customers.Company.FullName : item.Customers.PrivateCustomer.FullName;
+                }
+                @Html.DisplayFor(modelItem => name)
+
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CargoTypes.Name)
