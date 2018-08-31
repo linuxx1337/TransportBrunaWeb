@@ -64,7 +64,8 @@
         <th>
             @Html.ActionLink("Aktivna?", "Index", new { sortOrder = ViewBag.ActiveSortParm }, new { @style = "color:#666666;" })
         </th>
-        @if (Context.User.Identity.IsAuthenticated && User.IsInRole("Superadmin"))
+        <!--
+        if (Context.User.Identity.IsAuthenticated && User.IsInRole("Superadmin"))
         {
             <th>
                 Description
@@ -81,7 +82,7 @@
             <th>
                 ModifiedBy
             </th>
-        }
+        }-->
         <th></th>
     </tr>
 
@@ -95,7 +96,7 @@
                 @Html.DisplayFor(modelItem => item.Location)
             </td>
             <td>
-                @{ 
+                @{
                     string name = item.Customers.CompanyID != null ? item.Customers.Company.FullName : item.Customers.PrivateCustomer.FullName;
                 }
                 @Html.DisplayFor(modelItem => name)
@@ -116,24 +117,26 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Active)
             </td>
-            @if (Context.User.Identity.IsAuthenticated && User.IsInRole("Superadmin"))
-            {
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateCreated)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateModified)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreatedBy)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ModifiedBy)
-                </td>
-            }
+            <!--
+                    if (Context.User.Identity.IsAuthenticated && User.IsInRole("Superadmin"))
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateCreated)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateModified)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedBy)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ModifiedBy)
+                        </td>
+                    }
+                    -->
             <td>
                 <a href="@Url.Action("Edit", "TransportationLog", new { id=item.TransportationLogID })">
                     <span title="Uredi" class="glyphicon glyphicon-pencil" />
@@ -149,7 +152,7 @@
                 {
                     <span>|</span>
                     <a href="@Url.Action("CloseLog", "TransportationLog", new { id=item.TransportationLogID })">
-                        <span title="Zapri vožnjo" class="glyphicon glyphicon-floppy-remove" />
+                        <span title="Končaj vožnjo" class="glyphicon glyphicon-ok" />
                     </a>
                 }
 
@@ -162,7 +165,7 @@
 
 <!--Pagination-->
 <br />
-Stran @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) od @Model.PageCount
+        Stran @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) od @Model.PageCount
 
-@Html.PagedListPager(Model, page => Url.Action("Index",
-    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+            new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

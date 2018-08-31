@@ -121,6 +121,12 @@ namespace TransportBrunaWeb.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             TransportationLog transportationLog = db.TransportationLog.Find(id);
+
+            // tole je dodano za izpis tabele stroskov v view od trans log details
+            var drivingCosts = db.DrivingCosts.Include(v => v.Costs).Include(v => v.TransportationLog).Where(x => x.TransportationLogID == transportationLog.TransportationLogID);
+            ViewBag.DCosts = drivingCosts;
+            //////////
+
             if (transportationLog == null)
             {
                 return HttpNotFound();
@@ -237,6 +243,13 @@ namespace TransportBrunaWeb.Controllers
             }
             TransportationLog transportationLog = db.TransportationLog.Find(id);
 
+            var test = (from customer in db.Customers
+                        select new
+                        {
+                            CustomerID = customer.CustomerID,
+                            Name = customer.CompanyID != null ? customer.Company.FullName : customer.PrivateCustomer.FullName
+                        }).OrderBy(x => x.Name);
+
             TransportationLogViewModel view = new TransportationLogViewModel();
             view.TransportationLogID = transportationLog.TransportationLogID;
             view.ContainerID = transportationLog.ContainerID;
@@ -256,7 +269,7 @@ namespace TransportBrunaWeb.Controllers
             ViewBag.CargoID = new SelectList(db.CargoTypes, "CargoID", "Name", transportationLog.CargoID);
             ViewBag.ContainerID = new SelectList(db.Containers, "ContainerID", "Label", transportationLog.ContainerID);
             ViewBag.CostID = new SelectList(db.Costs, "CostID", "Note", transportationLog.CostID);
-            ViewBag.CustomerID = new SelectList(db.Customers, "CustomerID", "Description", transportationLog.CustomerID);
+            ViewBag.CustomerID = new SelectList(test, "CustomerID", "Name", transportationLog.CustomerID);
             ViewBag.VehicleID = new SelectList(db.Vehicles, "VehicleID", "Name", transportationLog.VehicleID);
             return View(view);
         }

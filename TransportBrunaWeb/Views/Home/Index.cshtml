@@ -33,6 +33,19 @@
 </div>
 
 <hr />
+<!--USER RATING-->
+<div>
+<h2 class="container-fluid">
+    <h3>Oceni našo storitev</h3>
+    <div class="row">
+            <img src="~/Content/img/checklist.png" class="img-responsive" />
+
+        <!--tukaj daj rating-->
+    </div>
+</div>
+
+
+<hr />
 <div class="container-fluid">
     <div class="row ">
         <!-- footer-about -->
@@ -48,7 +61,7 @@
             </div>
         </div>
         <!-- /.footer-about -->
-        <!-- footer-links 
+        <!-- footer-links
         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
             <div class="footer-widget ">
                 <div class="footer-title">Quick Links</div>
@@ -62,29 +75,29 @@
         /.footer-links -->
         <!-- footer-blank -->
         <div class="col-xl-6 col-lg-6 col-md-4 col-sm-6 col-6 ">
-            @if (Context.User.Identity.IsAuthenticated==false)
+            @if (Context.User.Identity.IsAuthenticated == false)
             {
-            <div class="footer-title">Prijava</div>
-            <section id="loginForm">
-                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                {
-                    @Html.AntiForgeryToken()
-                    <div class="form-group">
-                        <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "E-naslov" })
-                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                <div class="footer-title">Prijava</div>
+                <section id="loginForm">
+                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "E-naslov" })
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-10">
-                            <input type="submit" value="Prijava" class="btn btn-default pull-right" />
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <input type="submit" value="Prijava" class="btn btn-default pull-right" />
 
-                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Geslo" })
-                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Geslo" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
-                }
-            </section>
+                    }
+                </section>
             }
         </div>
         <!-- /.footer-blank -->

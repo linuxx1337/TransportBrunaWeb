@@ -1,125 +1,263 @@
 ﻿@model TransportBrunaWeb.Models.TransportationLog
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Podrobnosti";
 }
 
-<h2>Details</h2>
+<h2>Podrobnosti vožnje</h2>
 
+<ul class="nav nav-pills">
+    <li>@Html.ActionLink("Uredi vožnjo", "Edit", new { id = Model.TransportationLogID })</li>
+    <li>@Html.ActionLink("Dodaj strošek", "Create", "Costs", new { TransportationLogID = Model.TransportationLogID }, null) </li>
+    <li>@Html.ActionLink("Dodaj gospodinjstvo", "Create", "HouseholdTransportation", new { LogID = Model.TransportationLogID }, null)</li>
+    <li>
+        @if (Model.Active)
+        {
+            <a href="@Url.Action("CloseLog", "TransportationLog", new { id=Model.TransportationLogID })">
+                <span title="Končaj vožnjo" class="glyphicon glyphicon-ok" />
+            </a>
+        }
+    </li>
+</ul>
+<hr class="hrrr" />
 <div>
-    <h4>TransportationLog</h4>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col" colspan="2">Podrobnosti</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="col">@Html.DisplayNameFor(model => model.Date)</th>
+                <td>@Html.DisplayFor(model => model.Date)</td>
+            </tr>
+            <tr>
+                <th scope="col">@Html.DisplayNameFor(model => model.Location)</th>
+                <td>@Html.DisplayFor(model => model.Location)</td>
+            </tr>
+            <tr>
+                <th scope="col">Stranka</th>
+                <td>
+                    @{
+                        string name = Model.Customers.CompanyID != null ? Model.Customers.Company.FullName : Model.Customers.PrivateCustomer.FullName;
+                    }
+                    @Html.DisplayFor(model => name)
+                </td>
+            </tr>
+            <tr>
+                <th scope="col">Tip tovora</th>
+                <td>@Html.DisplayFor(model => model.CargoTypes.Name)</td>
+            </tr>
+            <tr>
+                <th scope="col">Vozilo</th>
+                <td>@Html.DisplayFor(model => model.Vehicles.Name)</td>
+            </tr>
+            <tr>
+                <th scope="col">Keson</th>
+                <td>@Html.DisplayFor(model => model.Containers.Label)</td>
+            </tr>
+            <tr>
+                <th scope="col">@Html.DisplayNameFor(model => model.Note)</th>
+                <td>@Html.DisplayFor(model => model.Note)</td>
+            </tr>
+
+            @if (Context.User.Identity.IsAuthenticated && User.IsInRole("Superadmin"))
+            {
+            <tr>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+
+                <td>
+                    @Html.DisplayFor(model => model.Description)
+                </td>
+            </tr>
+            <tr>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.DateCreated)
+                </th>
+
+                <td>
+                    @Html.DisplayFor(model => model.DateCreated)
+                </td>
+            </tr>
+            <tr>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.DateModified)
+                </th>
+
+                <td>
+                    @Html.DisplayFor(model => model.DateModified)
+                </td>
+            </tr>
+            <tr>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.CreatedBy)
+                </th>
+
+                <td>
+                    @Html.DisplayFor(model => model.CreatedBy)
+                </td>
+            </tr>
+            <tr>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.ModifiedBy)
+                </th>
+
+                <td>
+                    @Html.DisplayFor(model => model.ModifiedBy)
+                </td>
+            </tr>
+                    }
+            </tbody>
+        </table>
+
+        <!--OLD TABLE-->
+        @*
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Date)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Date)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Location)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Location)
+                </dd>
+
+                <dt>
+                    Stranka
+                </dt>
+                <dd>
+                    @{
+                        string name = Model.Customers.CompanyID != null ? Model.Customers.Company.FullName : Model.Customers.PrivateCustomer.FullName;
+                    }
+                    @Html.DisplayFor(model => name)
+                </dd>
+
+                <dt>
+                    Tip tovora
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.CargoTypes.Name)
+                </dd>
+
+                <dt>
+                    Vozilo
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Vehicles.Name)
+                </dd>
+
+                <dt>
+                    Keson
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Containers.Label)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Note)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Note)
+                </dd>
+
+                @if (Context.User.Identity.IsAuthenticated && User.IsInRole("Superadmin"))
+                {
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Description)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.DateCreated)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.DateCreated)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.DateModified)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.DateModified)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.CreatedBy)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.CreatedBy)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ModifiedBy)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.ModifiedBy)
+                    </dd>
+                }
+            </dl>*@
+    </div>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.CargoTypes.Name)
-        </dt>
+    <div>
+        <h3>Stroški vožnje</h3>
+        <!-- Tole je dodano da izpiše tabelo stroškov za določen ID vožnje -->
+        <table class="table table-hover table-striped">
+            <tr>
+                <th>
+                    Datum
+                </th>
+                <th>
+                    Tip stroška
+                </th>
+                <th>
+                    Znesek
+                </th>
+                <th>
+                    Opomba
+                </th>
+            </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.CargoTypes.Name)
-        </dd>
+            @foreach (var item in (IEnumerable<TransportBrunaWeb.Models.DrivingCosts>)ViewBag.DCosts)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Costs.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Costs.CostTypes.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Costs.Amount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Costs.Note)
+                    </td>
+                    @if (Context.User.Identity.IsAuthenticated && User.IsInRole("Superadmin"))
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Costs.Description)
+                        </td>
+                    }
+                </tr>
+            }
+        </table>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Containers.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Containers.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Costs.Note)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Costs.Note)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Customers.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Customers.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Vehicles.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Vehicles.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Date)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Location)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Note)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Note)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DateCreated)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateCreated)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DateModified)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateModified)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedBy)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ModifiedBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ModifiedBy)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.TransportationLogID }) |
-    @Html.ActionLink("Back to List", "Index") |
-    @Html.ActionLink("Add Cost", "Create", "Costs", new { TransportationLogID = Model.TransportationLogID }, null) |
-    @Html.ActionLink("Add Household", "Create", "HouseholdTransportation", new { LogID = Model.TransportationLogID }, null)
-
-</p>
+    <p>
+        @Html.ActionLink("Nazaj na seznam", "Index")
+    </p>

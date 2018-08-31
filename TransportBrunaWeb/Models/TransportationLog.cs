@@ -13,7 +13,7 @@ namespace TransportBrunaWeb.Models
         public Guid TransportationLogID { get; set; }
 
         [Display(Name = "Keson")]
-        [Required(ErrorMessage = "Keson mora biti izbrano!")]
+        [Required(ErrorMessage = "Keson mora biti izbran!")]
         public Guid ContainerID { get; set; }
         public virtual Containers Containers { get; set; }
 
