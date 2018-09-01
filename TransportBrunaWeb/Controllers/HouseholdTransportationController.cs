@@ -115,9 +115,9 @@ namespace TransportBrunaWeb.Controllers
             }
             HouseholdTransportation householdTransportation = db.HouseholdTransportation.Find(id);
 
-            /*// tole je dodano za izpis tabele voženj v view od household details
+            // tole je dodano za izpis tabele voženj v view od household details
             var transportationLogHousehold = db.TransportationLog.Where(x => x.TransportationLogID == householdTransportation.TransportationLogID);
-            ViewBag.tHousehold = transportationLogHousehold;*/
+            ViewBag.tHousehold = transportationLogHousehold;
 
 
             if (householdTransportation == null)

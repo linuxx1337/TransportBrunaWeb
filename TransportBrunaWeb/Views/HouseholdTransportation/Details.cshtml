@@ -102,36 +102,33 @@
             }
         </tbody>
     </table>
-    </dl>
 </div>
 
 <hr />
+<div>
+    <h3>Vožnja na gospodinjstvo</h3>
+    <!-- Tole je dodano da izpiše tabelo voženj za določen ID household -->
+    <table class="table table-hover table-striped">
+        <tr>
+            <th>
+                Datum
+            </th>
+            <th>
+                Lokacija
+            </th>
+            <th>
+                Stranka
+            </th>
+            <th>
+                Tip tovora
+            </th>
+            <th>
+                Opomba
+            </th>
+        </tr>
 
-@*
-    <div>
-        <h3>Vožnje na gospodinjstvo</h3>
-        <!-- Tole je dodano da izpiše tabelo voženj za določen ID household -->
-        <table class="table table-hover table-striped">
-            <tr>
-                <th>
-                    Datum
-                </th>
-                <th>
-                    Lokacija
-                </th>
-                <th>
-                    Stranka
-                </th>
-                <th>
-                    Tip tovora
-                </th>
-                <th>
-                    Opomba
-                </th>
-            </tr>
-
-            @foreach (var item in (IEnumerable<TransportBrunaWeb.Models.TransportationLog>)ViewBag.transportationLogHousehold)
-            {
+        @foreach (var item in (IEnumerable<TransportBrunaWeb.Models.TransportationLog>)ViewBag.tHousehold)
+        {
 
             <tr>
                 <td>
@@ -155,13 +152,9 @@
                 </td>
 
             </tr>
-            }
-        </table>
-    </div>
-*@
-
-
-
+        }
+    </table>
+</div>
 
 <p>
     @Html.ActionLink("Nazaj na seznam", "Index")
