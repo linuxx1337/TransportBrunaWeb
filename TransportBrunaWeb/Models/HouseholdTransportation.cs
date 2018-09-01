@@ -17,37 +17,37 @@ namespace TransportBrunaWeb.Models
         public Guid TransportationLogID { get; set; }
         public virtual TransportationLog TransportationLog { get; set; }
 
-        [Display(Name = "First Name")]
-        [Required(ErrorMessage = "The first name must be specified!")]
+        [Display(Name = "Ime")]
+        [Required(ErrorMessage = "Ime mora biti določeno!")]
         public string FirstName { get; set; }
 
-        [Display(Name = "Last Name")]
-        [Required(ErrorMessage = "The last name must be specified!")]
+        [Display(Name = "Priimek")]
+        [Required(ErrorMessage = "Priimek mora biti določen!")]
         public string LastName { get; set; }
 
-        [Display(Name = "Address")]
-        [Required(ErrorMessage = "The address must be specified!")]
+        [Display(Name = "Naslov")]
+        [Required(ErrorMessage = "Naslov mora biti določen")]
         public string Address { get; set; }
 
-        [Display(Name = "Post Code")]
-        [Required(ErrorMessage = "The post code must be specified!")]
+        [Display(Name = "Poštna številka")]
+        [Required(ErrorMessage = "Poštna številka mora biti določena!")]
         public string PostCode { get; set; }
 
-        [Display(Name = "City")]
-        [Required(ErrorMessage = "The city must be specified!")]
+        [Display(Name = "Mesto")]
+        [Required(ErrorMessage = "Mesto mora biti določeno!")]
         public string City { get; set; }
 
-        [Display(Name = "Date")]
-        [Required(ErrorMessage = "The date must be specified!")]
+        [Display(Name = "Datum")]
+        [Required(ErrorMessage = "Datum mora biti določen!")]
         [DisplayFormat(DataFormatString = "{0:d. M. yyyy}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
-        [Display(Name = "Note")]
+        [Display(Name = "Opomba")]
         [DataType(DataType.MultilineText)]
         public string Note { get; set; }
 
-        [Display(Name = "Attachment")]
+        [Display(Name = "Priponka")]
         public string Attachment { get; set; }
 
         [Display(Name = "Description")]
@@ -80,37 +80,37 @@ namespace TransportBrunaWeb.Models
         public Guid TransportationLogID { get; set; }
         public virtual TransportationLog TransportationLog { get; set; }
 
-        [Display(Name = "First Name")]
-        [Required(ErrorMessage = "The first name must be specified!")]
+        [Display(Name = "Ime")]
+        [Required(ErrorMessage = "Ime mora biti določeno!")]
         public string FirstName { get; set; }
 
-        [Display(Name = "Last Name")]
-        [Required(ErrorMessage = "The last name must be specified!")]
+        [Display(Name = "Priimek")]
+        [Required(ErrorMessage = "Priimek mora biti določen!")]
         public string LastName { get; set; }
 
-        [Display(Name = "Address")]
-        [Required(ErrorMessage = "The address must be specified!")]
+        [Display(Name = "Naslov")]
+        [Required(ErrorMessage = "Naslov mora biti določen")]
         public string Address { get; set; }
 
-        [Display(Name = "Post Code")]
-        [Required(ErrorMessage = "The post code must be specified!")]
+        [Display(Name = "Poštna številka")]
+        [Required(ErrorMessage = "Poštna številka mora biti določena!")]
         public string PostCode { get; set; }
 
-        [Display(Name = "City")]
-        [Required(ErrorMessage = "The city must be specified!")]
+        [Display(Name = "Mesto")]
+        [Required(ErrorMessage = "Mesto mora biti določeno!")]
         public string City { get; set; }
 
-        [Display(Name = "Date")]
-        [Required(ErrorMessage = "The date must be specified!")]
+        [Display(Name = "Datum")]
+        [Required(ErrorMessage = "Datum mora biti določen!")]
         [DisplayFormat(DataFormatString = "{0:d. M. yyyy}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
-        [Display(Name = "Note")]
+        [Display(Name = "Opomba")]
         [DataType(DataType.MultilineText)]
         public string Note { get; set; }
 
-        [Display(Name = "Attachment")]
+        [Display(Name = "Priponka")]
         public string Attachment { get; set; }
 
         [Display(Name = "Description")]

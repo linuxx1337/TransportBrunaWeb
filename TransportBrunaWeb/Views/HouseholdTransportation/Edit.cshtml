@@ -1,23 +1,22 @@
 ﻿@model TransportBrunaWeb.Models.HouseholdTransportationViewModel
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Uredi";
 }
 
-<h2>Edit</h2>
+<h2>Uredi gospodinjstvo</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>HouseholdTransportation</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.HouseholdTransportationID)
 
-        <div class="form-group">
+        <div class="form-group" style="display: none;">
             @Html.LabelFor(model => model.TransportationLogID, "TransportationLogID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("TransportationLogID", null, htmlAttributes: new { @class = "form-control" })
@@ -88,25 +87,26 @@
                 @Html.ValidationMessageFor(model => model.Attachment, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        @if (Context.User.Identity.IsAuthenticated && User.IsInRole("Superadmin"))
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-
+        }
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Shrani" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Nazaj na prejšnjo stran", null, null, null, new { href = Request.UrlReferrer })
 </div>
 
 @section Scripts {

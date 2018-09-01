@@ -83,7 +83,7 @@ namespace TransportBrunaWeb.Controllers
 
                     db.VehicleCosts.Add(vehicleCosts);
                     db.SaveChanges();
-                    return RedirectToAction("Index", "Vehicles");
+                    return RedirectToAction("Details/"+ VehicleID, "Vehicles");
                 }
                 // Da shranis v tabelo TransporationLog
                 if (TransportationLogID != null)
@@ -103,7 +103,7 @@ namespace TransportBrunaWeb.Controllers
 
                     db.DrivingCosts.Add(drivingCosts);
                     db.SaveChanges();
-                    return RedirectToAction("Index", "TransportationLog");
+                    return RedirectToAction("Details/"+ TransportationLogID, "TransportationLog");
                 }
                 return RedirectToAction("Index");
             }

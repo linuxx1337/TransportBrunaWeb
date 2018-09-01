@@ -14,22 +14,22 @@ namespace TransportBrunaWeb.Models
         public Guid CostID { get; set; }
 
         //[ForeignKey("CostTypes")]
-        [Display(Name = "Cost Type")]
-        [Required(ErrorMessage = "The cost type must be specified!")]
+        [Display(Name = "Tip stroška")]
+        [Required(ErrorMessage = "Tip stroška mora biti izbran!")]
         public Guid CostTypeID { get; set; }
         public virtual CostTypes CostTypes { get; set; }
 
-        [Display(Name = "Amount")]
-        [Required(ErrorMessage = "The amount must be specified!")]
+        [Display(Name = "Znesek")]
+        [Required(ErrorMessage = "Znesek mora biti določen!")]
         public double Amount { get; set; }
 
-        [Display(Name = "Date")]
-        [Required(ErrorMessage = "The date must be specified!")]
+        [Display(Name = "Datum")]
+        [Required(ErrorMessage = "Datum mora biti določen!")]
         [DisplayFormat(DataFormatString = "{0:d. M. yyyy}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)] // tole rabiš za date picker
         public DateTime Date { get; set; }
 
-        [Display(Name = "Note")]
+        [Display(Name = "Opomba")]
         [DataType(DataType.MultilineText)]
         public string Note { get; set; }
 
@@ -58,22 +58,22 @@ namespace TransportBrunaWeb.Models
     {
         public Guid CostID { get; set; }
 
-        [Display(Name = "Cost Type")]
-        [Required(ErrorMessage = "The cost type must be specified!")]
+        [Display(Name = "Tip stroška")]
+        [Required(ErrorMessage = "Tip stroška mora biti izbran!")]
         public Guid CostTypeID { get; set; }
         public virtual CostTypes CostTypes { get; set; }
 
-        [Display(Name = "Amount")]
-        [Required(ErrorMessage = "The amount must be specified!")]
+        [Display(Name = "Znesek")]
+        [Required(ErrorMessage = "Znesek mora biti določen!")]
         public double Amount { get; set; }
 
-        [Display(Name = "Date")]
-        [Required(ErrorMessage = "The date must be specified!")]
+        [Display(Name = "Datum")]
+        [Required(ErrorMessage = "Datum mora biti določen!")]
         [DisplayFormat(DataFormatString = "{0:d. M. yyyy}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)] // tole rabiš za date picker
         public DateTime Date { get; set; }
 
-        [Display(Name = "Note")]
+        [Display(Name = "Opomba")]
         [DataType(DataType.MultilineText)]
         public string Note { get; set; }
 

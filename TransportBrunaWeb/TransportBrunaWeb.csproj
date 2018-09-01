@@ -319,6 +319,10 @@
     <Compile Include="Migrations\201808250856215_ActiveTransLog.Designer.cs">
       <DependentUpon>201808250856215_ActiveTransLog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809010958372_UpdateTransLog-Costs.cs" />
+    <Compile Include="Migrations\201809010958372_UpdateTransLog-Costs.Designer.cs">
+      <DependentUpon>201809010958372_UpdateTransLog-Costs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CargoTypes.cs" />
@@ -568,6 +572,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808250856215_ActiveTransLog.resx">
       <DependentUpon>201808250856215_ActiveTransLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809010958372_UpdateTransLog-Costs.resx">
+      <DependentUpon>201809010958372_UpdateTransLog-Costs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

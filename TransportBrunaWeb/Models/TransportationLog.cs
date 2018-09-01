@@ -31,11 +31,11 @@ namespace TransportBrunaWeb.Models
         [Required(ErrorMessage = "Stranka mora biti izbrana!")]
         public Guid CustomerID { get; set; }
         public virtual Customers Customers { get; set; }
-
+        /*
         [Display(Name = "Cost")]
         //[Required(ErrorMessage = "The Cost must be specified!")]
         public Guid? CostID { get; set; }
-        public virtual Costs Costs { get; set; }
+        public virtual Costs Costs { get; set; }*/
 
         [Required]
         public bool Active { get; set; }
@@ -100,11 +100,11 @@ namespace TransportBrunaWeb.Models
         [Required(ErrorMessage = "Stranka mora biti izbrana!")]
         public Guid CustomerID { get; set; }
         public virtual Customers Customers { get; set; }
-
+        /*
         [Display(Name = "Cost")]
         //[Required(ErrorMessage = "The Cost must be specified!")]
         public Guid? CostID { get; set; }
-        public virtual Costs Costs { get; set; }
+        public virtual Costs Costs { get; set; }*/
 
         // ******
 

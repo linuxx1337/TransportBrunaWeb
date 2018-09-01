@@ -31,7 +31,7 @@ namespace TransportBrunaWeb.Controllers
             ViewBag.ConstainerSortParm = sortOrder == "Container" ? "container_desc" : "Container";
             ViewBag.ActiveSortParm = sortOrder == "Active" ? "active_desc" : "Active";
 
-            //paging
+            // SEARCH filter
             if (searchString != null)
             {
                 page = 1;
@@ -42,8 +42,9 @@ namespace TransportBrunaWeb.Controllers
             }
             ViewBag.CurrentFilter = searchString;
 
-            var transportationLog = db.TransportationLog.Include(t => t.CargoTypes).Include(t => t.Containers).Include(t => t.Costs).Include(t => t.Customers).Include(t => t.Vehicles);
-            
+            //var transportationLog = db.TransportationLog.Include(t => t.CargoTypes).Include(t => t.Containers).Include(t => t.Costs).Include(t => t.Customers).Include(t => t.Vehicles);
+            var transportationLog = db.TransportationLog.Include(t => t.CargoTypes).Include(t => t.Containers).Include(t => t.Customers).Include(t => t.Vehicles);
+
             // SEARCH funkcija
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -125,7 +126,10 @@ namespace TransportBrunaWeb.Controllers
             // tole je dodano za izpis tabele stroskov v view od trans log details
             var drivingCosts = db.DrivingCosts.Include(v => v.Costs).Include(v => v.TransportationLog).Where(x => x.TransportationLogID == transportationLog.TransportationLogID);
             ViewBag.DCosts = drivingCosts;
-            //////////
+
+            // za prikaz tabele drivingCosts, ce so podatki
+            var hasCosts = db.DrivingCosts.Where(x => x.TransportationLogID == transportationLog.TransportationLogID && x.TransportationLogID!=null);
+            ViewBag.hasCosts = hasCosts;
 
             if (transportationLog == null)
             {
@@ -228,7 +232,7 @@ namespace TransportBrunaWeb.Controllers
 
             ViewBag.CargoID = new SelectList(db.CargoTypes, "CargoID", "Name", transportationLog.CargoID);
             ViewBag.ContainerID = new SelectList(db.Containers, "ContainerID", "Name", transportationLog.ContainerID);
-            ViewBag.CostID = new SelectList(db.Costs, "CostID", "Note", transportationLog.CostID);
+            //ViewBag.CostID = new SelectList(db.Costs, "CostID", "Note", transportationLog.CostID);
             ViewBag.CustomerID = new SelectList(db.Customers, "CustomerID", "Description", transportationLog.CustomerID);
             ViewBag.VehicleID = new SelectList(db.Vehicles, "VehicleID", "Name", transportationLog.VehicleID);
             return View(transportationLog);
@@ -256,7 +260,7 @@ namespace TransportBrunaWeb.Controllers
             view.VehicleID = transportationLog.VehicleID;
             view.CargoID = transportationLog.CargoID;
             view.CustomerID = transportationLog.CustomerID;
-            view.CostID = transportationLog.CostID;
+            //view.CostID = transportationLog.CostID;
             view.Date = transportationLog.Date;
             view.Location = transportationLog.Location;
             view.Note = transportationLog.Note;
@@ -268,7 +272,7 @@ namespace TransportBrunaWeb.Controllers
             }
             ViewBag.CargoID = new SelectList(db.CargoTypes, "CargoID", "Name", transportationLog.CargoID);
             ViewBag.ContainerID = new SelectList(db.Containers, "ContainerID", "Label", transportationLog.ContainerID);
-            ViewBag.CostID = new SelectList(db.Costs, "CostID", "Note", transportationLog.CostID);
+            //ViewBag.CostID = new SelectList(db.Costs, "CostID", "Note", transportationLog.CostID);
             ViewBag.CustomerID = new SelectList(test, "CustomerID", "Name", transportationLog.CustomerID);
             ViewBag.VehicleID = new SelectList(db.Vehicles, "VehicleID", "Name", transportationLog.VehicleID);
             return View(view);
@@ -294,7 +298,7 @@ namespace TransportBrunaWeb.Controllers
                 model.ContainerID = TransportationLogViewModel.ContainerID;
                 model.CustomerID = TransportationLogViewModel.CustomerID;
                 model.VehicleID = TransportationLogViewModel.VehicleID;
-                model.CostID = TransportationLogViewModel.CostID;
+                //model.CostID = TransportationLogViewModel.CostID;
 
                 model.DateModified = DateTime.Now;
                 model.ModifiedBy = Guid.Parse(User.Identity.GetUserId());
@@ -305,7 +309,7 @@ namespace TransportBrunaWeb.Controllers
             }
             ViewBag.CargoID = new SelectList(db.CargoTypes, "CargoID", "Name", TransportationLogViewModel.CargoID);
             ViewBag.ContainerID = new SelectList(db.Containers, "ContainerID", "Label", TransportationLogViewModel.ContainerID);
-            ViewBag.CostID = new SelectList(db.Costs, "CostID", "Note", TransportationLogViewModel.CostID);
+            //ViewBag.CostID = new SelectList(db.Costs, "CostID", "Note", TransportationLogViewModel.CostID);
             ViewBag.CustomerID = new SelectList(db.Customers, "CustomerID", "Description", TransportationLogViewModel.CustomerID);
             ViewBag.VehicleID = new SelectList(db.Vehicles, "VehicleID", "Name", TransportationLogViewModel.VehicleID);
             return View(TransportationLogViewModel);

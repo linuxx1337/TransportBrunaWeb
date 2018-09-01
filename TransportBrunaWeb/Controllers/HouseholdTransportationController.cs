@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNet.Identity;
+using PagedList;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -17,10 +19,91 @@ namespace TransportBrunaWeb.Controllers
         private BrunaContext db = new BrunaContext();
 
         // GET: HouseholdTransportation
-        public ActionResult Index()
+        public ActionResult Index(string searchString, string sortOrder, string currentFilter, int? page)
         {
-            var householdTransportation = db.HouseholdTransportation.Include(h => h.TransportationLog);
-            return View(householdTransportation.ToList());
+            ViewBag.CurrentSort = sortOrder;
+
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.FirstnameSortParm = sortOrder == "Firstname" ? "Firstname_desc" : "Firstname";
+            ViewBag.LastnameSortParm = sortOrder == "Lastname" ? "Lastname_desc" : "Lastname";
+            ViewBag.AddressSortParm = sortOrder == "Address" ? "Address_desc" : "Address";
+            ViewBag.PostCodeSortParm = sortOrder == "PostCode" ? "PostCode_desc" : "PostCode";
+            ViewBag.CitySortParm = sortOrder == "City" ? "City_desc" : "City";
+
+            var householdTransportation = db.HouseholdTransportation.Include(h => h.TransportationLog).OrderBy(x=>x.Date);
+
+            // SEARCH filter
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
+
+            // SEARCH funkcija
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                householdTransportation = householdTransportation.Where(m => m.FirstName.Contains(searchString)
+                || m.LastName.Contains(searchString)
+                || m.Address.Contains(searchString)
+                || m.PostCode.Contains(searchString)
+                || m.City.Contains(searchString)
+                || m.Note.Contains(searchString)).OrderBy(x=>x.Date);
+            }
+
+            // SORT funkcija
+            switch (sortOrder)
+            {
+                case "Firstname":
+                    householdTransportation = householdTransportation.OrderBy(s => s.FirstName);
+                    break;
+                case "Firstname_desc":
+                    householdTransportation = householdTransportation.OrderByDescending(s => s.FirstName);
+                    break;
+                case "Date":
+                    householdTransportation = householdTransportation.OrderBy(s => s.Date);
+                    break;
+                case "Date_desc":
+                    householdTransportation = householdTransportation.OrderByDescending(s => s.Date);
+                    break;
+                case "Lastname":
+                    householdTransportation = householdTransportation.OrderBy(s => s.LastName);
+                    break;
+                case "Lastname_desc":
+                    householdTransportation = householdTransportation.OrderByDescending(s => s.LastName);
+                    break;
+                case "Address":
+                    householdTransportation = householdTransportation.OrderBy(s => s.Address);
+                    break;
+                case "Address_desc":
+                    householdTransportation = householdTransportation.OrderByDescending(s => s.Address);
+                    break;
+                case "PostCode":
+                    householdTransportation = householdTransportation.OrderBy(s => s.PostCode);
+                    break;
+                case "PostCode_desc":
+                    householdTransportation = householdTransportation.OrderByDescending(s => s.PostCode);
+                    break;
+                case "City":
+                    householdTransportation = householdTransportation.OrderBy(s => s.City);
+                    break;
+                case "City_desc":
+                    householdTransportation = householdTransportation.OrderByDescending(s => s.City);
+                    break;
+                default:
+                    householdTransportation = householdTransportation.OrderByDescending(s => s.Date);
+                    break;
+            }
+
+            //paging
+            int pageSize = int.Parse(ConfigurationManager.AppSettings["pagesize"]);
+            int pageNumber = (page ?? 1);
+            return View(householdTransportation.ToPagedList(pageNumber, pageSize));
+
+           // return View(householdTransportation.ToList());
         }
 
         // GET: HouseholdTransportation/Details/5
@@ -31,6 +114,12 @@ namespace TransportBrunaWeb.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             HouseholdTransportation householdTransportation = db.HouseholdTransportation.Find(id);
+
+            /*// tole je dodano za izpis tabele voženj v view od household details
+            var transportationLogHousehold = db.TransportationLog.Where(x => x.TransportationLogID == householdTransportation.TransportationLogID);
+            ViewBag.tHousehold = transportationLogHousehold;*/
+
+
             if (householdTransportation == null)
             {
                 return HttpNotFound();
