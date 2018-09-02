@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNet.Identity;
+using PagedList;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -17,10 +19,67 @@ namespace TransportBrunaWeb.Controllers
         private BrunaContext db = new BrunaContext();
 
         // GET: Customers
-        public ActionResult Index()
+        public ActionResult Index(string searchString, string sortOrder, string currentFilter, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
+
+            ViewBag.FullnameSortParm = sortOrder == "Fullname" ? "Fullname_desc" : "Fullname";
+            ViewBag.AddressSortParm = sortOrder == "Address" ? "Address_desc" : "Address";
+            ViewBag.VatSortParm = sortOrder == "Vat" ? "Vat_desc" : "Vat";
+
             var customers = db.Customers.Include(c => c.Company).Include(c => c.PrivateCustomer);
-            return View(customers.ToList());
+
+            // SEARCH filter
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
+
+            // SEARCH funkcija
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                customers = customers.Where(m => m.Company.FullName.Contains(searchString)
+                || m.Company.Address.Contains(searchString)
+                || m.PrivateCustomer.FullName.Contains(searchString)
+                || m.PrivateCustomer.Address.Contains(searchString)).OrderBy(x => x.Company.FullName);
+            }
+
+            // SORT funkcija
+            switch (sortOrder)
+            {
+                case "Fullname":
+                    customers = customers.OrderBy(s => s.Company.FullName);
+                    break;
+                case "Firstname_desc":
+                    customers = customers.OrderByDescending(s => s.Company.FullName);
+                    break;
+                case "Address":
+                    customers = customers.OrderBy(s => s.Company.Address);
+                    break;
+                case "Address_desc":
+                    customers = customers.OrderByDescending(s => s.Company.Address);
+                    break;
+                case "Vat":
+                    customers = customers.OrderBy(s => s.Company.Vat);
+                    break;
+                case "Vat_desc":
+                    customers = customers.OrderByDescending(s => s.Company.Vat);
+                    break;
+                default:
+                    customers = customers.OrderBy(s => s.Company.FullName);
+                    break;
+            }
+
+            //paging
+            int pageSize = int.Parse(ConfigurationManager.AppSettings["pagesize"]);
+            int pageNumber = (page ?? 1);
+            return View(customers.ToPagedList(pageNumber, pageSize));
+            //return View(customers.ToList());
         }
 
         // GET: Customers/Details/5

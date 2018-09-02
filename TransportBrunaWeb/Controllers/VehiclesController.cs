@@ -268,10 +268,10 @@ namespace TransportBrunaWeb.Controllers
         // PROSTI KESONI
         public ActionResult nonActiveContainers()
         {
-            // tole je dodano za izpis tabele containers
-            //var allContainers = db.Containers.Include(c => c.Company).Include(c => c.ContainerTypes);
+            // izpis tabele containers
             var allContainers = db.Containers.Include(c => c.Company).Include(c => c.ContainerTypes);
 
+            // izpis tabele transportationLog
             var allTransportationLogs = db.TransportationLog.Include(c => c.ContainerID);
             allTransportationLogs = allTransportationLogs.Where(c => c.Active == false);
 

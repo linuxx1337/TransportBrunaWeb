@@ -77,7 +77,7 @@ namespace TransportBrunaWeb.Controllers
                 db.Customers.Add(customers);
                 db.SaveChanges();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Customers");
             }
 
             return View(privateCustomer);
@@ -122,7 +122,7 @@ namespace TransportBrunaWeb.Controllers
 
                 db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Customers");
             }
             return View(PrivateCustomerViewModel);
         }
@@ -150,7 +150,7 @@ namespace TransportBrunaWeb.Controllers
             PrivateCustomer privateCustomer = db.PrivateCustomer.Find(id);
             db.PrivateCustomer.Remove(privateCustomer);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Customers");
         }
 
         protected override void Dispose(bool disposing)
