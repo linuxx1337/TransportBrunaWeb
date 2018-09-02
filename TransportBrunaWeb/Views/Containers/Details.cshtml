@@ -1,106 +1,103 @@
 ﻿@model TransportBrunaWeb.Models.Containers
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Podrobnosti";
 }
 
-<h2>Details</h2>
+<h2>Podrobnosti kesona/košare</h2>
+<ul class="nav nav-pills">
+    <li>@Html.ActionLink("Uredi keson/košaro", "Edit", new { id = Model.ContainerID })</li>
+</ul>
+
+<hr class="hrrr" />
 
 <div>
-    <h4>Containers</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Company.FullName)
-        </dt>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col" colspan="2">Podrobnosti</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="col">Podjetje</th>
+                <td>@Html.DisplayFor(model => model.Company.FullName)</td>
+            </tr>
+            <tr>
+                <th scope="col">Tip kesona/košare</th>
+                <td>@Html.DisplayFor(model => model.ContainerTypes.Name)</td>
+            </tr>
+            <tr>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <td>@Html.DisplayFor(model => model.Name)</td>
+            </tr>
+            <tr>
+                <th scope="col">@Html.DisplayNameFor(model => model.Label)</th>
+                <td>@Html.DisplayFor(model => model.Label)</td>
+            </tr>
+            <tr>
+                <th scope="col">@Html.DisplayNameFor(model => model.Volume)</th>
+                <td>@Html.DisplayFor(model => model.Volume)</td>
+            </tr>
+            <tr>
+                <th scope="col">@Html.DisplayNameFor(model => model.Note)</th>
+                <td>@Html.DisplayFor(model => model.Note)</td>
+            </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.Company.FullName)
-        </dd>
+            @if (Context.User.Identity.IsAuthenticated && User.IsInRole("Superadmin"))
+            {
+                <tr>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ContainerTypes.Name)
-        </dt>
+                    <td>
+                        @Html.DisplayFor(model => model.Description)
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.DateCreated)
+                    </th>
 
-        <dd>
-            @Html.DisplayFor(model => model.ContainerTypes.Name)
-        </dd>
+                    <td>
+                        @Html.DisplayFor(model => model.DateCreated)
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.DateModified)
+                    </th>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+                    <td>
+                        @Html.DisplayFor(model => model.DateModified)
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.CreatedBy)
+                    </th>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+                    <td>
+                        @Html.DisplayFor(model => model.CreatedBy)
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.ModifiedBy)
+                    </th>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Label)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Label)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Volume)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Volume)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Note)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Note)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DateCreated)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateCreated)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DateModified)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateModified)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedBy)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ModifiedBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ModifiedBy)
-        </dd>
-
-    </dl>
+                    <td>
+                        @Html.DisplayFor(model => model.ModifiedBy)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ContainerID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Nazaj na seznam", "Index", "Vehicles")
+
 </p>

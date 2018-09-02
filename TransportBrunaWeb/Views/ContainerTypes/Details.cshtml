@@ -1,14 +1,15 @@
 ﻿@model TransportBrunaWeb.Models.ContainerTypes
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Podrobnosti";
 }
 
-<h2>Details</h2>
-
+<h2>Podrobnosti tipa kesona/košare</h2>
+<ul class="nav nav-pills">
+    <li>@Html.ActionLink("Uredi tip kesona/košare", "Edit", new { id = Model.ContainerTypeID })</li>
+</ul>
+<hr class="hrrr" />
 <div>
-    <h4>ContainerTypes</h4>
-    <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Name)
@@ -61,6 +62,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ContainerTypeID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Nazaj na seznam", "Index")
+
 </p>

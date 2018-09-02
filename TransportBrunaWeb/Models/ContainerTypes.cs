@@ -12,8 +12,8 @@ namespace TransportBrunaWeb.Models
         [Key]
         public Guid ContainerTypeID { get; set; }
 
-        [Display(Name = "Name")]
-        [Required(ErrorMessage = "The name must be specified!")]
+        [Display(Name = "Ime")]
+        [Required(ErrorMessage = "Ime mora biti določeno!")]
         public string Name { get; set; }
 
         [Display(Name = "Description")]
@@ -41,8 +41,8 @@ namespace TransportBrunaWeb.Models
     {
         public Guid ContainerTypeID { get; set; }
 
-        [Display(Name = "Name")]
-        [Required(ErrorMessage = "The name must be specified!")]
+        [Display(Name = "Ime")]
+        [Required(ErrorMessage = "Ime mora biti določeno!")]
         public string Name { get; set; }
 
         [Display(Name = "Description")]

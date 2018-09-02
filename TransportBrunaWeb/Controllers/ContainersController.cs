@@ -65,7 +65,7 @@ namespace TransportBrunaWeb.Controllers
 
                 db.Containers.Add(containers);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Vehicles");
             }
 
             ViewBag.CompanyID = new SelectList(db.Company, "CompanyID", "FullName", containers.CompanyID);
@@ -125,7 +125,7 @@ namespace TransportBrunaWeb.Controllers
 
                 db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Vehicles");
             }
             ViewBag.CompanyID = new SelectList(db.Company, "CompanyID", "FullName", ContainersViewModel.CompanyID);
             ViewBag.ContainerTypeID = new SelectList(db.ContainerTypes, "ContainerTypeID", "Name", ContainersViewModel.ContainerTypeID);
@@ -172,7 +172,7 @@ namespace TransportBrunaWeb.Controllers
             Containers containers = db.Containers.Find(id);
             db.Containers.Remove(containers);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Vehicles");
         }
 
         protected override void Dispose(bool disposing)

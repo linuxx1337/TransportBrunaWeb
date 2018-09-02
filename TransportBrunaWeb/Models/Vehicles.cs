@@ -13,8 +13,8 @@ namespace TransportBrunaWeb.Models
         [Key]
         public Guid VehicleID { get; set; }
 
-        [Display(Name = "Company")]
-        [Required(ErrorMessage = "The Company must be specified!")]
+        [Display(Name = "Podjetje")]
+        [Required(ErrorMessage = "Podjetje mora biti izbrano!")]
         public Guid CompanyID { get; set; }
         public virtual Company Company { get; set; }
 
@@ -23,47 +23,47 @@ namespace TransportBrunaWeb.Models
         public Guid CostID { get; set; }
         public virtual Costs Costs { get; set; }*/
 
-        [Display(Name = "Name")]
-        [Required(ErrorMessage = "The name must be specified!")]
+        [Display(Name = "Ime")]
+        [Required(ErrorMessage = "Ime mora biti določeno!")]
         public string Name { get; set; }
 
-        [Display(Name = "Reg Plate")]
-        [Required(ErrorMessage = "The registration plate must be specified!")]
+        [Display(Name = "Registrska tablica")]
+        [Required(ErrorMessage = "Registrska tablica mora biti določena!")]
         public string RegPlate { get; set; }
 
-        [Display(Name = "Brand")]
-        [Required(ErrorMessage = "The brand must be specified!")]
+        [Display(Name = "Znamka")]
+        [Required(ErrorMessage = "Znamka mora biti določena!")]
         public string Brand { get; set; }
 
-        [Display(Name = "VIN")]
-        [Required(ErrorMessage = "The VIN number must be specified!")]
+        [Display(Name = "VIN številka")]
+        [Required(ErrorMessage = "VIN številka mora biti določena!")]
         public string Vin { get; set; }
 
-        [Display(Name = "GVW")]
-        [Required(ErrorMessage = "The Gross vehicle weight must be specified!")]
+        [Display(Name = "Največja dovoljena masa")]
+        [Required(ErrorMessage = "Največja dovoljena masa mora biti določena!")]
         public int Gvw { get; set; }
 
-        [Display(Name = "Mass Cargo")]
-        [Required(ErrorMessage = "The mass cargo must be specified!")]
+        [Display(Name = "Masa tovora")]
+        [Required(ErrorMessage = "Masa tovora mora biti določena!")]
         public int MassCargo { get; set; }
 
-        [Display(Name = "Type")]
-        [Required(ErrorMessage = "The type of vehicle must be specified!")]
+        [Display(Name = "Vrsta")]
+        [Required(ErrorMessage = "Vrsta vozila mora biti določena!")]
         public string Type { get; set; }
 
-        [Display(Name = "Date Reg")]
-        [Required(ErrorMessage = "The date reg must be specified!")]
+        [Display(Name = "Datum registracije")]
+        [Required(ErrorMessage = "Datum registracije mora biti določen!")]
         [DisplayFormat(DataFormatString = "{0:d. M. yyyy}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public DateTime DateReg { get; set; }
 
-        [Display(Name = "Date MOT")]
-        [Required(ErrorMessage = "The date MOT must be specified!")]
+        [Display(Name = "Datum tehničnega")]
+        [Required(ErrorMessage = "Datum tehničnega pregleda mora biti določen!")]
         [DisplayFormat(DataFormatString = "{0:d. M. yyyy}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public DateTime DateMot { get; set; }
 
-        [Display(Name = "Note")]
+        [Display(Name = "Opomba")]
         [DataType(DataType.MultilineText)]
         public string Note { get; set; }
 
@@ -92,8 +92,8 @@ namespace TransportBrunaWeb.Models
     {
         public Guid VehicleID { get; set; }
 
-        [Display(Name = "Company")]
-        [Required(ErrorMessage = "The Company must be specified!")]
+        [Display(Name = "Podjetje")]
+        [Required(ErrorMessage = "Podjetje mora biti izbrano!")]
         public Guid CompanyID { get; set; }
         public virtual Company Company { get; set; }
 
@@ -102,47 +102,47 @@ namespace TransportBrunaWeb.Models
         public Guid CostID { get; set; }
         public virtual Costs Costs { get; set; }*/
 
-        [Display(Name = "Name")]
-        [Required(ErrorMessage = "The name must be specified!")]
+        [Display(Name = "Ime")]
+        [Required(ErrorMessage = "Ime mora biti določeno!")]
         public string Name { get; set; }
 
-        [Display(Name = "Reg Plate")]
-        [Required(ErrorMessage = "The registration plate must be specified!")]
+        [Display(Name = "Registrska tablica")]
+        [Required(ErrorMessage = "Registrska tablica mora biti določena!")]
         public string RegPlate { get; set; }
 
-        [Display(Name = "Brand")]
-        [Required(ErrorMessage = "The brand must be specified!")]
+        [Display(Name = "Znamka")]
+        [Required(ErrorMessage = "Znamka mora biti določena!")]
         public string Brand { get; set; }
 
-        [Display(Name = "VIN")]
-        [Required(ErrorMessage = "The VIN number must be specified!")]
+        [Display(Name = "VIN številka")]
+        [Required(ErrorMessage = "VIN številka mora biti določena!")]
         public string Vin { get; set; }
 
-        [Display(Name = "GVW")]
-        [Required(ErrorMessage = "The Gross vehicle weight must be specified!")]
+        [Display(Name = "Največja dovoljena masa")]
+        [Required(ErrorMessage = "Največja dovoljena masa mora biti določena!")]
         public int Gvw { get; set; }
 
-        [Display(Name = "Mass Cargo")]
-        [Required(ErrorMessage = "The mass cargo must be specified!")]
+        [Display(Name = "Masa tovora")]
+        [Required(ErrorMessage = "Masa tovora mora biti določena!")]
         public int MassCargo { get; set; }
 
-        [Display(Name = "Type")]
-        [Required(ErrorMessage = "The type of vehicle must be specified!")]
+        [Display(Name = "Vrsta")]
+        [Required(ErrorMessage = "Vrsta vozila mora biti določena!")]
         public string Type { get; set; }
 
-        [Display(Name = "Date Reg")]
-        [Required(ErrorMessage = "The date reg must be specified!")]
+        [Display(Name = "Datum registracije")]
+        [Required(ErrorMessage = "Datum registracije mora biti določen!")]
         [DisplayFormat(DataFormatString = "{0:d. M. yyyy}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public DateTime DateReg { get; set; }
 
-        [Display(Name = "Date MOT")]
-        [Required(ErrorMessage = "The date MOT must be specified!")]
+        [Display(Name = "Datum tehničnega")]
+        [Required(ErrorMessage = "Datum tehničnega pregleda mora biti določen!")]
         [DisplayFormat(DataFormatString = "{0:d. M. yyyy}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public DateTime DateMot { get; set; }
 
-        [Display(Name = "Note")]
+        [Display(Name = "Opomba")]
         [DataType(DataType.MultilineText)]
         public string Note { get; set; }
 

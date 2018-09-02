@@ -54,13 +54,13 @@
                 @Html.DisplayFor(modelItem => item.ModifiedBy)
             </td>
             <td>
-                <a href="@Url.Action("Uredi", "CargoTypes", new { id=item.CargoID })">
+                <a href="@Url.Action("Edit", "CargoTypes", new { id=item.CargoID })">
                     <span title="Uredi" class="glyphicon glyphicon-pencil" />
                 </a>&nbsp;|
-                <a href="@Url.Action("Podrobnosti", "CargoTypes", new { id=item.CargoID })">
+                <a href="@Url.Action("Details", "CargoTypes", new { id=item.CargoID })">
                     <span title="Podrobnosti" class="glyphicon glyphicon-option-vertical" />
                 </a>&nbsp;|
-                <a href="@Url.Action("Izbriši", "CargoTypes", new { id=item.CargoID })">
+                <a href="@Url.Action("Delete", "CargoTypes", new { id=item.CargoID })">
                     <span title="Izbriši" class="glyphicon glyphicon-trash" />
                 </a>
             </td>

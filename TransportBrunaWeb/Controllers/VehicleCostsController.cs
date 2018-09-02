@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNet.Identity;
+using PagedList;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -17,10 +19,65 @@ namespace TransportBrunaWeb.Controllers
         private BrunaContext db = new BrunaContext();
 
         // GET: VehicleCosts
-        public ActionResult Index()
+        public ActionResult Index(string searchString, string sortOrder, string currentFilter, int? page)
         {
-            var vehicleCosts = db.VehicleCosts.Include(v => v.Costs).Include(v => v.Vehicles); // tole rabiš za izpis tabele
-            return View(vehicleCosts.ToList());
+            ViewBag.CurrentSort = sortOrder;
+
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.CostTypesSortParm = sortOrder == "CostTypes" ? "CostTypes_desc" : "CostTypes";
+            ViewBag.AmountSortParm = sortOrder == "Amount" ? "Amount_desc" : "Amount";
+
+            var vehicleCosts = db.VehicleCosts.Include(v => v.Costs).Include(v => v.Vehicles);
+
+            // SEARCH filter
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
+
+            // SEARCH funkcija
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                vehicleCosts = vehicleCosts.Where(m => m.Costs.CostTypes.Name.Contains(searchString));
+            }
+
+            // SORT funkcija
+            switch (sortOrder)
+            {
+                case "CostTypes":
+                    vehicleCosts = vehicleCosts.OrderBy(s => s.Costs.CostTypes.Name);
+                    break;
+                case "CostTypes_desc":
+                    vehicleCosts = vehicleCosts.OrderByDescending(s => s.Costs.CostTypes.Name);
+                    break;
+                case "Date":
+                    vehicleCosts = vehicleCosts.OrderBy(s => s.Costs.Date);
+                    break;
+                case "Date_desc":
+                    vehicleCosts = vehicleCosts.OrderByDescending(s => s.Costs.Date);
+                    break;
+                case "Amount":
+                    vehicleCosts = vehicleCosts.OrderBy(s => s.Costs.Amount);
+                    break;
+                case "Amount_desc":
+                    vehicleCosts = vehicleCosts.OrderByDescending(s => s.Costs.Amount);
+                    break;
+                default:
+                    vehicleCosts = vehicleCosts.OrderByDescending(s => s.Costs.Date);
+                    break;
+            }
+
+            //paging
+            int pageSize = int.Parse(ConfigurationManager.AppSettings["pagesize"]);
+            int pageNumber = (page ?? 1);
+            return View(vehicleCosts.ToPagedList(pageNumber, pageSize));
+
+            //return View(vehicleCosts.ToList());
         }
 
         // GET: VehicleCosts/Details/5

@@ -13,13 +13,13 @@ namespace TransportBrunaWeb.Models
         [Key]
         public Guid ContainerID { get; set; }
 
-        [Display(Name = "Container Type")]
-        [Required(ErrorMessage = "The Container type must be specified!")]
+        [Display(Name = "Tip kesona")]
+        [Required(ErrorMessage = "Tip kesona mora biti izbran!")]
         public Guid ContainerTypeID { get; set; }
         public virtual ContainerTypes ContainerTypes { get; set; }
 
-        [Display(Name = "Company")]
-        [Required(ErrorMessage = "The Company must be specified!")]
+        [Display(Name = "Podjetje")]
+        [Required(ErrorMessage = "Podjetje mora biti izbrano!")]
         public Guid CompanyID { get; set; }
         public virtual Company Company { get; set; }
 
@@ -30,18 +30,18 @@ namespace TransportBrunaWeb.Models
 
         //*****
 
-        [Display(Name = "Name")]
-        [Required(ErrorMessage = "The name must be specified!")]
+        [Display(Name = "Ime")]
+        [Required(ErrorMessage = "Ime mora biti določeno!")]
         public string Name { get; set; }
 
-        [Display(Name = "Label")]
-        [Required(ErrorMessage = "The label must be specified!")]
+        [Display(Name = "Oznaka")]
+        [Required(ErrorMessage = "Oznaka mora biti določena!")]
         public string Label { get; set; }
 
-        [Display(Name = "Volume")]
+        [Display(Name = "Volumen")]
         public double? Volume { get; set; }
 
-        [Display(Name = "Note")]
+        [Display(Name = "Opomba")]
         [DataType(DataType.MultilineText)]
         public string Note { get; set; }
 
@@ -70,13 +70,13 @@ namespace TransportBrunaWeb.Models
     {
         public Guid ContainerID { get; set; }
 
-        [Display(Name = "Container Type")]
-        [Required(ErrorMessage = "The Container type must be specified!")]
+        [Display(Name = "Tip kesona")]
+        [Required(ErrorMessage = "Tip kesona mora biti izbran!")]
         public Guid ContainerTypeID { get; set; }
         public virtual ContainerTypes ContainerTypes { get; set; }
 
-        [Display(Name = "Company")]
-        [Required(ErrorMessage = "The Company must be specified!")]
+        [Display(Name = "Podjetje")]
+        [Required(ErrorMessage = "Podjetje mora biti izbrano!")]
         public Guid CompanyID { get; set; }
         public virtual Company Company { get; set; }
 
@@ -87,18 +87,18 @@ namespace TransportBrunaWeb.Models
 
         //*****
 
-        [Display(Name = "Name")]
-        [Required(ErrorMessage = "The name must be specified!")]
+        [Display(Name = "Ime")]
+        [Required(ErrorMessage = "Ime mora biti določeno!")]
         public string Name { get; set; }
 
-        [Display(Name = "Label")]
-        [Required(ErrorMessage = "The label must be specified!")]
+        [Display(Name = "Oznaka")]
+        [Required(ErrorMessage = "Oznaka mora biti določena!")]
         public string Label { get; set; }
 
-        [Display(Name = "Volume")]
+        [Display(Name = "Volumen")]
         public double? Volume { get; set; }
 
-        [Display(Name = "Note")]
+        [Display(Name = "Opomba")]
         [DataType(DataType.MultilineText)]
         public string Note { get; set; }
 
