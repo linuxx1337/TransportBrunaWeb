@@ -1,14 +1,15 @@
 ﻿@model TransportBrunaWeb.Models.CostTypes
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Podrobnosti";
 }
 
-<h2>Details</h2>
-
+<h2>Podrobnosti tipa stroška</h2>
+<ul class="nav nav-pills">
+    <li>@Html.ActionLink("Uredi tip stroška", "Edit", new { id = Model.CostTypeID })</li>
+</ul>
+<hr class="hrrr" />
 <div>
-    <h4>CostTypes</h4>
-    <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Name)
@@ -61,6 +62,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CostTypeID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Nazaj na seznam", "Index")
+
 </p>

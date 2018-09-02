@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNet.Identity;
+using PagedList;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -17,10 +19,63 @@ namespace TransportBrunaWeb.Controllers
         private BrunaContext db = new BrunaContext();
 
         // GET: Costs
-        public ActionResult Index()
+        public ActionResult Index(string searchString, string sortOrder, string currentFilter, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
+
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.CostTypesSortParm = sortOrder == "CostTypes" ? "CostTypes_desc" : "CostTypes";
+            ViewBag.AmountSortParm = sortOrder == "Amount" ? "Amount_desc" : "Amount";
+
             var costs = db.Costs.Include(c => c.CostTypes);
-            return View(costs.ToList());
+
+            // SEARCH filter
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
+
+            // SEARCH funkcija
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                costs = costs.Where(m => m.CostTypes.Name.Contains(searchString));
+            }
+            // SORT funkcija
+            switch (sortOrder)
+            {
+                case "CostTypes":
+                    costs = costs.OrderBy(s => s.CostTypes.Name);
+                    break;
+                case "CostTypes_desc":
+                    costs = costs.OrderByDescending(s => s.CostTypes.Name);
+                    break;
+                case "Date":
+                    costs = costs.OrderBy(s => s.Date);
+                    break;
+                case "Date_desc":
+                    costs = costs.OrderByDescending(s => s.Date);
+                    break;
+                case "Amount":
+                    costs = costs.OrderBy(s => s.Amount);
+                    break;
+                case "Amount_desc":
+                    costs = costs.OrderByDescending(s => s.Amount);
+                    break;
+                default:
+                    costs = costs.OrderByDescending(s => s.Date);
+                    break;
+            }
+            //paging
+            int pageSize = int.Parse(ConfigurationManager.AppSettings["pagesize"]);
+            int pageNumber = (page ?? 1);
+            return View(costs.ToPagedList(pageNumber, pageSize));
+
+            //return View(costs.ToList());
         }
 
         // GET: Costs/Details/5

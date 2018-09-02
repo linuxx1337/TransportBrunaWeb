@@ -5,10 +5,11 @@
 }
 
 <h2>Podrobnosti stroška vožnje</h2>
-
+<ul class="nav nav-pills">
+    <li><a href="@Url.Action("Edit", "Costs", new { id=Model.CostID })">Uredi strošek</a></li>
+</ul>
+<hr class="hrrr" />
 <div>
-    <hr />
-
     <table class="table table-striped table-hover">
         <thead>
             <tr>
@@ -45,54 +46,54 @@
                 <td>@Html.DisplayFor(model => model.TransportationLog.Vehicles.RegPlate)</td>
             </tr>
 
-        @if (Context.User.Identity.IsAuthenticated && User.IsInRole("Superadmin"))
-        {
-            <tr>
-                <th scope="col">
-                    @Html.DisplayNameFor(model => model.Description)
-                </th>
+            @if (Context.User.Identity.IsAuthenticated && User.IsInRole("Superadmin"))
+            {
+                <tr>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
 
-                <td>
-                    @Html.DisplayFor(model => model.Description)
-                </td>
-            </tr>
-            <tr>
-                <th scope="col">
-                    @Html.DisplayNameFor(model => model.DateCreated)
-                </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Description)
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.DateCreated)
+                    </th>
 
-                <td>
-                    @Html.DisplayFor(model => model.DateCreated)
-                </td>
-            </tr>
-            <tr>
-                <th scope="col">
-                    @Html.DisplayNameFor(model => model.DateModified)
-                </th>
+                    <td>
+                        @Html.DisplayFor(model => model.DateCreated)
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.DateModified)
+                    </th>
 
-                <td>
-                    @Html.DisplayFor(model => model.DateModified)
-                </td>
-            </tr>
-            <tr>
-                <th scope="col">
-                    @Html.DisplayNameFor(model => model.CreatedBy)
-                </th>
+                    <td>
+                        @Html.DisplayFor(model => model.DateModified)
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.CreatedBy)
+                    </th>
 
-                <td>
-                    @Html.DisplayFor(model => model.CreatedBy)
-                </td>
-            </tr>
-            <tr>
-                <th scope="col">
-                    @Html.DisplayNameFor(model => model.ModifiedBy)
-                </th>
+                    <td>
+                        @Html.DisplayFor(model => model.CreatedBy)
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.ModifiedBy)
+                    </th>
 
-                <td>
-                    @Html.DisplayFor(model => model.ModifiedBy)
-                </td>
-            </tr>
-        }
+                    <td>
+                        @Html.DisplayFor(model => model.ModifiedBy)
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>

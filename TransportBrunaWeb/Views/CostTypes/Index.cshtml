@@ -4,12 +4,12 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Seznam tipov stroškov</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<ul class="nav nav-pills navbar-left">
+    <li>@Html.ActionLink("Dodaj tip tovora", "Create")</li>
+</ul>
+<table class="table table-striped table-hover">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -53,11 +53,24 @@
             @Html.DisplayFor(modelItem => item.ModifiedBy)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CostTypeID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CostTypeID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CostTypeID })
+            <a href="@Url.Action("Uredi", "CostTypes", new { id=item.CostTypeID })">
+                <span title="Uredi" class="glyphicon glyphicon-pencil" />
+            </a>&nbsp;|
+            <a href="@Url.Action("Podrobnosti", "CostTypes", new { id=item.CostTypeID })">
+                <span title="Podrobnosti" class="glyphicon glyphicon-option-vertical" />
+            </a>&nbsp;|
+            <a href="@Url.Action("Izbriši", "CostTypes", new { id=item.CostTypeID })">
+                <span title="Izbriši" class="glyphicon glyphicon-trash" />
+            </a>
         </td>
     </tr>
 }
 
 </table>
+
+<p>
+    @Html.ActionLink("Nazaj na seznam voženj", "Index", "TransportationLog")
+</p>
+<p>
+    @Html.ActionLink("Nazaj na seznam voznega parka", "Index", "Vehicles")
+</p>

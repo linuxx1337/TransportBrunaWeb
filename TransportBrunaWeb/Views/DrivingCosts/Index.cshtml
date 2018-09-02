@@ -58,6 +58,9 @@
                     @Html.DisplayFor(modelItem => item.TransportationLogID)
                 </td>
                 <td>
+                    <a href="@Url.Action("Edit", "Costs", new { id=item.CostID })">
+                        <span title="Uredi" class="glyphicon glyphicon-pencil" />
+                    </a>&nbsp;|
                     <a href="@Url.Action("Details", "DrivingCosts", new { id=item.DrivingCostID })">
                         <span title="Podrobnosti" class="glyphicon glyphicon-option-vertical" />
                     </a>&nbsp;|

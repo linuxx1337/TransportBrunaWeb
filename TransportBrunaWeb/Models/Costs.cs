@@ -13,7 +13,6 @@ namespace TransportBrunaWeb.Models
         [Key]
         public Guid CostID { get; set; }
 
-        //[ForeignKey("CostTypes")]
         [Display(Name = "Tip stroška")]
         [Required(ErrorMessage = "Tip stroška mora biti izbran!")]
         public Guid CostTypeID { get; set; }
