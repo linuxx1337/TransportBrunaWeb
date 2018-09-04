@@ -29,7 +29,9 @@ namespace TransportBrunaWeb.DAL
         public DbSet<DrivingCosts> DrivingCosts { get; set; }
         public DbSet<TransportationStatus> TransportationStatus { get; set; }
         public DbSet<HouseholdTransportation> HouseholdTransportation { get; set; }
-        
+
+        public virtual DbSet<WebFile> WebFiles { get; set; }
+        public virtual DbSet<Gallery> Galleries { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

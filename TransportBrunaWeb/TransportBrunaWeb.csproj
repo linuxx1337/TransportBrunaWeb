@@ -209,7 +209,10 @@
     <Compile Include="Controllers\CostsController.cs" />
     <Compile Include="Controllers\CostTypesController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
+    <Compile Include="Controllers\DownloadFileController.cs" />
     <Compile Include="Controllers\DrivingCostsController.cs" />
+    <Compile Include="Controllers\GalleryAdminController.cs" />
+    <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HouseholdTransportationController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -323,6 +326,18 @@
     <Compile Include="Migrations\201809010958372_UpdateTransLog-Costs.Designer.cs">
       <DependentUpon>201809010958372_UpdateTransLog-Costs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809041602198_beforeGallery.cs" />
+    <Compile Include="Migrations\201809041602198_beforeGallery.Designer.cs">
+      <DependentUpon>201809041602198_beforeGallery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809041704560_galerija.cs" />
+    <Compile Include="Migrations\201809041704560_galerija.Designer.cs">
+      <DependentUpon>201809041704560_galerija.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809041710544_galerija1.cs" />
+    <Compile Include="Migrations\201809041710544_galerija1.Designer.cs">
+      <DependentUpon>201809041710544_galerija1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CargoTypes.cs" />
@@ -332,6 +347,10 @@
     <Compile Include="Models\Costs.cs" />
     <Compile Include="Models\CostTypes.cs" />
     <Compile Include="Models\Customers.cs" />
+    <Compile Include="Models\DAL\WebFileViewModel.cs" />
+    <Compile Include="Models\DAL\ImageEditorViewModel.cs" />
+    <Compile Include="Models\WebFile.cs" />
+    <Compile Include="Models\Gallery.cs" />
     <Compile Include="Models\DrivingCosts.cs" />
     <Compile Include="Models\HouseholdTransportation.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -360,7 +379,11 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\fancy-box\jquery.fancybox.css" />
+    <Content Include="Scripts\fancy-box\jquery.fancybox.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\fancy-box\jquery.fancybox.min.css" />
+    <Content Include="Scripts\fancy-box\jquery.fancybox.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -483,10 +506,17 @@
     <Content Include="Views\Home\Administration.cshtml" />
     <Content Include="Views\Home\Services.cshtml" />
     <Content Include="Views\Vehicles\nonActiveContainers.cshtml" />
+    <Content Include="Views\GalleryAdmin\Index.cshtml" />
+    <Content Include="Views\GalleryAdmin\Create.cshtml" />
+    <Content Include="Views\GalleryAdmin\_List.cshtml" />
+    <Content Include="Views\Gallery\Index.cshtml" />
+    <Content Include="Views\Gallery\_List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\img\" />
+    <Folder Include="Views\DownloadFile\" />
+    <Folder Include="Views\GalleryController\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -576,6 +606,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809010958372_UpdateTransLog-Costs.resx">
       <DependentUpon>201809010958372_UpdateTransLog-Costs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809041602198_beforeGallery.resx">
+      <DependentUpon>201809041602198_beforeGallery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809041704560_galerija.resx">
+      <DependentUpon>201809041704560_galerija.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809041710544_galerija1.resx">
+      <DependentUpon>201809041710544_galerija1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

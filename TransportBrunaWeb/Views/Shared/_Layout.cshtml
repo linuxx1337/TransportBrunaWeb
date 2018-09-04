@@ -25,7 +25,7 @@
                     <li>@Html.ActionLink("Domov", "Index", "Home", null, new { @class = "navbar-link" })</li>
                     <li>@Html.ActionLink("O nas", "About", "Home", null, new { @class = "navbar-link" })</li>
                     <li>@Html.ActionLink("Storitve", "Services", "Home", null, new { @class = "navbar-link" })</li>
-                    <li>@Html.ActionLink("Galerija", "Gallery", "Home", null, new { @class = "navbar-link" })</li>
+                    <li>@Html.ActionLink("Galerija", "Index", "Gallery", null, new { @class = "navbar-link" })</li>
                     <li>@Html.ActionLink("Kontakt", "Contact", "Home", null, new { @class = "navbar-link" })</li>
                     @if (Context.User.Identity.IsAuthenticated && User.IsInRole("Superadmin"))
                     {

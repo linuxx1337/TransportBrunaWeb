@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Galerija</h2>
+
+<ul class="nav nav-pills">
+    @if (Context.User.Identity.IsAuthenticated && User.IsInRole("Superadmin"))
+    {
+        <li>@Html.ActionLink("Dodaj sliko", "Index", "GalleryAdmin")</li>
+    }
+    @if (Context.User.Identity.IsAuthenticated && User.IsInRole("Superuser"))
+    {
+        <li>@Html.ActionLink("Dodaj sliko", "Index", "GalleryAdmin")</li>
+    }
+</ul>
+<hr class="hrrr" />
+
+
+<link href="~/Scripts/fancy-box/jquery.fancybox.min.css" rel="stylesheet" />
+
+@Html.Action("_List")
+
+<script src="~/Scripts/fancy-box/jquery.fancybox.min.js"></script>
+
+
+
+
+
