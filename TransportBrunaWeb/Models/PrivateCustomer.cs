@@ -12,26 +12,26 @@ namespace TransportBrunaWeb.Models
         [Key]
         public Guid PrivateCustomerID { get; set; }
 
-        [Display(Name = "Full Name")]
-        [Required(ErrorMessage = "The name must be specified!")]
+        [Display(Name = "Naziv")]
+        [Required(ErrorMessage = "Naziv mora biti določen!")]
         public string FullName { get; set; }
 
-        [Display(Name = "Address")]
-        [Required(ErrorMessage = "The address must be specified!")]
+        [Display(Name = "Naslov")]
+        [Required(ErrorMessage = "Naslov mora biti določen!")]
         public string Address { get; set; }
 
-        [Display(Name = "Phone")]
-        [RegularExpression(@"^([\+]|0)[(\s]{0,1}[1-9][0-9]{0,2}[\s-)]{0,2}[0-9][0-9][0-9\s-]*[0-9]$", ErrorMessage = "Please enter right number, example: 040 123-456, 07 12-12456, +(386) 334-452")]
-        [Required(ErrorMessage = "The phone number must be specified!")]
+        [Display(Name = "Telefon")]
+        [RegularExpression(@"^([\+]|0)[(\s]{0,1}[1-9][0-9]{0,2}[\s-)]{0,2}[0-9][0-9][0-9\s-]*[0-9]$", ErrorMessage = "Vnesite pravilno številko, primer: 040 123-456, 07 12-12456, +(386) 334-452")]
+        [Required(ErrorMessage = "Telefon mora biti določena!")]
         public string Phone { get; set; }
 
-        [Display(Name = "Email")]
+        [Display(Name = "E-pošta")]
         public string Email { get; set; }
 
-        [Display(Name = "VAT")]
+        [Display(Name = "Davčna številka")]
         public int? Vat { get; set; }
 
-        [Display(Name = "Note")]
+        [Display(Name = "Opomba")]
         [DataType(DataType.MultilineText)]
         public string Note { get; set; }
 
@@ -60,26 +60,26 @@ namespace TransportBrunaWeb.Models
     {
         public Guid PrivateCustomerID { get; set; }
 
-        [Display(Name = "Full Name")]
-        [Required(ErrorMessage = "The name must be specified!")]
+        [Display(Name = "Naziv")]
+        [Required(ErrorMessage = "Naziv mora biti določen!")]
         public string FullName { get; set; }
 
-        [Display(Name = "Address")]
-        [Required(ErrorMessage = "The address must be specified!")]
+        [Display(Name = "Naslov")]
+        [Required(ErrorMessage = "Naslov mora biti določen!")]
         public string Address { get; set; }
 
-        [Display(Name = "Phone")]
-        [RegularExpression(@"^([\+]|0)[(\s]{0,1}[1-9][0-9]{0,2}[\s-)]{0,2}[0-9][0-9][0-9\s-]*[0-9]$", ErrorMessage = "Please enter right number, example: 040 123-456, 07 12-12456, +(386) 334-452")]
-        [Required(ErrorMessage = "The phone number must be specified!")]
+        [Display(Name = "Telefon")]
+        [RegularExpression(@"^([\+]|0)[(\s]{0,1}[1-9][0-9]{0,2}[\s-)]{0,2}[0-9][0-9][0-9\s-]*[0-9]$", ErrorMessage = "Vnesite pravilno številko, primer: 040 123-456, 07 12-12456, +(386) 334-452")]
+        [Required(ErrorMessage = "Telefon mora biti določena!")]
         public string Phone { get; set; }
 
-        [Display(Name = "Email")]
+        [Display(Name = "E-pošta")]
         public string Email { get; set; }
 
-        [Display(Name = "VAT")]
+        [Display(Name = "Davčna številka")]
         public int? Vat { get; set; }
 
-        [Display(Name = "Note")]
+        [Display(Name = "Opomba")]
         [DataType(DataType.MultilineText)]
         public string Note { get; set; }
 

@@ -73,7 +73,7 @@
                     <a href="@Url.Action("Details", "Company", new { id=item.CompanyID })">
                         <span title="Podrobnosti" class="glyphicon glyphicon-option-vertical" />
                     </a>&nbsp;|
-                    <a href="@Url.Action("Delete", "Company", new { id=item.CompanyID })">
+                    <a href="@Url.Action("Delete", "Customers", new { id=item.CustomerID })">
                         <span title="Izbriši" class="glyphicon glyphicon-trash" />
                     </a>
                 </td>
@@ -107,7 +107,7 @@
                     <a href="@Url.Action("Details", "PrivateCustomers", new { id=item.PrivateCustomerID })">
                         <span title="Podrobnosti" class="glyphicon glyphicon-option-vertical" />
                     </a>&nbsp;|
-                    <a href="@Url.Action("Delete", "PrivateCustomers", new { id=item.PrivateCustomerID })">
+                    <a href="@Url.Action("Delete", "Customers", new { id=item.CustomerID })">
                         <span title="Izbriši" class="glyphicon glyphicon-trash" />
                     </a>
                 </td>

@@ -1,10 +1,10 @@
 ﻿@model TransportBrunaWeb.Models.PrivateCustomer
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Dodaj";
 }
 
-<h2>Create</h2>
+<h2>Dodaj fizično osebo</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,7 +12,6 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>PrivateCustomer</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -73,15 +72,15 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Dodaj" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    <div>
+        @Html.ActionLink("Nazaj na seznam", "Index", "Customers")
+    </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

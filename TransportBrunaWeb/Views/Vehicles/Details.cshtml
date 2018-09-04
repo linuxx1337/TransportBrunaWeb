@@ -116,48 +116,51 @@
 </div>
 <hr />
 
-
-<div>
-    <h3>Stroški vozila</h3>
-    <!-- Tole je dodano da izpiše tabelo stroškov za določen ID vozila -->
-    <table class="table">
-        <tr>
-            <th>
-                Datum
-            </th>
-            <th>
-                Tip stroška
-            </th>
-            <th>
-                Znesek
-            </th>
-            <th>
-                Opomba
-            </th>
-
-        </tr>
-
-        @foreach (var item in (IEnumerable<TransportBrunaWeb.Models.VehicleCosts>)ViewBag.VCosts)
-        {
+@foreach (var item2 in (IEnumerable<TransportBrunaWeb.Models.VehicleCosts>)ViewBag.hasCosts)
+{
+    <div>
+        <h3>Stroški vozila</h3>
+        <!-- Tole je dodano da izpiše tabelo stroškov za določen ID vozila -->
+        <table class="table">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Costs.Date)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Costs.CostTypes.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Costs.Amount)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Costs.Note)
-                </td>
+                <th>
+                    Datum
+                </th>
+                <th>
+                    Tip stroška
+                </th>
+                <th>
+                    Znesek
+                </th>
+                <th>
+                    Opomba
+                </th>
+
             </tr>
-        }
-    </table>
+
+            @foreach (var item in (IEnumerable<TransportBrunaWeb.Models.VehicleCosts>)ViewBag.VCosts)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Costs.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Costs.CostTypes.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Costs.Amount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Costs.Note)
+                    </td>
+                </tr>
+            }
+        </table>
 
 
-</div>
+    </div>
+    break;
+}
 <p>
     @Html.ActionLink("Nazaj na seznam", "Index")
 </p>

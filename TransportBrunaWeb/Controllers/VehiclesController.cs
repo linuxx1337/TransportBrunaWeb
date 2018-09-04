@@ -127,6 +127,10 @@ namespace TransportBrunaWeb.Controllers
             var vehicleCosts = db.VehicleCosts.Include(v => v.Costs).Include(v => v.Vehicles).Where(x => x.VehicleID==vehicle.VehicleID);
             ViewBag.VCosts = vehicleCosts;
             //////////
+            // za prikaz tabele vehicleCosts, ce so podatki
+            var hasCosts = db.VehicleCosts.Where(x => x.VehicleID == vehicle.VehicleID && x.VehicleID != null);
+            ViewBag.hasCosts = hasCosts;
+
             if (vehicle == null)
             {
                 return HttpNotFound();

@@ -195,6 +195,19 @@ namespace TransportBrunaWeb.Controllers
         public ActionResult DeleteConfirmed(Guid id)
         {
             Customers customers = db.Customers.Find(id);
+
+            if(customers.CompanyID!=null)
+            { 
+            Company company = db.Company.Find(customers.CompanyID);
+            db.Company.Remove(company);
+            }
+
+            if(customers.PrivateCustomerID!=null)
+            {
+                PrivateCustomer privateCustomer = db.PrivateCustomer.Find(customers.PrivateCustomerID);
+                db.PrivateCustomer.Remove(privateCustomer);
+            }
+
             db.Customers.Remove(customers);
             db.SaveChanges();
             return RedirectToAction("Index");
