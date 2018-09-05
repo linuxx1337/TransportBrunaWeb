@@ -4,7 +4,6 @@
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
-
 @{
     ViewBag.Title = "Index";
 }
@@ -33,9 +32,6 @@
             <th>
                 Opomba
             </th>
-            <th>
-                ID vožnje
-            </th>
             <th></th>
         </tr>
 
@@ -55,9 +51,6 @@
                     @Html.DisplayFor(modelItem => item.Costs.Note)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TransportationLogID)
-                </td>
-                <td>
                     <a href="@Url.Action("Edit", "Costs", new { id=item.CostID })">
                         <span title="Uredi" class="glyphicon glyphicon-pencil" />
                     </a>&nbsp;|
@@ -66,6 +59,9 @@
                     </a>&nbsp;|
                     <a href="@Url.Action("Delete", "DrivingCosts", new { id=item.DrivingCostID })">
                         <span title="Izbriši" class="glyphicon glyphicon-trash" />
+                    </a>&nbsp;|
+                    <a href="@Url.Action("Details", "TransportationLog", new { id=item.TransportationLogID })">
+                        <span title="Podrobnosti vožnje" class="glyphicon glyphicon-road" />
                     </a>
                 </td>
             </tr>

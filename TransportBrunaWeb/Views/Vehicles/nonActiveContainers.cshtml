@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<TransportBrunaWeb.Models.Containers>
 @{
     ViewBag.Title = "nonActiveContainers";
 }
@@ -28,7 +28,7 @@
             <th></th>
         </tr>
 
-        @foreach (var item in (IEnumerable<TransportBrunaWeb.Models.Containers>)ViewBag.allContainers)
+        @foreach (var item in Model)
         {
             <tr>
                 <td>

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -11,6 +13,12 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using TransportBrunaWeb.Models;
+using SendGrid;
+using System.Net;
+using System.Configuration;
+using System.Diagnostics;
+using System.Net.Mail;
+using System.Net.Mime;
 
 namespace TransportBrunaWeb
 {
@@ -19,7 +27,28 @@ namespace TransportBrunaWeb
         public Task SendAsync(IdentityMessage message)
         {
             // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            return configSendGridasync(message);
+
+            //return Task.FromResult(0);
+        }
+        private async Task configSendGridasync(IdentityMessage message)
+        {
+            var myMessage = new MailMessage();
+            myMessage.To.Add(message.Destination);
+
+            myMessage.From = new System.Net.Mail.MailAddress(
+                                "transportbrunaweb@gmail.com", "TransportBruna");
+            myMessage.Subject = message.Subject;
+            myMessage.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(message.Body, null, MediaTypeNames.Text.Plain));
+            myMessage.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(message.Body, null, MediaTypeNames.Text.Html));
+
+
+            //NetworkCredential credentials = new NetworkCredential("transportbrunaweb@gmail.com","50LjFtP89bz2");
+
+            SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", Convert.ToInt32(587));
+            smtpClient.Credentials = new NetworkCredential("transportbrunaweb@gmail.com", "50LjFtP89bz2");
+            smtpClient.EnableSsl = true;
+            await smtpClient.SendMailAsync(myMessage);
         }
     }
 

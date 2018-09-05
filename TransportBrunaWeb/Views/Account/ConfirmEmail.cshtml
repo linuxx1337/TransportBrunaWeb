@@ -1,10 +1,10 @@
 ﻿@{
-    ViewBag.Title = "Confirm Email";
+    ViewBag.Title = "E-naslov potrjen";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 <div>
     <p>
-        Thank you for confirming your email. Please @Html.ActionLink("Click here to Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+        Hvala, ker ste potrdili svoj e-poštni naslov. Prosim @Html.ActionLink("kliknite tukaj za prijavo!", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
     </p>
 </div>

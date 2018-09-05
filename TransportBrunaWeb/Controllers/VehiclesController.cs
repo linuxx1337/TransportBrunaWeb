@@ -19,7 +19,7 @@ namespace TransportBrunaWeb.Controllers
         private BrunaContext db = new BrunaContext();
 
         // GET: Vehicles
-        public ActionResult Index(string searchString, string sortOrder, string currentFilter, int? page)
+        public ActionResult Index(string searchString, string sortOrder, string currentFilter, int? page, string sortOrder2, int? page2)
         {
             ViewBag.CurrentSort = sortOrder;
 
@@ -28,19 +28,25 @@ namespace TransportBrunaWeb.Controllers
             ViewBag.BrandSortParm = sortOrder == "Brand" ? "Brand_desc" : "Brand";
             ViewBag.DateRegSortParm = sortOrder == "DateReg" ? "DateReg_desc" : "DateReg";
             ViewBag.DateMotSortParm = sortOrder == "DateMot" ? "DateMot_desc" : "DateMot";
-            //ViewBag.LabelSortParm = sortOrder == "Label" ? "Label_desc" : "Label";
+
+            ViewBag.ContainerTypesSortParm2 = sortOrder2 == "ContainerTypes" ? "ContainerTypes_desc" : "ContainerTypes";
+            ViewBag.NameSortParm2 = sortOrder2 == "Name" ? "Name_desc" : "Name";
+            ViewBag.LabelSortParm2 = sortOrder2 == "Label" ? "Label_desc" : "Label";
+            ViewBag.VolumeSortParm2 = sortOrder2 == "Volume" ? "Volume_desc" : "Volume";
+
 
             //var vehicles = db.Vehicles.Include(v => v.Company).Include(v => v.Costs);
             var vehicles = db.Vehicles.Include(v => v.Company);
             // tole je dodano za izpis tabele containers
             var allContainers = db.Containers.Include(c => c.Company).Include(c => c.ContainerTypes);
-            ViewBag.allContainers = allContainers;
+            
             //****
 
             // SEARCH filter
             if (searchString != null)
             {
                 page = 1;
+                page2 = 1;
             }
             else
             {
@@ -55,11 +61,11 @@ namespace TransportBrunaWeb.Controllers
                 || m.RegPlate.Contains(searchString)
                 || m.Brand.Contains(searchString)
                 || m.Note.Contains(searchString)).OrderBy(x => x.DateReg);
-                /*
+                
                 allContainers = allContainers.Where(m => m.Name.Contains(searchString)
                 || m.Label.Contains(searchString)
                 || m.ContainerTypes.Name.Contains(searchString)
-                || m.Note.Contains(searchString)).OrderBy(x => x.Label);*/
+                || m.Note.Contains(searchString)).OrderBy(x => x.Label);
             }
 
             // SORT funkcija
@@ -95,21 +101,50 @@ namespace TransportBrunaWeb.Controllers
                 case "DateMot_desc":
                     vehicles = vehicles.OrderByDescending(s => s.DateMot);
                     break;
-                /*case "Label":
+                default:
+                    vehicles = vehicles.OrderByDescending(s => s.DateReg);
+                    break;
+            }
+            // SORT za containers
+            switch (sortOrder2)
+            {
+                case "ContainerTypes":
+                    allContainers = allContainers.OrderBy(s => s.ContainerTypes.Name);
+                    break;
+                case "ContainerTypes_desc":
+                    allContainers = allContainers.OrderByDescending(s => s.ContainerTypes.Name);
+                    break;
+                case "Name":
+                    allContainers = allContainers.OrderBy(s => s.Name);
+                    break;
+                case "Name_desc":
+                    allContainers = allContainers.OrderByDescending(s => s.Name);
+                    break;
+                case "Label":
                     allContainers = allContainers.OrderBy(s => s.Label);
                     break;
                 case "Label_desc":
                     allContainers = allContainers.OrderByDescending(s => s.Label);
-                    break;*/
+                    break;
+                case "Volume":
+                    allContainers = allContainers.OrderBy(s => s.Volume);
+                    break;
+                case "Volume_desc":
+                    allContainers = allContainers.OrderByDescending(s => s.Volume);
+                    break;
                 default:
-                    vehicles = vehicles.OrderByDescending(s => s.DateReg);
-                    //allContainers = allContainers.OrderBy(s => s.Label);
+                    allContainers = allContainers.OrderBy(s => s.Label);
                     break;
             }
 
             //paging
             int pageSize = int.Parse(ConfigurationManager.AppSettings["pagesize"]);
             int pageNumber = (page ?? 1);
+
+            int pageSize2 = int.Parse(ConfigurationManager.AppSettings["pagesize"]);
+            int pageNumber2 = (page2 ?? 1);
+            ViewBag.allContainers = allContainers.ToPagedList(pageNumber2, pageSize2);
+
             return View(vehicles.ToPagedList(pageNumber, pageSize));
             //return View(vehicles.ToList());
         }
@@ -276,12 +311,17 @@ namespace TransportBrunaWeb.Controllers
             var allContainers = db.Containers.Include(c => c.Company).Include(c => c.ContainerTypes);
 
             // izpis tabele transportationLog
-            var allTransportationLogs = db.TransportationLog.Include(c => c.ContainerID);
-            allTransportationLogs = allTransportationLogs.Where(c => c.Active == false);
+            var allTransportationLogs = db.TransportationLog.Include(c => c.ContainerID).Where(c => c.Active == true);
+            /*
+            foreach (var log in allTransportationLogs)
+            {
+                var x = log.Containers
+            }*/
+
+            allContainers=allContainers.Where(x => allTransportationLogs.Where(y=>y.ContainerID==x.ContainerID).Count()==0);
 
 
-
-            ViewBag.allContainers = allContainers;
+            //ViewBag.allContainers = allContainers;
 
             return View(allContainers.ToList());
         }

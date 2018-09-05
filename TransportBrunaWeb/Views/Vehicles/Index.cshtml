@@ -98,24 +98,31 @@
     }
 </table>
 
+<!--Paginacija-->
+Stran @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) od @Model.PageCount
 
-<hr />
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+<hr class="hrrr" />
 <!--TABELA KASONOV!!!-->
 <div>
     <h3>Seznam kesonov/košar</h3>
     <table class="table table-striped table-hover">
         <tr>
             <th>
-                Tip kesona/košare
+                @Html.ActionLink("Tip kesona/košare", "Index", new { sortOrder2 = ViewBag.ContainerTypesSortParm2, currentFilter = ViewBag.CurrentFilter }, new { @style = "color:#666666;" })
             </th>
             <th>
-                Ime
+                @Html.ActionLink("Ime", "Index", new { sortOrder2 = ViewBag.NameSortParm2, currentFilter = ViewBag.CurrentFilter }, new { @style = "color:#666666;" })
+
             </th>
             <th>
-                Oznaka
+                @Html.ActionLink("Oznaka", "Index", new { sortOrder2 = ViewBag.LabelSortParm2, currentFilter = ViewBag.CurrentFilter }, new { @style = "color:#666666;" })
+
             </th>
             <th>
-                Volumen
+                @Html.ActionLink("Volumen", "Index", new { sortOrder2 = ViewBag.VolumeSortParm2, currentFilter = ViewBag.CurrentFilter }, new { @style = "color:#666666;" })
             </th>
             <th>
                 Opomba
@@ -123,8 +130,9 @@
             <th></th>
         </tr>
 
-        @foreach (var item in (IEnumerable<TransportBrunaWeb.Models.Containers>)ViewBag.allContainers)
+        @foreach (var item in (PagedList.IPagedList<TransportBrunaWeb.Models.Containers>)ViewBag.allContainers)
         {
+
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.ContainerTypes.Name)
@@ -159,9 +167,7 @@
         }
     </table>
 </div>
-<!--Pagination-->
-<br />
-        Stran @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) od @Model.PageCount
 
-        @Html.PagedListPager(Model, page => Url.Action("Index",
-            new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+<!--Paginacija-->
+@Html.PagedListPager((PagedList.IPagedList<TransportBrunaWeb.Models.Containers>)ViewBag.allContainers, page2 => Url.Action("Index",
+new { page2, sortOrder2 = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

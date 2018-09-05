@@ -161,6 +161,6 @@
     </div>
     break;
 }
-<p>
-    @Html.ActionLink("Nazaj na seznam", "Index")
-</p>
+    <p>
+        @Html.ActionLink("Nazaj na prejšnjo stran", null, null, null, new { href = Request.UrlReferrer })
+    </p>

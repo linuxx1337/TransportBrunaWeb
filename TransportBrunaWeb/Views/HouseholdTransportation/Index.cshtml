@@ -45,9 +45,6 @@
         <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().Attachment)
         </th>
-        <th>
-            ID Vožnje
-        </th>
         <th></th>
     </tr>
 
@@ -80,9 +77,6 @@
             @Html.DisplayFor(modelItem => item.Attachment)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TransportationLog.TransportationLogID)
-        </td>
-        <td>
             <a href="@Url.Action("Edit", "HouseholdTransportation", new { id=item.HouseholdTransportationID })">
                 <span title="Uredi" class="glyphicon glyphicon-pencil" />
             </a>&nbsp;|
@@ -91,6 +85,9 @@
             </a>&nbsp;|
             <a href="@Url.Action("Delete", "HouseholdTransportation", new { id=item.HouseholdTransportationID })">
                 <span title="Izbriši" class="glyphicon glyphicon-trash" />
+            </a>&nbsp;|
+            <a href="@Url.Action("Details", "TransportationLog", new { id=item.TransportationLogID })">
+                <span title="Podrobnosti vožnje" class="glyphicon glyphicon-road" />
             </a>
         </td>
     </tr>

@@ -22,7 +22,7 @@ namespace TransportBrunaWeb.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -34,9 +34,9 @@ namespace TransportBrunaWeb.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -79,13 +79,22 @@ namespace TransportBrunaWeb.Controllers
             {
                 if (!await UserManager.IsEmailConfirmedAsync(user.Id))
                 {
-                    ViewBag.errorMessage = "Za prijavo morate potrditi svoj e-poštni naslov.";
-                    return View("Error");
+                    /*ViewBag.errorMessage = "Za prijavo morate potrditi svoj e-poštni naslov.";
+                    return View("Error");*/
+                    ModelState.AddModelError("", "Za prijavo morate potrditi svoj e-poštni naslov.");
+                    return View(model);
                 }
             }
-
+            else
+            {
+                /*ViewBag.errorMessage = "Prijava je bila neuspešna.";
+                return View("Error");*/
+                ModelState.AddModelError("", "Prijava je bila neuspešna.");
+                return View(model);
+            }
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
+
             var result = await SignInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
@@ -131,7 +140,7 @@ namespace TransportBrunaWeb.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -166,15 +175,25 @@ namespace TransportBrunaWeb.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
 
-                    return RedirectToAction("Index", "Home");
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+
+                    await UserManager.SendEmailAsync(
+                        user.Id,
+                        "Potrdi svoj e-naslov",
+                        "<p>Dobrodošel na spletno stran podjetja<span style=\"font-weight:bold; color:#000080\"> Transport Bruna d.o.o.</span></p> " +
+                        "<br />" +
+                        "<p>Potrdite svoj račun tako, da kliknete to <a href=\"" + callbackUrl + "\">povezavo</a></p>");
+
+                    ViewBag.Message = "Preverite svoj e-poštni nabiralnik in potrdite naslov. Samo potrjeni uporabniki se lahko prijavijo.";
+                    return View("Login");
+                
+                    //return RedirectToAction("Login", "Account");
                 }
                 AddErrors(result);
             }

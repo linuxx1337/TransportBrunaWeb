@@ -4,6 +4,7 @@
 @{
     ViewBag.Title = "Index";
 }
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
 <h2>Seznam stroškov vozil</h2>
 
@@ -29,9 +30,6 @@
         <th>
             Opomba
         </th>
-        <th>
-            ID vozila
-        </th>
         <th></th>
     </tr>
 
@@ -51,9 +49,6 @@
                 @Html.DisplayFor(modelItem => item.Costs.Note)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.VehicleID)
-            </td>
-            <td>
                 <a href="@Url.Action("Edit", "Costs", new { id=item.CostID })">
                     <span title="Uredi" class="glyphicon glyphicon-pencil" />
                 </a>&nbsp;|
@@ -62,6 +57,9 @@
                 </a>&nbsp;|
                 <a href="@Url.Action("Delete", "VehicleCosts", new { id=item.VehicleCostID })">
                     <span title="Izbriši" class="glyphicon glyphicon-trash" />
+                </a>&nbsp;|
+                <a href="@Url.Action("Details", "Vehicles", new { id=item.VehicleID })">
+                    <span title="Podrobnosti vozila" class="fas fa-truck" />
                 </a>
             </td>
         </tr>

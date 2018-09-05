@@ -29,6 +29,20 @@ namespace TransportBrunaWeb.Controllers
 
             var customers = db.Customers.Include(c => c.Company).Include(c => c.PrivateCustomer);
 
+            /*
+            List<Customers> test = (from customer in db.Customers
+                        select new
+                        {
+                            CustomerID = customer.CustomerID,
+                            Name = customer.CompanyID != null ? customer.Company.FullName : customer.PrivateCustomer.FullName,
+                            Address = customer.CompanyID != null ? customer.Company.Address : customer.PrivateCustomer.Address,
+                            Phone = customer.CompanyID != null ? customer.Company.Phone : customer.PrivateCustomer.Phone,
+                            Epošta = customer.CompanyID != null ? customer.Company.Email : customer.PrivateCustomer.Email,
+                            Vat = customer.CompanyID != null ? customer.Company.Vat : customer.PrivateCustomer.Vat,
+                            Note = customer.CompanyID != null ? customer.Company.Note : customer.PrivateCustomer.Note
+                        }).OrderBy(x => x.Name);*/
+
+            
             // SEARCH filter
             if (searchString != null)
             {
@@ -48,14 +62,14 @@ namespace TransportBrunaWeb.Controllers
                 || m.PrivateCustomer.FullName.Contains(searchString)
                 || m.PrivateCustomer.Address.Contains(searchString)).OrderBy(x => x.Company.FullName);
             }
-
+            
             // SORT funkcija
             switch (sortOrder)
             {
                 case "Fullname":
                     customers = customers.OrderBy(s => s.Company.FullName);
                     break;
-                case "Firstname_desc":
+                case "Fullname_desc":
                     customers = customers.OrderByDescending(s => s.Company.FullName);
                     break;
                 case "Address":
@@ -79,6 +93,7 @@ namespace TransportBrunaWeb.Controllers
             int pageSize = int.Parse(ConfigurationManager.AppSettings["pagesize"]);
             int pageNumber = (page ?? 1);
             return View(customers.ToPagedList(pageNumber, pageSize));
+            //return View(test.ToPagedList(pageNumber, pageSize));
             //return View(customers.ToList());
         }
 
