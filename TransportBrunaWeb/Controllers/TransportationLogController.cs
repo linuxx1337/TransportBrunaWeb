@@ -11,9 +11,12 @@ using TransportBrunaWeb.DAL;
 using TransportBrunaWeb.Models;
 using PagedList;
 using System.Configuration;
+using System.IO;
 
 namespace TransportBrunaWeb.Controllers
 {
+    [Authorize(Roles = "Superadmin, Superuser")]
+
     public class TransportationLogController : Controller
     {
         private BrunaContext db = new BrunaContext();
@@ -391,6 +394,119 @@ namespace TransportBrunaWeb.Controllers
             }
             
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        }
+
+        public void ExportToCSVall()
+        {
+
+            StringWriter sw = new StringWriter();
+
+            sw.WriteLine("\"Datum\",\"Lokacija\",\"Stranka\",\"Tip tovora\",\"Vozilo\",\"Keson\",\"Opomba\",\"Aktivna?\"");
+
+            Response.ClearContent();
+            Response.AddHeader("content-disposition", "attachment;filename=" + DateTime.Now.ToString("dd-MM-yyyy") + "_VseVožnje.csv");
+            Response.ContentType = "text/csv";
+
+            var transportationLog = db.TransportationLog.Include(t => t.CargoTypes).Include(t => t.Containers).Include(t => t.Customers).Include(t => t.Vehicles).OrderBy(x=>x.Date);
+
+            string slo (bool dane)
+            {
+                if(dane==true)
+                {
+                    return "Da";
+                }
+                else
+                {
+                    return "Ne";
+                }
+            }
+
+
+            foreach (var line in transportationLog)
+            {
+                sw.WriteLine(string.Format("\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\"",
+                                           line.Date,
+                                           line.Location,
+                                           line.Customers.Company != null ? line.Customers.Company.FullName : line.Customers.PrivateCustomer.FullName,
+                                           line.CargoTypes.Name,
+                                           line.Vehicles.Name,
+                                           line.Containers.Label,
+                                           line.Note,
+                                           slo(line.Active) 
+                                           ));
+            }
+
+            Response.Write(sw.ToString());
+
+            Response.End();
+
+        }
+        public void ExportToCSVactive()
+        {
+
+            StringWriter sw = new StringWriter();
+
+            sw.WriteLine("\"Datum\",\"Lokacija\",\"Stranka\",\"Tip tovora\",\"Vozilo\",\"Keson\",\"Opomba\"");
+
+            Response.ClearContent();
+            Response.AddHeader("content-disposition", "attachment;filename=" + DateTime.Now.ToString("dd-MM-yyyy") + "_AktivneVožnje.csv");
+            Response.ContentType = "text/csv";
+
+            var transportationLog = db.TransportationLog.Include(t => t.CargoTypes).Include(t => t.Containers).Include(t => t.Customers).Include(t => t.Vehicles).OrderBy(x => x.Date);
+
+            transportationLog = transportationLog.Where(x => x.Active == true).OrderBy(x => x.Date);
+
+
+            foreach (var line in transportationLog)
+            {
+                sw.WriteLine(string.Format("\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\"",
+                                           line.Date,
+                                           line.Location,
+                                           line.Customers.Company != null ? line.Customers.Company.FullName : line.Customers.PrivateCustomer.FullName,
+                                           line.CargoTypes.Name,
+                                           line.Vehicles.Name,
+                                           line.Containers.Label,
+                                           line.Note));
+            }
+
+            Response.Write(sw.ToString());
+
+            Response.End();
+
+        }
+        public void ExportToCSVnonActive()
+        {
+
+            StringWriter sw = new StringWriter();
+
+            sw.WriteLine("\"Datum\",\"Lokacija\",\"Stranka\",\"Tip tovora\",\"Vozilo\",\"Keson\",\"Opomba\"");
+
+            Response.ClearContent();
+            Response.AddHeader("content-disposition", "attachment;filename=" + DateTime.Now.ToString("dd-MM-yyyy") + "_ZaključeneVožnje.csv");
+            Response.ContentType = "text/csv";
+
+            var transportationLog = db.TransportationLog.Include(t => t.CargoTypes).Include(t => t.Containers).Include(t => t.Customers).Include(t => t.Vehicles).OrderBy(x => x.Date);
+
+
+            transportationLog = transportationLog.Where(x => x.Active == false).OrderBy(x => x.Date);
+
+
+            foreach (var line in transportationLog)
+            {
+                sw.WriteLine(string.Format("\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\"",
+                                           line.Date,
+                                           line.Location,
+                                           line.Customers.Company != null ? line.Customers.Company.FullName : line.Customers.PrivateCustomer.FullName,
+                                           line.CargoTypes.Name,
+                                           line.Vehicles.Name,
+                                           line.Containers.Label,
+                                           line.Note));
+            }
+
+            Response.Write(sw.ToString());
+
+            Response.End();
+
         }
 
         protected override void Dispose(bool disposing)

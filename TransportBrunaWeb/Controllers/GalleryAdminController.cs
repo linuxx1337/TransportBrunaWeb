@@ -10,6 +10,8 @@ using TransportBrunaWeb.DAL;
 
 namespace TransportBrunaWeb.Controllers
 {
+    [Authorize(Roles = "Superadmin, Superuser")]
+
     public class GalleryAdminController : Controller
     {
         // GET: GalleryAdmin

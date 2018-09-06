@@ -41,6 +41,7 @@ namespace TransportBrunaWeb.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Superadmin")]
         public ActionResult Administration()
         {
             //ViewBag.Message = "Your contact page.";

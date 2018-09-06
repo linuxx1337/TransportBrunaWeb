@@ -14,11 +14,14 @@ using TransportBrunaWeb.Models;
 
 namespace TransportBrunaWeb.Controllers
 {
+    [Authorize(Roles = "Superadmin, Superuser")]
+
     public class CostsController : Controller
     {
         private BrunaContext db = new BrunaContext();
 
         // GET: Costs
+        //[Authorize(Roles = "Superadmin")]
         public ActionResult Index(string searchString, string sortOrder, string currentFilter, int? page)
         {
             ViewBag.CurrentSort = sortOrder;

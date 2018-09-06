@@ -12,6 +12,8 @@ using TransportBrunaWeb.Models;
 
 namespace TransportBrunaWeb.Controllers
 {
+    [Authorize(Roles = "Superadmin, Superuser")]
+
     public class PrivateCustomersController : Controller
     {
         private BrunaContext db = new BrunaContext();

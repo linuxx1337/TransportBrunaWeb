@@ -15,6 +15,17 @@
     <li>@Html.ActionLink("Dodaj vožnjo", "Create")</li>
     <li>@Html.ActionLink("Seznam gospodinjstev", "Index", "HouseholdTransportation")</li>
     <li>@Html.ActionLink("Seznam stroškov voženj", "Index", "DrivingCosts")</li>
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            Izvozi v CSV <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li>@Html.ActionLink("Vse vožnje", "ExportToCSVall")</li>
+            <li>@Html.ActionLink("Vse aktivne", "ExportToCSVactive")</li>
+            <li>@Html.ActionLink("Vse zaključene", "ExportToCSVnonActive")</li>
+        </ul>
+    </li>
+
     @if (Context.User.Identity.IsAuthenticated && User.IsInRole("Superadmin"))
     {
         <li class="dropdown">
@@ -24,7 +35,6 @@
             <ul class="dropdown-menu">
                 <li>@Html.ActionLink("Dodaj tip tovora", "Create", "CargoTypes")</li>
                 <li>@Html.ActionLink("Dodaj tip stroška", "Create", "CostTypes")</li>
-                <li>@Html.ActionLink("Dodaj gospodinjstvo", "Create", "HouseholdTransportation")</li>
                 <li class="divider"></li>
                 <li>@Html.ActionLink("Pregled vseh stroškov", "Index", "Costs")</li>
             </ul>
