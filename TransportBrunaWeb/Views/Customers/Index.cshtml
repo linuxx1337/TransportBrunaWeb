@@ -1,5 +1,5 @@
 ﻿@*model IEnumerable<TransportBrunaWeb.Models.Customers>*@
-@model PagedList.IPagedList<TransportBrunaWeb.Models.Customers>
+@model PagedList.IPagedList<TransportBrunaWeb.Models.CustomerSpecial>
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
@@ -26,99 +26,81 @@
             @Html.ActionLink("Naziv", "Index", new { sortOrder = ViewBag.FullnameSortParm, currentFilter = ViewBag.CurrentFilter }, new { @style = "color:#666666;" })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().Company.Address)
+            @Html.ActionLink("Naslov", "Index", new { sortOrder = ViewBag.AddressSortParm, currentFilter = ViewBag.CurrentFilter }, new { @style = "color:#666666;" })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().Company.Phone)
+            Telefon
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().Company.Email)
+            E-naslov
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().Company.Vat)
+            @Html.ActionLink("Davčna številka", "Index", new { sortOrder = ViewBag.VatSortParm, currentFilter = ViewBag.CurrentFilter }, new { @style = "color:#666666;" })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().Company.Note)
+            Opomba
         </th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        if (item.CompanyID != null)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Company.FullName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Company.Address)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Company.Phone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Company.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Company.Vat)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Company.Note)
-                </td>
-                <td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Note)
+            </td>
+            <td>
+                @if (item.CompanyID != null)
+                {
+                    <html>
                     <a href="@Url.Action("Edit", "Company", new { id=item.CompanyID })">
                         <span title="Uredi" class="glyphicon glyphicon-pencil" />
                     </a>&nbsp;|
-                    <a href="@Url.Action("Details", "Company", new { id=item.CompanyID })">
+
+                    <a href="@Url.Action("Details", "Company", new { id = item.CompanyID })">
                         <span title="Podrobnosti" class="glyphicon glyphicon-option-vertical" />
                     </a>&nbsp;|
-                    <a href="@Url.Action("Delete", "Customers", new { id=item.CustomerID })">
-                        <span title="Izbriši" class="glyphicon glyphicon-trash" />
-                    </a>
-                </td>
-            </tr>
+                </html>
+            }
+            else
+            {
+                <html>
+                <a href="@Url.Action("Edit", "PrivateCustomers", new { id=item.PrivateCustomerID })">
+                    <span title="Uredi" class="glyphicon glyphicon-pencil" />
+                </a>&nbsp;|
+
+                <a href="@Url.Action("Details", "PrivateCustomers", new { id = item.PrivateCustomerID })">
+                    <span title="Podrobnosti" class="glyphicon glyphicon-option-vertical" />
+                </a>&nbsp;|
+            </html>
         }
-        else
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PrivateCustomer.FullName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PrivateCustomer.Address)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PrivateCustomer.Phone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PrivateCustomer.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PrivateCustomer.Vat)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PrivateCustomer.Note)
-                </td>
-                <td>
-                    <a href="@Url.Action("Edit", "PrivateCustomers", new { id=item.PrivateCustomerID })">
-                        <span title="Uredi" class="glyphicon glyphicon-pencil" />
-                    </a>&nbsp;|
-                    <a href="@Url.Action("Details", "PrivateCustomers", new { id=item.PrivateCustomerID })">
-                        <span title="Podrobnosti" class="glyphicon glyphicon-option-vertical" />
-                    </a>&nbsp;|
-                    <a href="@Url.Action("Delete", "Customers", new { id=item.CustomerID })">
-                        <span title="Izbriši" class="glyphicon glyphicon-trash" />
-                    </a>
-                </td>
-            </tr>
-        }
+                <a href="@Url.Action("Delete", "Customers", new { id=item.CustomerID })">
+                    <span title="Izbriši" class="glyphicon glyphicon-trash" />
+                </a>
+            </td>
+        </tr>
     }
 
 </table>
+
 <!--Pagination-->
 <br />
-        Stran @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) od @Model.PageCount
+    Stran @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) od @Model.PageCount
 
-        @Html.PagedListPager(Model, page => Url.Action("Index",
-            new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

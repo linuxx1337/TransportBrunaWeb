@@ -61,4 +61,39 @@ namespace TransportBrunaWeb.Models
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
     }
+
+    public class CustomerSpecial
+    {
+        public Guid CustomerID { get; set; }
+        public Guid? CompanyID { get; set; }
+        public Guid? PrivateCustomerID { get; set; }
+
+
+        [Display(Name = "Naziv")]
+        [Required(ErrorMessage = "Naziv mora biti določen!")]
+        public string Name { get; set; }
+
+        [Display(Name = "Naslov")]
+        [Required(ErrorMessage = "Naslov mora biti določen!")]
+        public string Address { get; set; }
+
+        [Display(Name = "Telefon")]
+        [RegularExpression(@"^([\+]|0)[(\s]{0,1}[1-9][0-9]{0,2}[\s-)]{0,2}[0-9][0-9][0-9\s-]*[0-9]$", ErrorMessage = "Vnesite pravilno številko, primer: 040 123-456, 07 12-12456, +(386) 334-452")]
+        [Required(ErrorMessage = "Telefon mora biti določena!")]
+        public string Phone { get; set; }
+
+        [Display(Name = "E-pošta")]
+        [Required(ErrorMessage = "E-pošta mora biti določena!")]
+        public string Email { get; set; }
+
+        [Display(Name = "Davčna številka")]
+        [RegularExpression(@"^[0-9]{8}$", ErrorMessage = "Vnesite SI davčno številko!")]
+        [Required(ErrorMessage = "Davčna številka mora biti določena!")]
+        public int? Vat { get; set; }
+
+        [Display(Name = "Opomba")]
+        [DataType(DataType.MultilineText)]
+        public string Note { get; set; }
+
+    }
 }

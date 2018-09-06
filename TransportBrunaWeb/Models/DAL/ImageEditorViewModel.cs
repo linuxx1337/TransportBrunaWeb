@@ -9,10 +9,10 @@ namespace TransportBrunaWeb.Models.DAL
     public class ImageEditorViewModel
     {
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Napis mora biti določen!")]
         public string Caption { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Slika mora biti izbrana!")]
         public HttpPostedFileBase FileImage { get; set; }
 
         internal static Gallery getEnityModel(ImageEditorViewModel model)

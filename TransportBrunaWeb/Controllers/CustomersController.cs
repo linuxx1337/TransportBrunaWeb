@@ -29,18 +29,20 @@ namespace TransportBrunaWeb.Controllers
 
             var customers = db.Customers.Include(c => c.Company).Include(c => c.PrivateCustomer);
 
-            /*
-            List<Customers> test = (from customer in db.Customers
-                        select new
+            
+            var test = (from customer in db.Customers
+                        select new CustomerSpecial
                         {
                             CustomerID = customer.CustomerID,
+                            CompanyID = customer.CompanyID,
+                            PrivateCustomerID = customer.PrivateCustomerID,
                             Name = customer.CompanyID != null ? customer.Company.FullName : customer.PrivateCustomer.FullName,
                             Address = customer.CompanyID != null ? customer.Company.Address : customer.PrivateCustomer.Address,
                             Phone = customer.CompanyID != null ? customer.Company.Phone : customer.PrivateCustomer.Phone,
-                            Epošta = customer.CompanyID != null ? customer.Company.Email : customer.PrivateCustomer.Email,
+                            Email = customer.CompanyID != null ? customer.Company.Email : customer.PrivateCustomer.Email,
                             Vat = customer.CompanyID != null ? customer.Company.Vat : customer.PrivateCustomer.Vat,
                             Note = customer.CompanyID != null ? customer.Company.Note : customer.PrivateCustomer.Note
-                        }).OrderBy(x => x.Name);*/
+                        }).OrderBy(x => x.Name);
 
             
             // SEARCH filter
@@ -57,42 +59,40 @@ namespace TransportBrunaWeb.Controllers
             // SEARCH funkcija
             if (!String.IsNullOrEmpty(searchString))
             {
-                customers = customers.Where(m => m.Company.FullName.Contains(searchString)
-                || m.Company.Address.Contains(searchString)
-                || m.PrivateCustomer.FullName.Contains(searchString)
-                || m.PrivateCustomer.Address.Contains(searchString)).OrderBy(x => x.Company.FullName);
+                test = test.Where(m => m.Name.Contains(searchString)
+                || m.Address.Contains(searchString)).OrderBy(x => x.Name);
             }
             
             // SORT funkcija
             switch (sortOrder)
             {
                 case "Fullname":
-                    customers = customers.OrderBy(s => s.Company.FullName);
+                    test = test.OrderBy(s => s.Name);
                     break;
                 case "Fullname_desc":
-                    customers = customers.OrderByDescending(s => s.Company.FullName);
+                    test = test.OrderByDescending(s => s.Name);
                     break;
                 case "Address":
-                    customers = customers.OrderBy(s => s.Company.Address);
+                    test = test.OrderBy(s => s.Address);
                     break;
                 case "Address_desc":
-                    customers = customers.OrderByDescending(s => s.Company.Address);
+                    test = test.OrderByDescending(s => s.Address);
                     break;
                 case "Vat":
-                    customers = customers.OrderBy(s => s.Company.Vat);
+                    test = test.OrderBy(s => s.Vat);
                     break;
                 case "Vat_desc":
-                    customers = customers.OrderByDescending(s => s.Company.Vat);
+                    test = test.OrderByDescending(s => s.Vat);
                     break;
                 default:
-                    customers = customers.OrderBy(s => s.Company.FullName);
+                    test = test.OrderBy(s => s.Name);
                     break;
             }
 
             //paging
             int pageSize = int.Parse(ConfigurationManager.AppSettings["pagesize"]);
             int pageNumber = (page ?? 1);
-            return View(customers.ToPagedList(pageNumber, pageSize));
+            return View(test.ToPagedList(pageNumber, pageSize));
             //return View(test.ToPagedList(pageNumber, pageSize));
             //return View(customers.ToList());
         }

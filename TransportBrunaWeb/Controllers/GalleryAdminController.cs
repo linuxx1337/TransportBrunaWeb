@@ -43,11 +43,13 @@ namespace TransportBrunaWeb.Controllers
                     db.SaveChanges();
 
                     return Json(new { success = true, Caption = model.Caption });
+                    //ModelState.AddModelError("", "Uspešno ste naložili sliko.");
+                    //return RedirectToAction("Index", "Gallery");
                 }
 
                 return Json(new { success = false, ValidationMessage = "Please check validation messages" });
                 //ViewBag.errorMessage = "Prišlo je do napake.";
-                //return View("Index");
+                //return View();
             }
             catch (Exception ex)
             {
