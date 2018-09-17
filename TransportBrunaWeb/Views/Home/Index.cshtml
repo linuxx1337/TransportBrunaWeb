@@ -5,45 +5,73 @@
 }
 
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <h3>Dobrodošli na spletno stran podjetja Transport Bruna d.o.o.</h3>
+    <img src="~/Content/img/kamion.jpg" class="img-responsive" />
 </div>
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Getting started</h2>
+        <h2>Storitve</h2>
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            <li>prevozi gradbenega materiala</li>
+            <li>prevozi odpadnega materiala</li>
+            <li>prevozi kuriva (drva)</li>
+            <li>prevozi vozil in delovnih strojev</li>
+            <li>...</li>
         </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <br />
+        <p><a class="btn btn-default" href="~/Home/About">Preberi več &raquo;</a></p>
     </div>
     <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        <h2>Vozni park</h2>
+        <p>Naša vozila so majhna in okretna, zato so primerna za opravljanje prevozov na ozkih, težko dostopnih predelih, strminah, ozkih ulicah in mestnih jedrih.</p>
+        <br />
+        <p><a class="btn btn-default" href="~/Gallery/">Preberi več &raquo;</a></p>
     </div>
     <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        <h2>Lokacija</h2>
+        <p>Najde nas na naslovu:</p>
+        <br />
+        <p>
+            <i class="glyphicon glyphicon-map-marker"></i>
+            <b>Gorenja Brezovica 24, 8310 Šentjernej</b>
+        </p>
+        <br />
+        <p><a class="btn btn-default" href="~/Home/Contact">Preberi več &raquo;</a></p>
     </div>
 </div>
 
 <hr />
 <!--USER RATING-->
 <div>
-<h2 class="container-fluid">
-    <h3>Oceni našo storitev</h3>
-    <div class="row">
+    <h2 class="container-fluid">
+        <h3>Oceni našo storitev</h3>
+        <div class="row">
             <img src="~/Content/img/checklist.png" class="img-responsive" />
-        <p>
-            Sporočite kako ste zadovoljni z našo storitvijo!
-        </p>
-        <!--tukaj daj rating-->
-    </div>
+            <p>
+                Sporočite kako ste zadovoljni z našo storitvijo!
+            </p>
+            <!--tukaj daj rating-->
+        </div>
+</div>
+<hr />
+<h2>Kje se nahajamo?</h2>
+<div class="mapouter">
+    <div class="gmap_canvas"><iframe width="800" height="400" id="gmap_canvas" src="https://maps.google.com/maps?q=gorenja%20brezovica%2024%2C%20%C5%A1entjernej&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div>
+    <style>
+        .mapouter {
+            text-align: right;
+            height: 400px;
+            width: 800px;
+        }
+
+        .gmap_canvas {
+            overflow: hidden;
+            background: none !important;
+            height: 400px;
+            width: 800px;
+        }
+    </style>
 </div>
 
 
