@@ -9,7 +9,8 @@ namespace TransportBrunaWeb.DAL
 {
     public class BrunaContext : DbContext
     {
-        public BrunaContext() : base("aspnet-TransportBrunaWeb-20180526110627")
+        // public BrunaContext() : base("aspnet-TransportBrunaWeb-20180526110627")
+        public BrunaContext() : base("DefaultConnection")
         {
         }
 

@@ -384,6 +384,7 @@
     </Content>
     <Content Include="Scripts\fancy-box\jquery.fancybox.css" />
     <Content Include="Scripts\fancy-box\jquery.fancybox.js" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\fancy-box\jquery.fancybox.min.css" />
     <Content Include="Scripts\fancy-box\jquery.fancybox.min.js" />
@@ -513,6 +514,7 @@
     <Content Include="Views\GalleryAdmin\_List.cshtml" />
     <Content Include="Views\Gallery\Index.cshtml" />
     <Content Include="Views\Gallery\_List.cshtml" />
+    <Content Include="Views\Home\mail.php" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

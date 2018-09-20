@@ -53,7 +53,7 @@ namespace TransportBrunaWeb.Controllers
                 //ViewBag.errorMessage = "Prišlo je do napake.";
                 //return View();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return Json(new { success = false, ExceptionMessage = "Some error here" });
             }
