@@ -13,7 +13,7 @@
     <li>
         @if (Model.Active)
         {
-            <a href="@Url.Action("CloseLog", "TransportationLog", new { id=Model.TransportationLogID })">
+            <a href="@Url.Action("CloseLog", "TransportationLog", new { idLog=Model.TransportationLogID })">
                 <span title="Končaj vožnjo" class="glyphicon glyphicon-ok" />
             </a>
         }

@@ -182,11 +182,7 @@ namespace TransportBrunaWeb.Controllers
 
                 db.TransportationLog.Add(transportationLog);
                 db.SaveChanges();
-                // CHECKBOX za HOUSEHOLD!
-                if(checkHousehold == true)
-                {
-                    return RedirectToAction("Create", "HouseholdTransportation", new { LogID = transportationLog.TransportationLogID });
-                }
+                
 
                 // CHECKBOX za COSTS!
                 /*if (checkCosts == true)
@@ -224,12 +220,18 @@ namespace TransportBrunaWeb.Controllers
 
                 transportationStatus.Date = DateTime.Now;
                
-                transportationStatus.TransportationTypeStatusID = Guid.Parse("c1f2cc4a-c96d-491f-9b7e-697f2d63645c");
+                transportationStatus.TransportationTypeStatusID = Guid.Parse("cbaa33cc-ed89-448d-a371-72bafa5a4ff8");
                 transportationStatus.TransportationLogID = transportationLog.TransportationLogID;
 
                 db.TransportationStatus.Add(transportationStatus);
                 db.SaveChanges();
-                
+
+                // CHECKBOX za HOUSEHOLD!
+                if (checkHousehold == true)
+                {
+                    return RedirectToAction("Create", "HouseholdTransportation", new { LogID = transportationLog.TransportationLogID });
+                }
+
                 return RedirectToAction("Index");
             }
 
@@ -361,7 +363,7 @@ namespace TransportBrunaWeb.Controllers
             Guid tempID = Guid.Parse(idLog);
             TransportationStatus transportationStatus = db.TransportationStatus.Where(x => x.TransportationLogID == tempID).Single();
             
-            Guid idOpen = Guid.Parse("c1f2cc4a-c96d-491f-9b7e-697f2d63645c");
+            Guid idOpen = Guid.Parse("cbaa33cc-ed89-448d-a371-72bafa5a4ff8");
 
             if (transportationStatus.TransportationTypeStatusID == idOpen)
             {
@@ -376,7 +378,7 @@ namespace TransportBrunaWeb.Controllers
 
                 transportationStatus1.Date = DateTime.Now;
 
-                transportationStatus1.TransportationTypeStatusID = Guid.Parse("fd69e724-361e-486e-ae03-05273c135c90");
+                transportationStatus1.TransportationTypeStatusID = Guid.Parse("6f754707-37b8-425b-88bd-d1515949e7cd");
                 transportationStatus1.TransportationLogID = Guid.Parse(idLog);
 
                 db.TransportationStatus.Add(transportationStatus1);

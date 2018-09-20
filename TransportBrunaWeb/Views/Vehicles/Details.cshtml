@@ -7,7 +7,7 @@
 <h2>Podrobnosti vozila</h2>
 <ul class="nav nav-pills">
     <li>@Html.ActionLink("Uredi vozilo", "Edit", new { id = Model.VehicleID })</li>
-    <li>@Html.ActionLink("Dodaj strošek", "Create", "Costs", new { TransportationLogID = Model.VehicleID }, null) </li>
+    <li>@Html.ActionLink("Dodaj strošek", "Create", "Costs", new { VehicleID = Model.VehicleID }, null) </li>
 </ul>
 <hr class="hrrr" />
 <div>
